@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mediaboss Africa | Engineering Cultural Dominance</title>
+    <meta name="description" content="The global standard for African talent management and creative media production. We scale influence through digital innovation and elite storytelling." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://mediabossafrica.com" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='100%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23ff00a0'/%3E%3Cstop offset='100%25' stop-color='%23810955'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23g)'/%3E%3Cpath d='M25 45L35 25L52 72L68 28L82 58' stroke='white' stroke-width='11' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                deep: '#0a010d',
+                void: '#050107',
+                magenta: '#ff00a0',
+                accent: '#810955',
+                glass: 'rgba(255, 255, 255, 0.02)',
+                border: 'rgba(255, 255, 255, 0.08)',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Sora', 'sans-serif'],
+            },
+            animation: {
+              'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root { --brand-magenta: #ff00a0; }
+      body { 
+        background-color: #0a010d; 
+        color: white; 
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      
+      /* Noise Texture Overlay */
+      .noise-bg::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.05;
+        z-index: 50;
+        background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      }
+
+      .glass-morphism {
+        background: rgba(255, 255, 255, 0.01);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+      }
+
+      .text-glow {
+        text-shadow: 0 0 30px rgba(255, 0, 160, 0.4);
+      }
+
+      .gradient-border {
+        position: relative;
+        background: rgba(255,255,255,0.02);
+      }
+      .gradient-border::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(to bottom right, rgba(255,255,255,0.2), transparent, rgba(255,0,160,0.2));
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        -webkit-mask-composite: destination-out;
+        pointer-events: none;
+      }
+
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #0a010d; }
+      ::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
+      ::-webkit-scrollbar-thumb:hover { background: #ff00a0; }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react/": "https://esm.sh/react@18.2.0/",
+        "react-dom": "https://esm.sh/react-dom@18.2.0",
+        "react-dom/": "https://esm.sh/react-dom@18.2.0/",
+        "framer-motion": "https://esm.sh/framer-motion@10.16.4?external=react,react-dom",
+        "lucide-react": "https://esm.sh/lucide-react@0.284.0?external=react,react-dom"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="noise-bg">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
