@@ -8,18 +8,18 @@ const Solutions: React.FC = () => {
     <div className="pt-40 pb-32">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mb-24">
-          <span className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-6 block">Who We Help</span>
+          <span className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-6 block">Our Reach</span>
           <h1 className="text-6xl md:text-9xl font-display font-black tracking-tighter leading-none mb-10 text-gray-900 dark:text-white transition-colors">
-            STRATEGIES FOR <br /> <span className="text-gray-300 dark:text-white/20 italic transition-colors">EVERY CREATOR.</span>
+            INDUSTRIES WE <br /> <span className="text-gray-300 dark:text-white/20 italic transition-colors">DOMINATE.</span>
           </h1>
           <p className="text-gray-500 dark:text-white/50 text-2xl font-light leading-relaxed transition-colors">
-            We understand the unique challenges of different industries. We help you find the right audience and the right brands for your specific niche.
+            From Tech to Lifestyle, we deliver proven results and culture-driven strategies across key sectors.
           </p>
         </div>
 
         <div className="space-y-32">
           {INDUSTRIES.map((industry, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -18,6 +18,9 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           loop
           muted
           playsInline
+          controls={false}
+          disablePictureInPicture
+          controlsList="nodownload noplaybackrate"
           className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white dark:from-brand-deep/80 dark:via-brand-deep/50 dark:to-brand-deep" />
@@ -54,11 +57,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-magenta"></span>
               </span>
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 dark:text-white/70">
-                Lagos-Based Creator Agency
+                Influence. Innovation. Impact.
               </span>
             </motion.div>
 
-            {/* H1 — SEO-aligned, keyword-rich, sentence case */}
             <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-black leading-[0.9] md:leading-[0.85] tracking-[-0.03em] mb-8 sm:mb-10 md:mb-14 select-none">
               <motion.span
                 initial={{ opacity: 0, y: 80, scale: 0.95, rotateX: 30 }}
@@ -66,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-gray-900 dark:text-white transition-colors"
               >
-                Nigeria's leading
+                Start building
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 60, scale: 0.85, rotateX: 45 }}
@@ -74,7 +76,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 transition={{ duration: 1.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-brand-magenta italic text-glow relative origin-center"
               >
-                creator agency.
+                influence that converts.
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
@@ -89,8 +91,8 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5, delay: 1.5 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-white/50 max-w-3xl font-light leading-relaxed mb-10 sm:mb-12 md:mb-14 tracking-tight px-4 sm:px-0">
-              We connect creators with paying brand partnerships, handle contracts and negotiations, and give you free access to our Lagos production studio.
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-white/50 max-w-3xl leading-relaxed mb-10 sm:mb-12 md:mb-14 tracking-tight px-4 sm:px-0">
+              We empower brands and creators to tell compelling stories, build strong communities, and achieve measurable growth through influence-led marketing.
             </motion.p>
 
             {/* CTA — Clear hierarchy: Primary dominant, Secondary subtle */}
@@ -101,13 +103,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto px-4 sm:px-0">
               <button
                 onClick={() => onNavigate('contact')}
-                className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl bg-brand-magenta text-white border-2 border-brand-magenta font-black text-xs uppercase tracking-[0.2em] hover:bg-brand-magenta/90 transition-all shadow-2xl hover:shadow-brand-magenta/50 min-h-[48px]"
+                className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl bg-brand-magenta text-white border-2 border-brand-magenta font-black text-xs uppercase tracking-[0.2em] hover:bg-brand-magenta/90 transition-all shadow-xl hover:shadow-brand-magenta/50 min-h-[48px]"
               >
                 Apply to join
               </button>
               <button
                 onClick={() => onNavigate('work')}
-                className="text-gray-500 dark:text-white/40 font-bold text-xs uppercase tracking-[0.2em] hover:text-brand-magenta dark:hover:text-brand-magenta transition-colors min-h-[48px] px-4"
+                className="text-gray-600 dark:text-white/40 font-bold text-xs uppercase tracking-[0.2em] hover:text-brand-magenta dark:hover:text-brand-magenta transition-colors min-h-[48px] px-4"
               >
                 View our work →
               </button>
@@ -118,9 +120,9 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 2.4 }}
-              className="text-[10px] sm:text-[11px] text-gray-400 dark:text-white/20 mt-6 font-medium tracking-wide"
+              className="text-[10px] sm:text-[11px] text-gray-500 dark:text-white/20 mt-6 font-medium tracking-wide"
             >
-              For creators with 50K+ followers · Commission-based — we only earn when you earn
+              Pan-African Reach · Data-Driven Strategies · In-House Production
             </motion.p>
           </motion.div>
         </div>
@@ -133,7 +135,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6"
       >
         <div className="w-[1px] h-20 bg-gradient-to-b from-brand-magenta to-transparent opacity-30" />
-        <span className="text-[9px] font-black uppercase tracking-[0.5em] text-gray-300 dark:text-white/20 vertical-text">Scroll</span>
+        <span className="text-[9px] font-black uppercase tracking-[0.5em] text-gray-400 dark:text-white/20 vertical-text">Scroll</span>
       </motion.div>
     </section>
   );

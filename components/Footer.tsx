@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <Logo className="origin-left" />
               </button>
             </div>
-            <p className="text-gray-600 dark:text-white/40 max-w-sm mb-12 text-base sm:text-lg font-light leading-relaxed">
+            <p className="text-gray-600 dark:text-white/40 max-w-sm mb-12 text-base sm:text-lg leading-relaxed">
               Lagos-based creator agency. We connect Nigerian talent with paying brand partnerships and provide free studio access.
             </p>
             <div className="flex gap-6">
@@ -70,9 +70,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <h4 className="text-gray-900 dark:text-white font-black uppercase text-[10px] tracking-widest mb-10">Contact</h4>
             <ul className="space-y-6 text-gray-600 dark:text-white/50 text-sm font-medium">
-              <li>Lagos, NG | London, UK</li>
+              <li>Africa | UK | US (Remote Capabilities)</li>
               <li>
-                <a href="mailto:hq@mediabossafrica.com" className="hover:text-brand-magenta">hq@mediabossafrica.com</a>
+                <a href="mailto:info@mediabossafrica.com" className="hover:text-brand-magenta">info@mediabossafrica.com</a>
               </li>
               <li>+234 (0) 900 000 0000</li>
               <li>
@@ -85,7 +85,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         <div className="pt-12 border-t border-gray-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-[0.2em] text-center md:text-left">
+          <p className="text-gray-500 dark:text-white/20 text-[10px] font-black uppercase tracking-[0.2em] text-center md:text-left">
             © {new Date().getFullYear()} Mediaboss Africa. All rights reserved.
           </p>
           <div className="flex gap-10 text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-[0.2em]">

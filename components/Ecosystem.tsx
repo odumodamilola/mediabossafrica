@@ -33,14 +33,14 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 className="text-brand-magenta font-black text-xs tracking-[0.5em] uppercase mb-6 sm:mb-8 block"
               >
-                Free studio access
+                The Mediaboss Studio
               </motion.span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-6 sm:mb-8 leading-[0.9] tracking-tight text-gray-900 dark:text-white transition-colors">
                 The Mediaboss <br />
                 <span className="text-brand-magenta italic">studio.</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-white/50 mb-8 sm:mb-10 md:mb-12 font-light leading-relaxed max-w-xl transition-colors">
-                Create professional content without spending millions on equipment. Our Lekki studio is free for roster creators — 4K cameras, sound booths, editing suites, and a full production team.
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-white/50 mb-8 sm:mb-10 md:mb-12 leading-relaxed max-w-xl transition-colors">
+                Our in-house creative production and content innovation hub, powering high-quality storytelling and digital media production for brands and talents.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-10 gap-y-6 sm:gap-y-8 mb-10 sm:mb-12 md:mb-14">
@@ -57,7 +57,7 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
                     transition={{ delay: i * 0.1 }}
                   >
                     <h4 className="text-gray-900 dark:text-white font-black text-sm uppercase tracking-widest mb-2 sm:mb-3 border-l-2 border-brand-magenta pl-4 transition-colors">{item.t}</h4>
-                    <p className="text-gray-500 dark:text-white/30 text-sm font-light leading-relaxed pl-5 transition-colors">{item.d}</p>
+                    <p className="text-gray-600 dark:text-white/30 text-sm leading-relaxed pl-5 transition-colors">{item.d}</p>
                   </motion.div>
                 ))}
               </div>
@@ -83,6 +83,9 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
                   loop
                   muted
                   playsInline
+                  controls={false}
+                  disablePictureInPicture
+                  controlsList="nodownload noplaybackrate"
                   className="w-full h-full object-cover"
                 />
               </motion.div>

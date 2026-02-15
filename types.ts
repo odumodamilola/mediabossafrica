@@ -18,7 +18,9 @@ export interface Feature {
   title: string;
   description: string;
   category: string;
+  category: string;
   metric?: string;
+  image?: string;
 }
 
 export interface PricingPlan {

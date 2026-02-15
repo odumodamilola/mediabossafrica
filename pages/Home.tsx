@@ -47,22 +47,22 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                 Rooted in <span className="text-brand-magenta italic">Lagos.</span> <br />
                 Built for the world.
               </motion.h2>
-              <motion.p variants={itemVariants} className="text-gray-500 dark:text-white/50 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 sm:mb-10 max-w-xl">
+              <motion.p variants={itemVariants} className="text-gray-600 dark:text-white/50 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 sm:mb-10 max-w-xl">
                 From our production studio in Lekki to our brand partnerships across London and Dubai, we give Nigerian creators the infrastructure to compete globally.
               </motion.p>
 
               <motion.div variants={itemVariants} className="flex flex-wrap gap-6 sm:gap-8">
                 <div className="group">
                   <div className="text-2xl sm:text-3xl font-display font-black text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors">500M+</div>
-                  <div className="text-[10px] font-black uppercase text-gray-400 dark:text-white/30 tracking-widest">Combined reach</div>
+                  <div className="text-[10px] font-black uppercase text-gray-500 dark:text-white/30 tracking-widest">Combined reach</div>
                 </div>
                 <div className="group">
                   <div className="text-2xl sm:text-3xl font-display font-black text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors">12+</div>
-                  <div className="text-[10px] font-black uppercase text-gray-400 dark:text-white/30 tracking-widest">Brand partners</div>
+                  <div className="text-[10px] font-black uppercase text-gray-500 dark:text-white/30 tracking-widest">Brand partners</div>
                 </div>
                 <div className="group">
                   <div className="text-2xl sm:text-3xl font-display font-black text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors">60–90</div>
-                  <div className="text-[10px] font-black uppercase text-gray-400 dark:text-white/30 tracking-widest">Days to first deal</div>
+                  <div className="text-[10px] font-black uppercase text-gray-500 dark:text-white/30 tracking-widest">Days to first deal</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -122,10 +122,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                   }
                 ].map((item, i) => (
                   <motion.div key={i} variants={itemVariants} className="relative">
-                    <span className="text-6xl sm:text-7xl md:text-8xl font-display font-black text-gray-200 dark:text-white/5 absolute -top-4 sm:-top-6 -left-2 select-none transition-colors">{item.step}</span>
+                    <span className="text-6xl sm:text-7xl md:text-8xl font-display font-black text-gray-100 dark:text-white/5 absolute -top-4 sm:-top-6 -left-2 select-none transition-colors">{item.step}</span>
                     <div className="relative z-10 pt-8 sm:pt-10">
                       <h3 className="text-xl sm:text-2xl font-display font-black mb-3 sm:mb-4 text-gray-900 dark:text-white transition-colors">{item.title}</h3>
-                      <p className="text-gray-500 dark:text-white/40 text-sm sm:text-base font-light leading-relaxed">{item.desc}</p>
+                      <p className="text-gray-600 dark:text-white/40 text-sm sm:text-base font-light leading-relaxed">{item.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -148,7 +148,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-black tracking-tight text-gray-900 dark:text-white transition-colors">
               Ready to <span className="text-brand-magenta italic">grow?</span>
             </h3>
-            <p className="text-gray-500 dark:text-white/40 text-sm sm:text-base font-light mt-2 sm:mt-3">
+            <p className="text-gray-600 dark:text-white/40 text-sm sm:text-base font-light mt-2 sm:mt-3">
               Commission-based. No upfront fees. We only earn when you earn.
             </p>
           </motion.div>

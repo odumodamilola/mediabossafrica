@@ -8,9 +8,9 @@ export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions'
 
 export const SEO_CONFIG = {
   home: {
-    title: "Mediaboss Africa | Creator Agency & Influencer Marketing in Lagos, Nigeria",
-    description: "Lagos-based creator agency connecting Nigerian talent with paying brand partnerships. Free studio access in Lekki. Commission-based — we only earn when you earn.",
-    keywords: "creator agency Lagos, influencer marketing agency Nigeria, talent management Lagos, brand partnerships Nigeria, content studio Lekki"
+    title: "Mediaboss Africa | Influence. Innovation. Impact.",
+    description: "Leading pan-African talent management and influencer marketing company. We build influence that converts through strategic storytelling and different data-driven campaigns.",
+    keywords: "talent management africa, influencer marketing nigeria, creative media agency, brand partnerships, mediaboss studio"
   },
   features: {
     title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
@@ -93,28 +93,46 @@ export const CASE_STUDIES: CaseStudy[] = [
 
 export const FEATURES: Feature[] = [
   {
-    title: "Global Dollar Revenue",
-    description: "We negotiate deals in dollars and euros — not naira. Get paid in currencies that hold value globally.",
-    category: "Income",
-    metric: "Dollar Deals"
+    title: "Video Production",
+    description: "Short-form & long-form content creation that captivates audiences.",
+    category: "Studio",
+    metric: "4K Quality",
+    image: "https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?q=80&w=800"
   },
   {
-    title: "Naija-Centric Data",
-    description: "We match you with brands that understand Nigerian culture — not random companies hoping you'll promote anything.",
-    category: "Data",
-    metric: "Local Impact"
+    title: "Social Media Content",
+    description: "Platform-optimized content across Instagram, TikTok, YouTube, and X.",
+    category: "Social",
+    metric: "Viral Ready",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800"
   },
   {
-    title: "Lagos Studio Access",
-    description: "Use our Lagos studio for free. Create TV-quality content without spending millions on equipment.",
-    category: "Quality",
-    metric: "Pro-Grade"
+    title: "Podcast Production",
+    description: "Full-service audio and video podcast recording and editing.",
+    category: "Audio",
+    metric: "Pro Sound",
+    image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800"
   },
   {
-    title: "Legal & IP Security",
-    description: "We handle all contracts and protect your content from being stolen or used without payment.",
-    category: "Safety",
-    metric: "Secure IP"
+    title: "Creative Direction",
+    description: "Photography, branding, and visual storytelling that sets you apart.",
+    category: "Creative",
+    metric: "Visionary",
+    image: "https://images.unsplash.com/photo-1542038784456-1ea0e93ca370?q=80&w=800"
+  },
+  {
+    title: "Branded Content",
+    description: "Commercial shoots and campaign assets that drive brand goals.",
+    category: "Business",
+    metric: "High ROI",
+    image: "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=800"
+  },
+  {
+    title: "Post-Production",
+    description: "Editing, motion graphics, and finishing touches for a polished look.",
+    category: "Editing",
+    metric: "Top Tier",
+    image: "https://images.unsplash.com/photo-1574717432707-c67be3152631?q=80&w=800"
   }
 ];
 
@@ -161,33 +179,43 @@ export const RESOURCES: Resource[] = [
   }
 ];
 
-export const TRUSTED_BRANDS = ['MTN', 'LXGlobal', 'PushBio', 'INTO REALTOR', 'POLYMATHS', 'TOLISA', 'UR3', 'JustArt', 'Lagos Sales Party', 'RCCG'];
+export const TRUSTED_BRANDS = ['MTN', 'LXGlobal', 'PushBio', 'INTO REALTOR', 'POLYMATHS REALESTATE', 'TOLISA', 'UR3 Conference', 'JustArt', 'Lagos Sales Party', 'RCCG'];
 
 export const SERVICES: Service[] = [
   {
-    id: 'talent-management',
-    title: 'Talent management',
-    description: 'We find you brand deals that pay — then handle the contracts, negotiations, and legal protection so you can focus on creating.',
-    items: ['Brand partnerships', 'Contract negotiation', 'Legal protection', 'Career strategy']
-  },
-  {
     id: 'influencer-marketing',
-    title: 'Influencer marketing',
-    description: 'We help brands run authentic campaigns with trusted Nigerian creators. Strategic matching, campaign execution, and performance reporting.',
-    items: ['Creator matching', 'Campaign strategy', 'Content oversight', 'Performance analytics']
+    title: 'Influencer Marketing & Campaigns',
+    description: 'Strategic influencer-led campaigns designed for reach, engagement, and conversion across Instagram, TikTok, YouTube, X (Twitter), and emerging platforms.',
+    items: ['Strategic Campaigns', 'Multi-platform Reach', 'Engagement & Conversion', 'Emerging Platforms']
   },
   {
-    id: 'studio-production',
-    title: 'Studio production',
-    description: 'Free access to our Lekki studio — 4K cameras, sound booths, editing suites, and a production team to help you create content that attracts premium deals.',
-    items: ['Free studio access', '4K production', 'Professional editing', 'Creative direction']
+    id: 'talent-management',
+    title: 'Talent Management & Development',
+    description: 'Comprehensive talent representation including personal brand strategy, deal negotiation, career growth, monetization, and media training.',
+    items: ['Brand Strategy', 'Deal Negotiation', 'Career Growth', 'Media Training']
+  },
+  {
+    id: 'brand-partnerships',
+    title: 'Brand Partnerships & Endorsements',
+    description: 'Matching brands with the right talents for product launches, brand ambassadorships, event partnerships, and long-term collaborations.',
+    items: ['Product Launches', 'Ambassadorships', 'Event Partnerships', 'Long-term Collabs']
+  },
+  {
+    id: 'campaign-strategy',
+    title: 'Strategy, Planning & Analytics',
+    description: 'Insight-led campaign development with performance tracking, reporting, and optimization to ensure measurable results.',
+    items: ['Insight-led Development', 'Performance Tracking', 'Reporting', 'Optimization']
   }
 ];
 
 export const INDUSTRIES: Industry[] = [
-  { name: 'Luxury & Lifestyle', image: 'https://i.ibb.co/B5BQSkPK/Snap-Insta-to-630154093-17878035255475240-2279539179607894162-n.jpg' },
+  { name: 'Fashion & Lifestyle', image: 'https://i.ibb.co/B5BQSkPK/Snap-Insta-to-630154093-17878035255475240-2279539179607894162-n.jpg' },
+  { name: 'Beauty & Skincare', image: 'https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?q=80&w=800' },
   { name: 'Tech & Fintech', image: 'https://i.ibb.co/XfdsTPmw/Snap-Insta-to-580755341-18347780410167386-4230984891800564498-n.jpg' },
-  { name: 'Music & Arts', image: 'https://i.ibb.co/CpsyhgNR/Snap-Insta-to-527543941-18526545913016640-5239305829889010376-n.jpg' },
+  { name: 'Food & Beverage', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800' },
+  { name: 'Entertainment & Music', image: 'https://i.ibb.co/CpsyhgNR/Snap-Insta-to-527543941-18526545913016640-5239305829889010376-n.jpg' },
+  { name: 'Real Estate', image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800' },
+  { name: 'Events & Experiences', image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=800' }
 ];
 
 export const FAQS: FAQItem[] = [

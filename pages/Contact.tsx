@@ -30,7 +30,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-gray-400 dark:text-white/30 text-xs font-black uppercase tracking-widest mb-1">Email Us</h4>
-                  <p className="text-xl font-bold text-gray-900 dark:text-white">hq@mediabossafrica.com</p>
+                  <p className="text-xl font-bold text-gray-900 dark:text-white">info@mediabossafrica.com</p>
                 </div>
               </div>
               <div className="flex gap-6 items-center">
@@ -39,7 +39,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-gray-400 dark:text-white/30 text-xs font-black uppercase tracking-widest mb-1">Visit Us</h4>
-                  <p className="text-xl font-bold text-gray-900 dark:text-white">Lagos | London | Remote</p>
+                  <p className="text-xl font-bold text-gray-900 dark:text-white">Africa | UK | US</p>
                 </div>
               </div>
             </div>

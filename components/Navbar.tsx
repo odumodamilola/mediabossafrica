@@ -54,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
               onClick={(e) => handleNav(e, link.href)}
               className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-[10px] uppercase font-black tracking-[0.2em] transition-all ${activePage === link.href
                 ? 'text-gray-900 dark:text-white'
-                : 'text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white/70'
+                : 'text-gray-600 dark:text-white/40 hover:text-gray-900 dark:hover:text-white/70'
                 }`}
             >
               {link.label}
