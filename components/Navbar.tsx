@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_LINKS } from '../constants';
 import { PageType } from '../types';
 import Logo from './Logo';
+import ThemeToggle from './ThemeToggle';
 
 interface NavbarProps {
   activePage: PageType;
@@ -27,35 +28,40 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 ${scrolled ? 'py-4' : 'py-8'}`} aria-label="Main Navigation">
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        
+    <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 ${scrolled
+      ? 'py-3 backdrop-blur-xl bg-white/90 dark:bg-brand-deep/90 border-b border-gray-200 dark:border-white/10 shadow-sm'
+      : 'py-6 bg-transparent'
+      }`} aria-label="Main Navigation">
+      <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+
         {/* New Brand Logo */}
-        <a 
+        <a
           href="#home"
           onClick={(e) => handleNav(e, 'home')}
           className="cursor-pointer group hover:scale-105 transition-transform duration-300"
           aria-label="Mediaboss Africa Home"
         >
-          <Logo className="scale-75 md:scale-100 origin-left" />
+          <Logo className="origin-left" />
         </a>
 
         {/* Dynamic Desktop Nav with Semantic Links */}
-        <div className={`hidden md:flex items-center gap-1 p-1.5 rounded-2xl transition-all duration-500 ${scrolled ? 'glass-morphism bg-brand-deep/80' : 'bg-transparent'}`}>
+        <div className={`hidden md:flex items-center gap-1 p-1.5 rounded-2xl transition-all duration-500 ${scrolled ? 'glass-morphism bg-gray-100/50 dark:bg-brand-deep/50' : 'bg-transparent'
+          }`}>
           {NAV_LINKS.map((link) => (
-            <a 
-              key={link.href} 
+            <a
+              key={link.href}
               href={`#${link.href}`}
               onClick={(e) => handleNav(e, link.href)}
-              className={`relative px-5 py-2.5 rounded-xl text-[10px] uppercase font-black tracking-[0.2em] transition-all ${
-                activePage === link.href ? 'text-white' : 'text-white/40 hover:text-white/70'
-              }`}
+              className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-[10px] uppercase font-black tracking-[0.2em] transition-all ${activePage === link.href
+                ? 'text-gray-900 dark:text-white'
+                : 'text-gray-500 dark:text-white/40 hover:text-gray-900 dark:hover:text-white/70'
+                }`}
             >
               {link.label}
               {activePage === link.href && (
-                <motion.div 
+                <motion.div
                   layoutId="activeNav"
-                  className="absolute inset-0 bg-white/5 border border-white/10 rounded-xl z-[-1]"
+                  className="absolute inset-0 bg-white/10 dark:bg-white/5 border border-gray-300/30 dark:border-white/10 rounded-xl z-[-1]"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
@@ -63,52 +69,57 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
           ))}
         </div>
 
-        {/* Elite CTA */}
-        <div className="hidden md:block">
-           <a 
-             href="#contact"
-             onClick={(e) => handleNav(e, 'contact')}
-             className="inline-block bg-white text-brand-deep px-8 py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-magenta hover:text-white transition-all transform active:scale-95 shadow-xl"
-           >
-              Let's Talk
-           </a>
+        {/* Theme Toggle & CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            onClick={(e) => handleNav(e, 'contact')}
+            className="inline-block bg-brand-magenta hover:bg-brand-magenta/90 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-95 shadow-xl"
+          >
+            Let's Talk
+          </a>
         </div>
 
-        {/* Mobile Toggle */}
-        <button 
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden glass-morphism p-3.5 rounded-xl text-white"
-          aria-expanded={mobileOpen}
-          aria-label="Toggle Menu"
-        >
-          <div className="w-6 h-4 flex flex-col justify-between items-end">
-            <span className={`h-0.5 bg-white transition-all ${mobileOpen ? 'w-6 rotate-45 translate-y-1.5' : 'w-6'}`} />
-            <span className={`h-0.5 bg-white transition-all ${mobileOpen ? 'opacity-0' : 'w-4'}`} />
-            <span className={`h-0.5 bg-white transition-all ${mobileOpen ? 'w-6 -rotate-45 -translate-y-1.5' : 'w-2'}`} />
-          </div>
-        </button>
+        {/* Mobile: Theme Toggle + Menu */}
+        <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="glass-morphism bg-white/80 dark:bg-brand-deep/80 backdrop-blur-md p-3.5 rounded-xl text-gray-900 dark:text-white border border-gray-200/50 dark:border-white/10"
+            aria-expanded={mobileOpen}
+            aria-label="Toggle Menu"
+          >
+            <div className="w-6 h-4 flex flex-col justify-between items-end">
+              <span className={`h-0.5 bg-gray-900 dark:bg-white transition-all ${mobileOpen ? 'w-6 rotate-45 translate-y-1.5' : 'w-6'}`} />
+              <span className={`h-0.5 bg-gray-900 dark:bg-white transition-all ${mobileOpen ? 'opacity-0' : 'w-4'}`} />
+              <span className={`h-0.5 bg-gray-900 dark:bg-white transition-all ${mobileOpen ? 'w-6 -rotate-45 -translate-y-1.5' : 'w-2'}`} />
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Overlay */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="md:hidden fixed inset-0 bg-brand-deep/98 backdrop-blur-2xl z-[90] flex flex-col items-center justify-center p-12"
+            className="md:hidden fixed inset-0 bg-white/98 dark:bg-brand-deep/98 backdrop-blur-2xl z-[90] flex flex-col items-center justify-center p-12"
           >
             <div className="flex flex-col gap-8 w-full">
               {NAV_LINKS.map((link, i) => (
-                <motion.a 
-                  key={link.href} 
+                <motion.a
+                  key={link.href}
                   href={`#${link.href}`}
                   onClick={(e) => handleNav(e, link.href)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className={`text-4xl font-display font-black tracking-tighter text-left ${activePage === link.href ? 'text-brand-magenta' : 'text-white/50'}`}
+                  className={`text-3xl sm:text-4xl font-display font-black tracking-tighter text-left ${activePage === link.href ? 'text-brand-magenta' : 'text-gray-700 dark:text-white/50'
+                    }`}
                 >
                   {link.label}
                 </motion.a>

@@ -1,46 +1,51 @@
 
-import { NavItem, Service, Industry, FAQItem, Feature, PricingPlan, Resource, CaseStudy } from './types';
+
+import { NavItem, Service, Industry, FAQItem, Feature, PricingPlan, Resource, CaseStudy, PageType } from './types';
+
+// ROUTING MANIFEST: Type-safe list of all valid pages (prevents dead-ends)
+export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'pricing', 'resources', 'contact', 'apply', 'work', 'privacy', 'terms'] as const;
+
 
 export const SEO_CONFIG = {
   home: {
-    title: "Mediaboss Africa | Engineering Cultural Dominance",
-    description: "The premier talent management agency for Nigerian creators. We provide 4K studio production in Lagos, brand matching for African influencers, and global scaling strategies.",
-    keywords: "talent management agency Lagos, best influencer agency Nigeria, monetize social media Nigeria"
+    title: "Mediaboss Africa | Creator Agency & Influencer Marketing in Lagos, Nigeria",
+    description: "Lagos-based creator agency connecting Nigerian talent with paying brand partnerships. Free studio access in Lekki. Commission-based — we only earn when you earn.",
+    keywords: "creator agency Lagos, influencer marketing agency Nigeria, talent management Lagos, brand partnerships Nigeria, content studio Lekki"
   },
   features: {
-    title: "Our Capabilities | Best Content Production Studio in Lagos",
-    description: "High-fidelity production and AI-backed brand matching. See how we help Lagos creators land international dollar deals.",
-    keywords: "video production studio Lagos, creator tools Nigeria"
+    title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
+    description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
+    keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities"
   },
   solutions: {
-    title: "Sectors We Serve | Tech, Fashion & Lifestyle Nigeria",
-    description: "Niche strategies for the Nigerian market. From Fintech in Yaba to Luxury in Victoria Island.",
-    keywords: "fintech influencer marketing Nigeria, beauty influencer agency Lagos"
+    title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
+    description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
+    keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos"
   },
   pricing: {
-    title: "Partnership Models | Flexible Plans for Nigerian Creators",
-    description: "Join the most elite roster in Africa. Performance-based management designed to scale your influence.",
-    keywords: "influencer management rates Nigeria, join talent agency Lagos"
+    title: "Join Mediaboss | Partnership Plans for Nigerian Creators",
+    description: "Ready to earn from your content? Join Africa's most elite creator roster. We only win when you win.",
+    keywords: "join influencer agency Nigeria, talent management rates Lagos"
   },
   resources: {
-    title: "Intelligence Hub | Nigeria Creator Market Report 2026",
-    description: "Insights into the Lagos creator economy. Learn how to navigate the Nigerian digital landscape.",
-    keywords: "Nigeria creator report 2026, Lagos social media trends"
+    title: "Creator Resources | Nigeria Influencer Marketing Insights 2026",
+    description: "Learn how to land your first brand deal, protect your content, and build wealth as a Nigerian creator.",
+    keywords: "Nigeria creator guide 2026, Lagos influencer tips, brand deals Nigeria"
   },
   contact: {
-    title: "Contact Us | Mediaboss Offices in Lagos & London",
-    description: "Ready to scale your brand? Visit our studios in Lagos or reach out to our strategy team online.",
-    keywords: "talent agency office Lagos, contact Mediaboss Africa"
+    title: "Contact Mediaboss | Lagos Creator Agency",
+    description: "Ready to turn your influence into income? Visit our Lagos studio or reach out online. Let's build something legendary.",
+    keywords: "contact talent agency Lagos, Mediaboss Africa location"
   },
   apply: {
-    title: "Join the Roster | Talent Application Mediaboss Africa",
-    description: "Apply for elite representation. We transform African creators into global legends.",
-    keywords: "apply talent agency Nigeria, influencer representation Lagos"
+    title: "Join Mediaboss | Apply to Top Talent Agency in Nigeria",
+    description: "Ready to earn from your content? Apply to join Africa's premier creator agency. We handle brand deals, legal, and production.",
+    keywords: "apply influencer agency Nigeria, join talent agency Lagos"
   },
   work: {
-    title: "Our Work | Case Studies of Cultural Dominance",
-    description: "Explore the global campaigns and cinematic productions engineered by Mediaboss Africa.",
-    keywords: "creative portfolio Nigeria, influencer case studies Africa"
+    title: "Our Work | Nigerian Creator Success Stories",
+    description: "See how we've helped African creators land million-naira campaigns and build global audiences.",
+    keywords: "influencer marketing case studies Nigeria, creator portfolio Africa"
   },
   privacy: {
     title: "Privacy Policy | Mediaboss Africa",
@@ -56,10 +61,10 @@ export const SEO_CONFIG = {
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: 'home' },
-  { label: 'Capabilities', href: 'features' },
-  { label: 'Work', href: 'work' },
-  { label: 'Partnership', href: 'pricing' },
-  { label: 'Intelligence', href: 'resources' },
+  { label: 'About Us', href: 'features' },
+  { label: 'Services', href: 'solutions' },
+  { label: 'Our Work', href: 'work' },
+  { label: 'Contact', href: 'contact' },
 ];
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -67,14 +72,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "The Fintech Revolution",
     client: "PayFuture Africa",
     category: "Influencer Campaign",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800",
+    image: "https://i.ibb.co/Qj9JvWN6/Save-Clip-App-522829130-18394235239142600-4624636850389265179-n.jpg",
     result: "4.2M New Users in 90 Days"
   },
   {
     title: "Lagos Fashion Week 2025",
     client: "LFW Global",
     category: "Cinematic Production",
-    image: "https://images.unsplash.com/photo-1539109132304-39c099393301?q=80&w=800",
+    image: "https://i.ibb.co/tp8V5rJh/Save-Clip-App-615090775-18556831825025304-3688801026426920160-n.jpg",
     result: "12M Organic Video Views"
   },
   {
@@ -89,25 +94,25 @@ export const CASE_STUDIES: CaseStudy[] = [
 export const FEATURES: Feature[] = [
   {
     title: "Global Dollar Revenue",
-    description: "We bridge the gap between Lagos creativity and International budgets, ensuring our talent earns in stable global currencies.",
+    description: "We negotiate deals in dollars and euros — not naira. Get paid in currencies that hold value globally.",
     category: "Income",
     metric: "Dollar Deals"
   },
   {
     title: "Naija-Centric Data",
-    description: "Our AI understands local slang, trends, and buying habits, matching you with brands that actually resonate with your Nigerian audience.",
+    description: "We match you with brands that understand Nigerian culture — not random companies hoping you'll promote anything.",
     category: "Data",
     metric: "Local Impact"
   },
   {
     title: "Lagos Studio Access",
-    description: "Professional cinema-grade equipment available for our roster. No more 'managing' with just a phone; produce world-class content.",
+    description: "Use our Lagos studio for free. Create TV-quality content without spending millions on equipment.",
     category: "Quality",
     metric: "Pro-Grade"
   },
   {
     title: "Legal & IP Security",
-    description: "We protect your content from being used without payment. Our legal team handles the 'wahala' of contracts and copyright.",
+    description: "We handle all contracts and protect your content from being stolen or used without payment.",
     category: "Safety",
     metric: "Secure IP"
   }
@@ -156,39 +161,55 @@ export const RESOURCES: Resource[] = [
   }
 ];
 
-export const TRUSTED_BRANDS = ['MTN', 'Airtel', 'Flutterwave', 'Kuda', 'Piggyvest', 'Glo', 'JustArt', 'Red Bull'];
+export const TRUSTED_BRANDS = ['MTN', 'LXGlobal', 'PushBio', 'INTO REALTOR', 'POLYMATHS', 'TOLISA', 'UR3', 'JustArt', 'Lagos Sales Party', 'RCCG'];
 
 export const SERVICES: Service[] = [
   {
-    id: 'talent',
-    title: 'Talent Management',
-    description: 'We turn Lagos creators into global icons through professional career engineering and strategic branding.',
-    items: ['Career Growth', 'Dollar Brand Deals', 'Legal Wahala-Free', 'PR']
+    id: 'talent-management',
+    title: 'Talent management',
+    description: 'We find you brand deals that pay — then handle the contracts, negotiations, and legal protection so you can focus on creating.',
+    items: ['Brand partnerships', 'Contract negotiation', 'Legal protection', 'Career strategy']
   },
   {
-    id: 'studio',
-    title: 'Lagos Production',
-    description: 'Stop compromising on quality. Use our Lagos studios to produce content that rivals Hollywood.',
-    items: ['TV Commercials', 'Series', 'Podcasts', 'Viral Ads']
+    id: 'influencer-marketing',
+    title: 'Influencer marketing',
+    description: 'We help brands run authentic campaigns with trusted Nigerian creators. Strategic matching, campaign execution, and performance reporting.',
+    items: ['Creator matching', 'Campaign strategy', 'Content oversight', 'Performance analytics']
   },
   {
-    id: 'consulting',
-    title: 'Market Entry',
-    description: 'Helping international brands speak the language of the Nigerian consumer through authentic influence.',
-    items: ['Consumer Data', 'Slang Strategy', 'Influencer Mapping', 'Reporting']
+    id: 'studio-production',
+    title: 'Studio production',
+    description: 'Free access to our Lekki studio — 4K cameras, sound booths, editing suites, and a production team to help you create content that attracts premium deals.',
+    items: ['Free studio access', '4K production', 'Professional editing', 'Creative direction']
   }
 ];
 
 export const INDUSTRIES: Industry[] = [
-  { name: 'Luxury & Lifestyle', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=600' },
-  { name: 'Tech & Fintech', image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=600' },
-  { name: 'Music & Arts', image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600' },
+  { name: 'Luxury & Lifestyle', image: 'https://i.ibb.co/B5BQSkPK/Snap-Insta-to-630154093-17878035255475240-2279539179607894162-n.jpg' },
+  { name: 'Tech & Fintech', image: 'https://i.ibb.co/XfdsTPmw/Snap-Insta-to-580755341-18347780410167386-4230984891800564498-n.jpg' },
+  { name: 'Music & Arts', image: 'https://i.ibb.co/CpsyhgNR/Snap-Insta-to-527543941-18526545913016640-5239305829889010376-n.jpg' },
 ];
 
 export const FAQS: FAQItem[] = [
   {
     question: "Do I need a large following to join the Mediaboss roster?",
     answer: "We look at engagement and content quality over just numbers. Most of our creators have at least 50k followers, but we scout 'emerging legends' with smaller, highly active Lagos audiences too."
+  },
+  {
+    question: "How do you get paid?",
+    answer: "We take a percentage of the deals we secure for you. No deals = we don't get paid. This keeps us laser-focused on your success."
+  },
+  {
+    question: "How long does it take to land my first deal?",
+    answer: "Most creators on our roster land their first paid partnership within 60-90 days. We work fast because we already have brand relationships."
+  },
+  {
+    question: "Do I need to be in Lagos?",
+    answer: "No. While our studio is in Lagos, we work with creators across Nigeria and Africa. As long as your audience is here, you can work with us."
+  },
+  {
+    question: "What makes you different from other agencies?",
+    answer: "We're built for African creators. We understand local culture, we negotiate in dollars, and we provide free studio access. Most agencies just take a cut and disappear — we're hands-on."
   },
   {
     question: "Where are your Lagos offices located?",

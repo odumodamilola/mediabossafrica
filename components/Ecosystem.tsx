@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PageType } from '../types';
+import brandVideo from '../assets/videos/brand.mp4';
 
 interface EcosystemProps {
   onNavigate?: (page: PageType) => void;
@@ -9,88 +9,82 @@ interface EcosystemProps {
 
 const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
   return (
-    <section id="studio" className="py-48 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        <motion.div 
+    <section id="studio" className="py-16 sm:py-24 md:py-32 lg:py-40 xl:py-48 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="relative bg-[#0d0113] border border-white/10 rounded-[64px] overflow-hidden p-10 lg:p-24 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]"
+          className="relative bg-white dark:bg-[#0d0113] border border-gray-200 dark:border-white/10 rounded-3xl sm:rounded-[48px] lg:rounded-[56px] overflow-hidden p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transition-colors duration-500"
         >
           <div className="absolute top-0 right-0 w-1/2 h-full pointer-events-none overflow-hidden">
-             <motion.div 
-               animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }}
-               transition={{ duration: 10, repeat: Infinity }}
-               className="w-full h-full bg-[radial-gradient(circle_at_70%_30%,_rgba(255,0,160,0.15),transparent_70%)]"
-             />
+            <motion.div
+              animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }}
+              transition={{ duration: 10, repeat: Infinity }}
+              className="w-full h-full bg-[radial-gradient(circle_at_70%_30%,_rgba(255,0,160,0.15),transparent_70%)]"
+            />
           </div>
-          
-          <div className="grid lg:grid-cols-2 gap-24 items-center relative z-10">
+
+          <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 md:gap-20 items-center relative z-10">
             <div>
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                className="text-brand-magenta font-black text-xs tracking-[0.5em] uppercase mb-8 block"
+                className="text-brand-magenta font-black text-xs tracking-[0.5em] uppercase mb-6 sm:mb-8 block"
               >
-                THE CREATIVE ENGINE
+                Free studio access
               </motion.span>
-              <h2 className="text-6xl lg:text-8xl font-display font-black mb-10 leading-[0.8] tracking-tight">
-                THE <br />
-                <span className="text-brand-magenta italic">STUDIO.</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-6 sm:mb-8 leading-[0.9] tracking-tight text-gray-900 dark:text-white transition-colors">
+                The Mediaboss <br />
+                <span className="text-brand-magenta italic">studio.</span>
               </h2>
-              <p className="text-2xl text-white/50 mb-14 font-light leading-relaxed max-w-xl">
-                Mediaboss Studio is where vision meets high-fidelity execution. A full-service production powerhouse built for the 2026 digital landscape.
+              <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-white/50 mb-8 sm:mb-10 md:mb-12 font-light leading-relaxed max-w-xl transition-colors">
+                Create professional content without spending millions on equipment. Our Lekki studio is free for roster creators — 4K cameras, sound booths, editing suites, and a full production team.
               </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10 mb-16">
-                 {[
-                   { t: 'Cinema-Grade Video', d: 'Native 8K workflow for cinematic digital series.' },
-                   { t: 'Spatial Audio', d: 'Immersive sound design for pods & commercials.' },
-                   { t: 'Creative Direction', d: 'Bespoke visual identities and brand DNA.' },
-                   { t: 'Post-Production', d: 'Advanced CGI, VFX, and rhythmic editing.' }
-                 ].map((item, i) => (
-                   <motion.div 
-                     key={i}
-                     initial={{ opacity: 0, y: 10 }}
-                     whileInView={{ opacity: 1, y: 0 }}
-                     transition={{ delay: i * 0.1 }}
-                   >
-                     <h4 className="text-white font-black text-sm uppercase tracking-widest mb-3 border-l-2 border-brand-magenta pl-4">{item.t}</h4>
-                     <p className="text-white/30 text-sm font-light leading-relaxed pl-5">{item.d}</p>
-                   </motion.div>
-                 ))}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-10 gap-y-6 sm:gap-y-8 mb-10 sm:mb-12 md:mb-14">
+                {[
+                  { t: '4K video production', d: 'Shoot commercials, music videos, and branded content in cinema quality.' },
+                  { t: 'Sound booth & mixing', d: 'Record podcasts, voiceovers, and ad audio with professional equipment.' },
+                  { t: 'Full editing suite', d: 'Adobe Creative Suite, DaVinci Resolve, and a dedicated editing team.' },
+                  { t: 'Creative direction', d: 'Our team helps plan, script, and art-direct your shoots.' }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <h4 className="text-gray-900 dark:text-white font-black text-sm uppercase tracking-widest mb-2 sm:mb-3 border-l-2 border-brand-magenta pl-4 transition-colors">{item.t}</h4>
+                    <p className="text-gray-500 dark:text-white/30 text-sm font-light leading-relaxed pl-5 transition-colors">{item.d}</p>
+                  </motion.div>
+                ))}
               </div>
-              
-              <button 
+
+              <button
                 onClick={() => onNavigate?.('work')}
-                className="group relative px-12 py-6 bg-white text-brand-deep rounded-2xl font-black text-[11px] uppercase tracking-[0.3em] overflow-hidden transition-all hover:scale-105 shadow-2xl"
+                className="group relative px-10 sm:px-12 py-5 sm:py-6 bg-brand-deep dark:bg-white text-white dark:text-brand-deep rounded-2xl font-black text-[11px] uppercase tracking-[0.3em] overflow-hidden transition-all hover:scale-105 shadow-2xl min-h-[48px]"
               >
-                <span className="relative z-10 group-hover:text-white transition-colors">Portfolio Access</span>
+                <span className="relative z-10 group-hover:text-white transition-colors">See our work</span>
                 <div className="absolute inset-0 bg-brand-magenta translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo" />
               </button>
             </div>
-            
-            <div className="relative group perspective-[2000px]">
-              <motion.div 
-                whileHover={{ rotateY: -10, rotateX: 5, scale: 1.02 }}
+
+            <div className="relative group perspective-[2000px] flex justify-center lg:justify-end">
+              <motion.div
+                whileHover={{ rotateY: -5, rotateX: 2, scale: 1.02 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative aspect-square md:aspect-video rounded-[48px] overflow-hidden shadow-[0_60px_100px_-20px_rgba(255,0,160,0.3)] bg-brand-deep border border-white/5"
+                className="relative w-full max-w-[320px] aspect-[9/16] rounded-[32px] overflow-hidden shadow-[0_60px_100px_-20px_rgba(255,0,160,0.3)] bg-black border-[5px] border-gray-900 dark:border-[#1a1a1a] ring-1 ring-white/10"
               >
-                <img 
-                  src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1200" 
-                  alt="Production Floor" 
-                  className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" 
+                <video
+                  src={brandVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/80 to-transparent flex items-center justify-center">
-                  <motion.button 
-                    whileHover={{ scale: 1.15 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-24 h-24 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-full flex items-center justify-center pl-1 hover:bg-brand-magenta transition-all shadow-2xl"
-                  >
-                     <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </motion.button>
-                </div>
               </motion.div>
             </div>
           </div>

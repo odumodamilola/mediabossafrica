@@ -9,10 +9,10 @@ const Solutions: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mb-24">
           <span className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-6 block">Who We Help</span>
-          <h1 className="text-6xl md:text-9xl font-display font-black tracking-tighter leading-none mb-10">
-            STRATEGIES FOR <br /> <span className="text-white/20 italic">EVERY CREATOR.</span>
+          <h1 className="text-6xl md:text-9xl font-display font-black tracking-tighter leading-none mb-10 text-gray-900 dark:text-white transition-colors">
+            STRATEGIES FOR <br /> <span className="text-gray-300 dark:text-white/20 italic transition-colors">EVERY CREATOR.</span>
           </h1>
-          <p className="text-white/50 text-2xl font-light leading-relaxed">
+          <p className="text-gray-500 dark:text-white/50 text-2xl font-light leading-relaxed transition-colors">
             We understand the unique challenges of different industries. We help you find the right audience and the right brands for your specific niche.
           </p>
         </div>
@@ -26,17 +26,17 @@ const Solutions: React.FC = () => {
               viewport={{ once: true, margin: "-100px" }}
               className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-20 items-center`}
             >
-              <div className="flex-1 aspect-square rounded-[64px] overflow-hidden bento-shadow">
+              <div className="flex-1 aspect-square rounded-[64px] overflow-hidden shadow-2xl dark:shadow-none bg-gray-100 dark:bg-transparent">
                 <img src={industry.image} alt={`${industry.name} content example`} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
               </div>
               <div className="flex-1 space-y-8">
                 <span className="text-brand-magenta font-black text-xs tracking-widest uppercase">Expert Help</span>
-                <h2 className="text-5xl md:text-7xl font-display font-black tracking-tighter">{industry.name}</h2>
-                <p className="text-white/50 text-xl font-light leading-relaxed">
+                <h2 className="text-5xl md:text-7xl font-display font-black tracking-tighter text-gray-900 dark:text-white transition-colors">{industry.name}</h2>
+                <p className="text-gray-500 dark:text-white/50 text-xl font-light leading-relaxed transition-colors">
                   We help creators in the {industry.name.toLowerCase()} space build a professional brand that companies want to work with. Our team knows exactly what fans in this market are looking for.
                 </p>
                 <div className="pt-8">
-                  <button className="px-10 py-5 rounded-2xl glass-morphism border border-brand-magenta/30 text-brand-magenta font-black text-xs uppercase tracking-widest hover:bg-brand-magenta hover:text-white transition-all">
+                  <button className="px-10 py-5 rounded-2xl bg-gray-50 dark:bg-white/5 border border-brand-magenta/30 text-brand-magenta font-black text-xs uppercase tracking-widest hover:bg-brand-magenta hover:text-white transition-all shadow-lg dark:shadow-none">
                     How We Help This Sector
                   </button>
                 </div>
