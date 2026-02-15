@@ -37,14 +37,14 @@ const Features: React.FC = () => {
               {/* Dynamic Background Image */}
               {feature.image && (
                 <>
-                  <div className="absolute inset-0 z-0 transition-opacity duration-700 opacity-0 group-hover:opacity-100">
+                  <div className="absolute inset-0 z-0">
                     <img
                       src={feature.image}
                       alt={feature.title}
                       className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                     />
                   </div>
-                  <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
                 </>
               )}
 
@@ -53,12 +53,12 @@ const Features: React.FC = () => {
                   <span className="px-4 py-1.5 rounded-full bg-brand-magenta/10 border border-brand-magenta/20 text-[10px] font-black uppercase text-brand-magenta tracking-widest bg-white/90 backdrop-blur-sm">
                     {feature.category}
                   </span>
-                  <span className="text-4xl font-display font-black text-gray-200 dark:text-white/20 group-hover:text-white/40 transition-colors">
+                  <span className="text-4xl font-display font-black text-white/20 group-hover:text-white/40 transition-colors">
                     {feature.metric}
                   </span>
                 </div>
-                <h3 className="text-3xl font-display font-bold mb-4 text-gray-900 dark:text-white group-hover:text-white transition-colors">{feature.title}</h3>
-                <p className="text-gray-500 dark:text-white/40 text-lg leading-relaxed group-hover:text-white/80 transition-colors">{feature.description}</p>
+                <h3 className="text-3xl font-display font-bold mb-4 text-white">{feature.title}</h3>
+                <p className="text-white/80 text-lg leading-relaxed">{feature.description}</p>
               </div>
             </motion.div>
           ))}
