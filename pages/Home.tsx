@@ -55,7 +55,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                 Built for the world.
               </motion.h2>
               <motion.p variants={itemVariants} className="text-gray-600 dark:text-white/50 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 sm:mb-10 max-w-xl">
-                From our production studio in Lekki to our brand partnerships across London and Dubai, we give Nigerian creators the infrastructure to compete globally.
+                Headquarters: Lagos, Nigeria
+                <br />
+                Operations: Africa | UK | US (Remote Capabilities)
               </motion.p>
 
               <motion.div variants={itemVariants} className="flex flex-wrap gap-6 sm:gap-8">
