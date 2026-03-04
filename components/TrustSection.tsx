@@ -14,7 +14,7 @@ const TrustSection: React.FC = () => {
           whileInView={{ opacity: 1 }}
           className="text-center text-gray-600 dark:text-white/30 text-[10px] font-black uppercase tracking-[0.5em] mb-10"
         >
-          Trusted by Africa's Biggest Brands
+          We Are Trusted By
         </motion.p>
 
         <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">

@@ -84,13 +84,6 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
           <a
             href="/talent-form"
             onClick={(e) => handleNav(e, 'talent-form')}
-            className="inline-block border border-gray-200 dark:border-white/15 bg-white dark:bg-white/5 hover:border-brand-magenta text-gray-900 dark:text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-95"
-          >
-            Book a Consultation
-          </a>
-          <a
-            href="/talent"
-            onClick={(e) => handleNav(e, 'talent')}
             className="inline-block bg-brand-magenta hover:bg-brand-magenta/90 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-95 shadow-xl"
           >
             Join as Talent
@@ -146,16 +139,6 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="text-4xl font-display font-black tracking-tighter text-brand-magenta"
-              >
-                Book a Consultation
-              </motion.a>
-              <motion.a
-                href="/talent"
-                onClick={(e) => handleNav(e, 'talent')}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
                 className="text-4xl font-display font-black tracking-tighter text-brand-magenta"
               >
                 Join as Talent

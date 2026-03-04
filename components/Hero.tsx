@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { PageType } from '../types';
+import brandVideo from '../assets/videos/brand.mp4';
 
 interface HeroProps {
   onNavigate: (page: PageType) => void;
@@ -10,17 +11,18 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-brand-deep py-20 sm:py-32 transition-colors duration-300"
-      aria-labelledby="hero-title"
-    >
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-brand-deep py-20 sm:py-32 transition-colors duration-300" aria-labelledby="hero-title">
       <div className="absolute inset-0 z-0">
-        <div
-          className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1740&auto=format&fit=crop')",
-          }}
+        <video
+          src={brandVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          controls={false}
+          disablePictureInPicture
+          controlsList="nodownload noplaybackrate"
+          className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white dark:from-brand-deep/80 dark:via-brand-deep/50 dark:to-brand-deep" />
 
@@ -55,21 +57,18 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-magenta" />
               </span>
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 dark:text-white/70">
-                Influence. Innovation. Impact.
+                Mediaboss Africa
               </span>
             </motion.div>
 
-            <h1
-              id="hero-title"
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-black leading-[0.9] md:leading-[0.85] tracking-[-0.03em] mb-8 sm:mb-10 md:mb-14 select-none"
-            >
+            <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-black leading-[0.9] md:leading-[0.85] tracking-[-0.03em] mb-8 sm:mb-10 md:mb-14 select-none">
               <motion.span
                 initial={{ opacity: 0, y: 80, scale: 0.95, rotateX: 30 }}
                 animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
                 transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-gray-900 dark:text-white transition-colors"
               >
-                Start building
+                Influence. Innovation. Impact.
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 60, scale: 0.85, rotateX: 45 }}
@@ -77,7 +76,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 transition={{ duration: 1.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-brand-magenta italic text-glow relative origin-center"
               >
-                influence that converts.
+                Let's make it mediaboss.
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: '100%' }}
@@ -93,8 +92,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               transition={{ duration: 1.5, delay: 1.5 }}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-white/50 max-w-3xl leading-relaxed mb-10 sm:mb-12 md:mb-14 tracking-tight px-4 sm:px-0"
             >
-              We empower brands and creators to build strong communities and achieve measurable growth through
-              influence-led marketing and premium content production.
+              At Mediaboss Africa, we dont just create visibility - we build influence that converts.
             </motion.p>
 
             <motion.div
@@ -107,13 +105,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 onClick={() => onNavigate('talent-form')}
                 className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl bg-brand-magenta text-white border-2 border-brand-magenta font-black text-xs uppercase tracking-[0.2em] hover:bg-brand-magenta/90 transition-all shadow-xl hover:shadow-brand-magenta/50 min-h-[48px]"
               >
-                Book a Consultation
+                Lets Work Together
               </button>
               <button
-                onClick={() => onNavigate('talent')}
+                onClick={() => onNavigate('service')}
                 className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl border-2 border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/70 font-black text-xs uppercase tracking-[0.2em] hover:border-brand-magenta hover:text-brand-magenta dark:hover:text-brand-magenta transition-colors min-h-[48px]"
               >
-                Join as Talent
+                Our Ecosystem
               </button>
             </motion.div>
 
@@ -124,28 +122,15 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               className="mt-8 grid w-full max-w-5xl grid-cols-1 gap-3 px-4 sm:grid-cols-3 sm:px-0"
             >
               <div className="rounded-2xl border border-gray-200/80 bg-white/80 p-4 text-center backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 dark:text-white/40">Pillar</p>
-                <p className="mt-2 text-sm font-bold text-gray-900 dark:text-white">Influencer Marketing</p>
+                <p className="text-sm font-bold text-gray-900 dark:text-white">Influencer marketing</p>
               </div>
               <div className="rounded-2xl border border-gray-200/80 bg-white/80 p-4 text-center backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 dark:text-white/40">Pillar</p>
-                <p className="mt-2 text-sm font-bold text-gray-900 dark:text-white">Talent Management</p>
+                <p className="text-sm font-bold text-gray-900 dark:text-white">Talent management</p>
               </div>
               <div className="rounded-2xl border border-gray-200/80 bg-white/80 p-4 text-center backdrop-blur-md dark:border-white/10 dark:bg-white/5">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 dark:text-white/40">Pillar</p>
-                <p className="mt-2 text-sm font-bold text-gray-900 dark:text-white">Creative Media Production via Mediaboss Studio</p>
+                <p className="text-sm font-bold text-gray-900 dark:text-white">The Mediaboss Studio (Subsidiary)</p>
               </div>
             </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 2.4 }}
-              className="text-[10px] sm:text-[11px] text-gray-500 dark:text-white/20 mt-6 font-medium tracking-wide"
-            >
-              Pan-African & Global Reach | Culture-Driven, Data-Backed Strategies | In-House Production via The
-              Mediaboss Studio
-            </motion.p>
           </motion.div>
         </div>
       </div>
@@ -157,7 +142,6 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6"
       >
         <div className="w-[1px] h-20 bg-gradient-to-b from-brand-magenta to-transparent opacity-30" />
-        <span className="text-[9px] font-black uppercase tracking-[0.5em] text-gray-400 dark:text-white/20 vertical-text">Scroll</span>
       </motion.div>
     </section>
   );

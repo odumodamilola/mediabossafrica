@@ -96,7 +96,7 @@ const Studio: React.FC = () => {
               className="text-6xl md:text-9xl font-display font-black mb-12 leading-[0.85] tracking-tighter text-gray-900 dark:text-white"
             >
               THE <br /> MEDIABOSS <br /> <span className="text-brand-magenta italic text-glow">STUDIO.</span>
-            </h1>
+            </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

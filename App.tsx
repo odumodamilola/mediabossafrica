@@ -15,8 +15,7 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Studio from './pages/Studio';
 import TalentForm from './pages/TalentForm';
-import TalentLanding from './pages/talent/TalentLanding';
-import ApplyForm from './pages/talent/ApplyForm';
+import IndustryDetail from './pages/IndustryDetail';
 import NotFound from './pages/NotFound';
 import { PageType } from './types';
 import { SEO_CONFIG } from './constants';
@@ -24,8 +23,16 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 const SEOManager: React.FC = () => {
   const location = useLocation();
-  const rawPage = (location.pathname.replace('/', '') || 'home') as PageType;
-  const page = rawPage === 'features' ? 'about-us' : rawPage === 'solutions' ? 'service' : rawPage;
+  const path = location.pathname;
+  const rawPage = (path.replace('/', '') || 'home') as PageType;
+  const page =
+    path.startsWith('/service/')
+      ? 'service'
+      : rawPage === 'features'
+        ? 'about-us'
+        : rawPage === 'solutions'
+          ? 'service'
+          : rawPage;
   const config = SEO_CONFIG[page] || SEO_CONFIG.home;
 
   useEffect(() => {
@@ -70,7 +77,13 @@ const App: React.FC = () => {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   const rawActivePage = (location.pathname.replace('/', '') || 'home') as PageType;
-  const activePage = rawActivePage === 'features' ? 'about-us' : rawActivePage === 'solutions' ? 'service' : rawActivePage;
+  const activePage = location.pathname.startsWith('/service/')
+    ? 'service'
+    : rawActivePage === 'features'
+      ? 'about-us'
+      : rawActivePage === 'solutions'
+        ? 'service'
+        : rawActivePage;
 
   const handleNavigate = (page: PageType) => {
     navigate(page === 'home' ? '/' : `/${page}`);
@@ -104,13 +117,15 @@ const App: React.FC = () => {
                   <Route path="/" element={<Home onNavigate={handleNavigate} />} />
                   <Route path="/about-us" element={<Features />} />
                   <Route path="/service" element={<Solutions />} />
+                  <Route path="/service/:industrySlug" element={<IndustryDetail />} />
                   <Route path="/features" element={<Features />} />
                   <Route path="/solutions" element={<Solutions />} />
+                  <Route path="/solutions/:industrySlug" element={<IndustryDetail />} />
                   <Route path="/pricing" element={<Pricing onNavigate={handleNavigate} />} />
                   <Route path="/resources" element={<Resources />} />
                   <Route path="/contact" element={<Contact />} />
-                  <Route path="/talent" element={<TalentLanding />} />
-                  <Route path="/talent/apply" element={<ApplyForm />} />
+                  <Route path="/talent" element={<Navigate to="/talent-form" replace />} />
+                  <Route path="/talent/apply" element={<Navigate to="/talent-form" replace />} />
                   <Route path="/work" element={<Work />} />
                   <Route path="/privacy" element={<Privacy />} />
                   <Route path="/terms" element={<Terms />} />

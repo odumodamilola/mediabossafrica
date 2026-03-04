@@ -74,8 +74,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>+234 (0) 900 000 0000</li>
               <li>
-                <a href="/talent/apply" onClick={(e) => { e.preventDefault(); handleNav('talent/apply'); }} className="text-brand-magenta font-black hover:underline decoration-brand-magenta/40">
-                  Join Our Roster
+                <a href="/talent-form" onClick={(e) => { e.preventDefault(); handleNav('talent-form'); }} className="text-brand-magenta font-black hover:underline decoration-brand-magenta/40">
+                  Lets Work Together
                 </a>
               </li>
             </ul>
