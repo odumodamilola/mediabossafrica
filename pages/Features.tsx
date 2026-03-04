@@ -162,13 +162,23 @@ const Features: React.FC = () => {
               <motion.div
                 key={service.title}
                 {...fade(i * 0.08)}
-                className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-3xl sm:rounded-[36px] p-6 sm:p-8 lg:p-10 shadow-sm dark:shadow-none relative overflow-hidden h-full min-h-[420px] sm:min-h-[460px] flex flex-col justify-end group"
+                className={`bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-3xl sm:rounded-[36px] p-6 sm:p-8 lg:p-10 shadow-sm dark:shadow-none relative overflow-hidden h-full min-h-[420px] sm:min-h-[460px] flex flex-col justify-end group ${
+                  i === 0 ? '' : ''
+                }`}
               >
-                {FEATURES[i]?.image && (
+                {(FEATURES[i]?.image || i === 0) && (
                   <>
                     <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                       <img
-                        src={FEATURES[i].image}
+                        src={
+                          i === 0
+                            ? 'https://i.pinimg.com/1200x/be/a4/4a/bea44ab9b60bacd14ec237cccbc6c150.jpg'
+                            : i === 1
+                              ? 'https://i.pinimg.com/736x/d0/9a/9c/d09a9c0cafff6e9350c78c0319c05230.jpg'
+                              : i === 2
+                                ? 'https://i.pinimg.com/736x/1e/e4/53/1ee453e7e6a44b0c78c11e65ba6a007c.jpg'
+                            : FEATURES[i].image
+                        }
                         alt={service.title}
                         className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-115"
                         loading="lazy"
