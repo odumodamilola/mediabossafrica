@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TRUSTED_BRANDS } from '../constants';
+import { FEATURES, TRUSTED_BRANDS } from '../constants';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -13,9 +13,38 @@ const fade = (delay = 0) => ({
 });
 
 const Features: React.FC = () => {
+  const coreServices = [
+    {
+      title: 'Influencer Marketing & Campaigns',
+      description:
+        'Strategic influencer-led campaigns designed for reach, engagement, and conversion across Instagram, TikTok, YouTube, X (Twitter), and emerging platforms.',
+      bullets: [],
+    },
+    {
+      title: 'Talent Management & Development',
+      description: 'Comprehensive talent representation including:',
+      bullets: [
+        'Personal brand strategy',
+        'Deal negotiation & brand endorsements',
+        'Career growth and monetization',
+        'Media training & positioning',
+      ],
+    },
+    {
+      title: 'Brand Partnerships & Endorsements',
+      description: 'Matching brands with the right talents for:',
+      bullets: ['Product launches', 'Brand ambassadorships', 'Event partnerships', 'Long-term collaborations'],
+    },
+    {
+      title: 'Campaign Strategy, Media Planning & Analytics',
+      description: 'Insight-led campaign development with performance tracking, reporting, and optimization.',
+      bullets: [],
+    },
+  ];
+
   return (
-    <div className="pt-40 pb-32">
-      <div className="container mx-auto px-6 max-w-6xl space-y-32">
+    <div className="pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-32">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl space-y-20 sm:space-y-28 lg:space-y-32">
 
         {/* ─────────────────────────────────────────────────
             Company Overview
@@ -34,7 +63,7 @@ const Features: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: smoothEase, delay: 0.1 }}
-            className="text-6xl md:text-9xl font-display font-black tracking-tighter leading-none mb-10 text-gray-900 dark:text-white transition-colors"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-black tracking-tighter leading-[0.9] mb-8 sm:mb-10 text-gray-900 dark:text-white transition-colors"
           >
             MEDIABOSS<br />
             <span className="text-brand-magenta italic">AFRICA.</span>
@@ -128,60 +157,46 @@ const Features: React.FC = () => {
         <section>
           <span className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-6 block">Core Services</span>
 
-          <div className="space-y-8">
-            {/* Influencer Marketing */}
-            <motion.div {...fade(0.0)} className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[36px] p-10 shadow-sm dark:shadow-none">
-              <h3 className="text-2xl font-display font-black mb-3 text-gray-900 dark:text-white transition-colors">Influencer Marketing &amp; Campaigns</h3>
-              <p className="text-gray-600 dark:text-white/60 text-lg font-light leading-relaxed transition-colors">
-                Strategic influencer-led campaigns designed for reach, engagement, and conversion across Instagram, TikTok, YouTube, X (Twitter), and emerging platforms.
-              </p>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {coreServices.map((service, i) => (
+              <motion.div
+                key={service.title}
+                {...fade(i * 0.08)}
+                className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-3xl sm:rounded-[36px] p-6 sm:p-8 lg:p-10 shadow-sm dark:shadow-none relative overflow-hidden h-full min-h-[420px] sm:min-h-[460px] flex flex-col justify-end group"
+              >
+                {FEATURES[i]?.image && (
+                  <>
+                    <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                      <img
+                        src={FEATURES[i].image}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-115"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </>
+                )}
 
-            {/* Talent Management */}
-            <motion.div {...fade(0.1)} className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[36px] p-10 shadow-sm dark:shadow-none">
-              <h3 className="text-2xl font-display font-black mb-3 text-gray-900 dark:text-white transition-colors">Talent Management &amp; Development</h3>
-              <p className="text-gray-600 dark:text-white/60 text-lg font-light leading-relaxed mb-6 transition-colors">Comprehensive talent representation including:</p>
-              <ul className="space-y-2">
-                {[
-                  'Personal brand strategy',
-                  'Deal negotiation & brand endorsements',
-                  'Career growth and monetization',
-                  'Media training & positioning',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-brand-magenta flex-shrink-0 mt-2" />
-                    <span className="text-gray-700 dark:text-white/70 transition-colors">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Brand Partnerships */}
-            <motion.div {...fade(0.2)} className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[36px] p-10 shadow-sm dark:shadow-none">
-              <h3 className="text-2xl font-display font-black mb-3 text-gray-900 dark:text-white transition-colors">Brand Partnerships &amp; Endorsements</h3>
-              <p className="text-gray-600 dark:text-white/60 text-lg font-light leading-relaxed mb-6 transition-colors">Matching brands with the right talents for:</p>
-              <ul className="space-y-2">
-                {[
-                  'Product launches',
-                  'Brand ambassadorships',
-                  'Event partnerships',
-                  'Long-term collaborations',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-brand-magenta flex-shrink-0 mt-2" />
-                    <span className="text-gray-700 dark:text-white/70 transition-colors">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Campaign Strategy */}
-            <motion.div {...fade(0.3)} className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[36px] p-10 shadow-sm dark:shadow-none">
-              <h3 className="text-2xl font-display font-black mb-3 text-gray-900 dark:text-white transition-colors">Campaign Strategy, Media Planning &amp; Analytics</h3>
-              <p className="text-gray-600 dark:text-white/60 text-lg font-light leading-relaxed transition-colors">
-                Insight-led campaign development with performance tracking, reporting, and optimization.
-              </p>
-            </motion.div>
+                <div className="relative z-10">
+                  <h3 className="text-xl sm:text-2xl font-display font-black mb-3 text-gray-900 dark:text-white group-hover:text-white transition-colors">{service.title}</h3>
+                  <p className="text-base sm:text-lg text-gray-600 dark:text-white/60 font-light leading-relaxed mb-5 group-hover:text-white/80 transition-colors">
+                    {service.description}
+                  </p>
+                  {service.bullets.length > 0 && (
+                    <ul className="space-y-2">
+                      {service.bullets.map((item) => (
+                        <li key={item} className="flex items-start gap-3">
+                          <div className="w-2 h-2 rounded-full bg-brand-magenta flex-shrink-0 mt-2" />
+                          <span className="text-sm sm:text-base text-gray-700 dark:text-white/70 group-hover:text-white/80 transition-colors">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </section>
 
@@ -365,3 +380,4 @@ const Features: React.FC = () => {
 };
 
 export default Features;
+
