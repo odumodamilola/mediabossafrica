@@ -23,8 +23,8 @@ export const consultationSchema = z.object({
     .transform((val) => val.toLowerCase().trim()),
   phoneNumber: z.string()
     .min(1, 'Phone number is required')
-    .max(20, 'Phone number too long')
-    .regex(/^[\d\s+\-()]+$/, 'Invalid phone number format'),
+    .max(15, 'Phone number too long')
+    .regex(/^\d{7,15}$/, 'Phone number must contain only numbers'),
   website: z.string().max(500, 'URL too long').optional().or(z.literal('')),
   industry: z.string().min(1, 'Industry is required').max(100, 'Industry too long'),
   location: z.string().min(1, 'Location is required').max(200, 'Location too long'),

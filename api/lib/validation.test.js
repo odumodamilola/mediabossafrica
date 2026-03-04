@@ -7,7 +7,7 @@ function run() {
     brandName: 'Acme',
     contactPerson: 'Jane Doe',
     email: 'jane@example.com',
-    phoneNumber: '+2348012345678',
+    phoneNumber: '2348012345678',
     website: 'https://acme.com',
     industry: 'Tech',
     location: 'Lagos',
@@ -18,6 +18,14 @@ function run() {
     budget: 'NGN 1,000,000 - NGN 5,000,000',
   };
   assert.equal(consultationSchema.safeParse(consultationPayload).success, true);
+  assert.equal(
+    consultationSchema.safeParse({ ...consultationPayload, phoneNumber: '+2348012345678' }).success,
+    false
+  );
+  assert.equal(
+    consultationSchema.safeParse({ ...consultationPayload, phoneNumber: '08012abc678' }).success,
+    false
+  );
 
   const badContact = {
     formType: 'contact',

@@ -244,7 +244,16 @@ const TalentForm: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FieldRenderer label="Phone Number" icon={<Phone className="w-3 h-3" />} error={errors.phoneNumber}>
-              <input className={inputBaseClass} placeholder="+234..." value={formData.phoneNumber} onChange={(e) => updateField('phoneNumber', e.target.value)} />
+              <input
+                className={inputBaseClass}
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                name="phoneNumber"
+                placeholder="e.g. 08012345678"
+                value={formData.phoneNumber}
+                onChange={(e) => handlePhoneNumberChange(e.target.value)}
+              />
             </FieldRenderer>
             <FieldRenderer label="Website / Social Links" icon={<Globe className="w-3 h-3" />} error={errors.website}>
               <input className={inputBaseClass} placeholder="www.yourbrand.com" value={formData.website} onChange={(e) => updateField('website', e.target.value)} />
@@ -461,6 +470,11 @@ const TalentForm: React.FC = () => {
     }
   };
 
+  const handlePhoneNumberChange = (value: string) => {
+    const digitsOnly = value.replace(/\D/g, '').slice(0, 15);
+    updateField('phoneNumber', digitsOnly);
+  };
+
   const validateGroup = (index: number) => {
     const group = groups[index];
     const newErrors: Record<string, string> = {};
@@ -472,6 +486,7 @@ const TalentForm: React.FC = () => {
       if (!formData.email.trim()) newErrors.email = 'Required';
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Invalid email';
       if (!formData.phoneNumber.trim()) newErrors.phoneNumber = 'Required';
+      else if (!/^\d{7,15}$/.test(formData.phoneNumber)) newErrors.phoneNumber = 'Use numbers only (7-15 digits)';
     } else if (group.id === 'aims') {
       if (!formData.industry.trim()) newErrors.industry = 'Required';
       if (!formData.location.trim()) newErrors.location = 'Required';
