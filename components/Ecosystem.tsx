@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PageType } from '../types';
-import brandVideo from '../assets/videos/brand.mp4';
 
 interface EcosystemProps {
   onNavigate?: (page: PageType) => void;
@@ -45,10 +44,13 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-10 gap-y-6 sm:gap-y-8 mb-10 sm:mb-12 md:mb-14">
                 {[
-                  { t: '4K video production', d: 'Shoot commercials, music videos, and branded content in cinema quality.' },
-                  { t: 'Sound booth & mixing', d: 'Record podcasts, voiceovers, and ad audio with professional equipment.' },
-                  { t: 'Full editing suite', d: 'Adobe Creative Suite, DaVinci Resolve, and a dedicated editing team.' },
-                  { t: 'Creative direction', d: 'Our team helps plan, script, and art-direct your shoots.' }
+                  { t: 'Video Production (Short-form & Long-form)' },
+                  { t: 'Social Media Content Creation' },
+                  { t: 'Podcast Production' },
+                  { t: 'Photography & Creative Direction' },
+                  { t: 'Branded Content & Commercial Shoots' },
+                  { t: 'Show & Digital Series Development' },
+                  { t: 'Editing, Motion Graphics & Post-Production' }
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -57,16 +59,15 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
                     transition={{ delay: i * 0.1 }}
                   >
                     <h4 className="text-gray-900 dark:text-white font-black text-sm uppercase tracking-widest mb-2 sm:mb-3 border-l-2 border-brand-magenta pl-4 transition-colors">{item.t}</h4>
-                    <p className="text-gray-600 dark:text-white/30 text-sm leading-relaxed pl-5 transition-colors">{item.d}</p>
                   </motion.div>
                 ))}
               </div>
 
               <button
-                onClick={() => onNavigate?.('work')}
+                onClick={() => onNavigate?.('studio')}
                 className="group relative px-10 sm:px-12 py-5 sm:py-6 bg-brand-deep dark:bg-white text-white dark:text-brand-deep rounded-2xl font-black text-[11px] uppercase tracking-[0.3em] overflow-hidden transition-all hover:scale-105 shadow-2xl min-h-[48px]"
               >
-                <span className="relative z-10 group-hover:text-white transition-colors">See our work</span>
+                <span className="relative z-10 group-hover:text-white transition-colors">View our work</span>
                 <div className="absolute inset-0 bg-brand-magenta translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo" />
               </button>
             </div>
@@ -77,16 +78,11 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="relative w-full max-w-[320px] aspect-[9/16] rounded-[32px] overflow-hidden shadow-[0_60px_100px_-20px_rgba(255,0,160,0.3)] bg-black border-[5px] border-gray-900 dark:border-[#1a1a1a] ring-1 ring-white/10"
               >
-                <video
-                  src={brandVideo}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls={false}
-                  disablePictureInPicture
-                  controlsList="nodownload noplaybackrate"
+                <img
+                  src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop"
+                  alt="Mediaboss Studio"
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </motion.div>
             </div>

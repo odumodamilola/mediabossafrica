@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PageType } from '../types';
-import brandVideo from '../assets/videos/brand.mp4';
 
 interface HeroProps {
   onNavigate: (page: PageType) => void;
@@ -10,29 +8,28 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-brand-deep py-20 sm:py-32 transition-colors duration-300" aria-labelledby="hero-title">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-brand-deep py-20 sm:py-32 transition-colors duration-300"
+      aria-labelledby="hero-title"
+    >
       <div className="absolute inset-0 z-0">
-        <video
-          src={brandVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          controls={false}
-          disablePictureInPicture
-          controlsList="nodownload noplaybackrate"
-          className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none"
+        <div
+          className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1740&auto=format&fit=crop')",
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white dark:from-brand-deep/80 dark:via-brand-deep/50 dark:to-brand-deep" />
 
         <motion.div
           animate={{ scale: [1, 1.2, 1], rotate: [0, 5, 0], opacity: [0.1, 0.15, 0.1] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
           className="absolute top-[-10%] right-[-10%] w-[70%] h-[70%] bg-brand-magenta rounded-full blur-[140px] mix-blend-overlay"
         />
         <motion.div
           animate={{ scale: [1.1, 1, 1.1], rotate: [0, -5, 0], opacity: [0.08, 0.12, 0.08] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
           className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-accent rounded-full blur-[140px] mix-blend-overlay"
         />
       </div>
@@ -45,7 +42,6 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center text-center"
           >
-            {/* Badge — Geographic Authority Signal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -53,15 +49,18 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full glass-morphism mb-10 shadow-xl"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-magenta opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-magenta"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-magenta opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-magenta" />
               </span>
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-500 dark:text-white/70">
                 Influence. Innovation. Impact.
               </span>
             </motion.div>
 
-            <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-black leading-[0.9] md:leading-[0.85] tracking-[-0.03em] mb-8 sm:mb-10 md:mb-14 select-none">
+            <h1
+              id="hero-title"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-black leading-[0.9] md:leading-[0.85] tracking-[-0.03em] mb-8 sm:mb-10 md:mb-14 select-none"
+            >
               <motion.span
                 initial={{ opacity: 0, y: 80, scale: 0.95, rotateX: 30 }}
                 animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
@@ -79,28 +78,29 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 influence that converts.
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 2, delay: 2, ease: "easeInOut" }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 2, delay: 2, ease: 'easeInOut' }}
                   className="absolute -bottom-4 sm:-bottom-6 left-0 h-[2px] bg-gradient-to-r from-transparent via-brand-magenta to-transparent opacity-40"
                 />
               </motion.span>
             </h1>
 
-            {/* Subheadline — Clear benefit, specific, human */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5, delay: 1.5 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-white/50 max-w-3xl leading-relaxed mb-10 sm:mb-12 md:mb-14 tracking-tight px-4 sm:px-0">
-              We empower brands and creators to tell compelling stories, build strong communities, and achieve measurable growth through influence-led marketing.
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-white/50 max-w-3xl leading-relaxed mb-10 sm:mb-12 md:mb-14 tracking-tight px-4 sm:px-0"
+            >
+              We empower brands and creators to build strong communities and achieve measurable growth through
+              influence-led marketing and premium content production.
             </motion.p>
 
-            {/* CTA — Clear hierarchy: Primary dominant, Secondary subtle */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.8 }}
-              className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto px-4 sm:px-0">
+              className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto px-4 sm:px-0"
+            >
               <button
                 onClick={() => onNavigate('contact')}
                 className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl bg-brand-magenta text-white border-2 border-brand-magenta font-black text-xs uppercase tracking-[0.2em] hover:bg-brand-magenta/90 transition-all shadow-xl hover:shadow-brand-magenta/50 min-h-[48px]"
@@ -111,18 +111,18 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 onClick={() => onNavigate('work')}
                 className="text-gray-600 dark:text-white/40 font-bold text-xs uppercase tracking-[0.2em] hover:text-brand-magenta dark:hover:text-brand-magenta transition-colors min-h-[48px] px-4"
               >
-                View our work →
+                View our work -&gt;
               </button>
             </motion.div>
 
-            {/* Qualification filter — reduces unqualified leads */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 2.4 }}
               className="text-[10px] sm:text-[11px] text-gray-500 dark:text-white/20 mt-6 font-medium tracking-wide"
             >
-              Pan-African Reach · Data-Driven Strategies · In-House Production
+              Pan-African & Global Reach | Culture-Driven, Data-Backed Strategies | In-House Production via The
+              Mediaboss Studio
             </motion.p>
           </motion.div>
         </div>

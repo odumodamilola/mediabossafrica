@@ -6,16 +6,24 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "test": "node api/lib/validation.test.js",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "framer-motion": "10.16.4",
+    "lucide-react": "0.284.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "framer-motion": "10.16.4",
-    "lucide-react": "0.284.0"
+    "react-router-dom": "^7.13.1",
+    "resend": "^6.9.3",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^5.0.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"

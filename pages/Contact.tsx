@@ -1,115 +1,165 @@
-
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
+type ContactPayload = {
+  formType: 'contact';
+  name: string;
+  email: string;
+  category: string;
+  message: string;
+  _gotcha: string;
+  _startTime: number;
+};
+
+const inputClass =
+  'w-full rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 px-6 py-4 text-gray-900 dark:text-white outline-none transition-colors focus:border-brand-magenta';
 
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [formData, setFormData] = useState<ContactPayload>({
+    formType: 'contact',
+    name: '',
+    email: '',
+    category: 'brand',
+    message: '',
+    _gotcha: '',
+    _startTime: Date.now(),
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const updateField = <K extends keyof ContactPayload>(key: K, value: ContactPayload[K]) => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
+    setErrorMessage('');
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (formState === 'submitting') return;
+
     setFormState('submitting');
-    // Simulate API call
-    setTimeout(() => setFormState('success'), 2000);
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setErrorMessage(payload?.error || 'Failed to send message. Please try again.');
+        setFormState('idle');
+        return;
+      }
+
+      setFormState('success');
+    } catch {
+      setErrorMessage('Network error. Please check your connection and try again.');
+      setFormState('idle');
+    }
   };
 
   return (
     <div className="pt-40 pb-32">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
+        <div className="grid lg:grid-cols-2 gap-24 items-start">
           <div>
-            <span className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-6 block">Let's Connect</span>
-            <h1 className="text-6xl md:text-8xl font-display font-black tracking-tighter mb-8 leading-none text-gray-900 dark:text-white">START YOUR <br /> <span className="text-brand-magenta italic">JOURNEY.</span></h1>
-            <p className="text-gray-500 dark:text-white/40 text-2xl font-light mb-12 leading-relaxed">
-              We're looking for talented creators who want to build a lasting legacy. Ready to get started? Send us a message.
+            <span className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-6 block">Let's Work Together</span>
+            <p className="text-gray-500 dark:text-white/50 text-xl font-light mb-12 leading-relaxed max-w-lg transition-colors">
+              Whether you are a brand, talent, or partner, send us a message and we will reply shortly.
             </p>
-
-            <div className="space-y-8">
-              <div className="flex gap-6 items-center">
-                <div className="w-16 h-16 rounded-3xl glass-morphism flex items-center justify-center text-brand-magenta shadow-lg">
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                </div>
-                <div>
-                  <h4 className="text-gray-400 dark:text-white/30 text-xs font-black uppercase tracking-widest mb-1">Email Us</h4>
-                  <p className="text-xl font-bold text-gray-900 dark:text-white">info@mediabossafrica.com</p>
-                </div>
-              </div>
-              <div className="flex gap-6 items-center">
-                <div className="w-16 h-16 rounded-3xl glass-morphism flex items-center justify-center text-brand-magenta shadow-lg">
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                </div>
-                <div>
-                  <h4 className="text-gray-400 dark:text-white/30 text-xs font-black uppercase tracking-widest mb-1">Visit Us</h4>
-                  <p className="text-xl font-bold text-gray-900 dark:text-white">Africa | UK | US</p>
-                </div>
-              </div>
+            <div className="space-y-4 text-gray-700 dark:text-white/70">
+              <p><strong>Email:</strong> info@mediabossafrica.com</p>
+              <p><strong>Location:</strong> Lagos, Nigeria</p>
             </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="glass-morphism p-12 md:p-16 rounded-[64px] relative bento-shadow min-h-[500px] flex flex-col justify-center shadow-2xl"
-          >
-            <AnimatePresence mode="wait">
-              {formState === 'success' ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center space-y-6"
+          <div className="glass-morphism p-12 md:p-16 rounded-[64px] relative shadow-2xl">
+            {formState === 'success' ? (
+              <div className="text-center space-y-6">
+                <div className="w-24 h-24 bg-brand-magenta rounded-full mx-auto flex items-center justify-center text-white text-4xl">?</div>
+                <h3 className="text-3xl font-display font-black text-gray-900 dark:text-white">Message Received</h3>
+                <p className="text-gray-500 dark:text-white/40 text-lg">Your message was sent directly to our inbox.</p>
+                <button
+                  onClick={() => {
+                    setFormState('idle');
+                    setFormData((prev) => ({ ...prev, name: '', email: '', category: 'brand', message: '', _gotcha: '', _startTime: Date.now() }));
+                  }}
+                  className="text-brand-magenta font-black uppercase tracking-widest text-xs"
                 >
-                  <div className="w-24 h-24 bg-brand-magenta rounded-full mx-auto flex items-center justify-center text-white text-4xl">✓</div>
-                  <h3 className="text-3xl font-display font-black text-gray-900 dark:text-white">MESSAGE RECEIVED!</h3>
-                  <p className="text-gray-500 dark:text-white/40 text-lg">Thanks for reaching out! Our team will review your profile and get back to you within 48 hours.</p>
-                  <button
-                    onClick={() => setFormState('idle')}
-                    className="text-brand-magenta font-black uppercase tracking-widest text-xs"
-                  >
-                    Send Another Message
-                  </button>
-                </motion.div>
-              ) : (
-                <motion.form
-                  key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="space-y-8"
-                  onSubmit={handleSubmit}
-                  aria-label="Contact Form"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">Your Name</label>
-                      <input required id="name" type="text" className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-magenta outline-none transition-colors text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/20" placeholder="e.g. Damilola Cole" />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">Email Address</label>
-                      <input required id="email" type="email" className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-magenta outline-none transition-colors text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/20" placeholder="e.g. cole@email.com" />
-                    </div>
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <form className="space-y-8" onSubmit={handleSubmit} aria-label="Contact Form">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">Your Name</label>
+                    <input
+                      required
+                      id="name"
+                      type="text"
+                      className={inputClass}
+                      placeholder="e.g. Damilola Cole"
+                      value={formData.name}
+                      onChange={(e) => updateField('name', e.target.value)}
+                    />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="category" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">What are you looking for?</label>
-                    <select required id="category" className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-magenta outline-none transition-colors appearance-none text-gray-900 dark:text-white">
-                      <option value="talent" className="bg-white dark:bg-brand-deep">I'm a Creator / Talent</option>
-                      <option value="brand" className="bg-white dark:bg-brand-deep">I'm a Brand / Business</option>
-                      <option value="media" className="bg-white dark:bg-brand-deep">Media Inquiry</option>
-                    </select>
+                    <label htmlFor="email" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">Email Address</label>
+                    <input
+                      required
+                      id="email"
+                      type="email"
+                      className={inputClass}
+                      placeholder="e.g. cole@email.com"
+                      value={formData.email}
+                      onChange={(e) => updateField('email', e.target.value)}
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">Your Message</label>
-                    <textarea required id="message" rows={4} className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-brand-magenta outline-none transition-colors text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/20" placeholder="Tell us a little bit about yourself..."></textarea>
-                  </div>
-                  <button
-                    disabled={formState === 'submitting'}
-                    className="w-full bg-brand-magenta py-6 rounded-3xl text-xl font-black shadow-[0_20px_40px_-10px_rgba(255,0,160,0.5)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="category" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">What are you looking for?</label>
+                  <select
+                    required
+                    id="category"
+                    className={inputClass}
+                    value={formData.category}
+                    onChange={(e) => updateField('category', e.target.value)}
                   >
-                    {formState === 'submitting' ? 'SENDING...' : 'Send Message'}
-                  </button>
-                </motion.form>
-              )}
-            </AnimatePresence>
-          </motion.div>
+                    <option value="brand">I'm a Brand / Business</option>
+                    <option value="talent">I'm a Creator / Talent</option>
+                    <option value="studio">Studio Production Inquiry</option>
+                    <option value="partnership">Brand Partnership / Endorsement</option>
+                    <option value="media">Media Inquiry</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">Your Message</label>
+                  <textarea
+                    required
+                    id="message"
+                    rows={4}
+                    className={inputClass}
+                    placeholder="Tell us about your brand, your goals, or how you'd like to work together..."
+                    value={formData.message}
+                    onChange={(e) => updateField('message', e.target.value)}
+                  />
+                </div>
+                <div style={{ display: 'none' }} aria-hidden="true">
+                  <label htmlFor="contact-gotcha">Leave empty</label>
+                  <input id="contact-gotcha" value={formData._gotcha} onChange={(e) => updateField('_gotcha', e.target.value)} />
+                </div>
+                {errorMessage && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-300">{errorMessage}</p>}
+                <button
+                  disabled={formState === 'submitting'}
+                  className="w-full bg-brand-magenta text-white py-6 rounded-3xl text-xl font-black shadow-[0_20px_40px_-10px_rgba(255,0,160,0.5)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
+                >
+                  {formState === 'submitting' ? 'Sending...' : 'Send Message'}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </div>
