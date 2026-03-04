@@ -35,6 +35,8 @@ const Resources: React.FC = () => {
                   src={res.image}
                   alt={res.title}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute top-6 left-6">
                   <span className="bg-white/90 dark:bg-brand-deep/80 backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full text-brand-magenta border border-brand-magenta/30 shadow-md">

@@ -69,6 +69,12 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid JSON body' });
     }
 
+    const bodySize = Buffer.byteLength(JSON.stringify(body || {}), 'utf8');
+    if (bodySize > 100 * 1024) {
+      logSecurity('payload_too_large', { bodySize }, context);
+      return res.status(413).json({ error: 'Payload too large' });
+    }
+
     const rateLimitResult = await checkRateLimit(req);
     if (!rateLimitResult.success) {
       logSecurity(

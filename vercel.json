@@ -56,6 +56,13 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/talent-form",
+      "destination": "/consultation",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/consultation",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { PageType } from '../types';
 
 interface HeroProps {
@@ -7,6 +7,8 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-brand-deep py-20 sm:py-32 transition-colors duration-300"
@@ -23,12 +25,12 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white dark:from-brand-deep/80 dark:via-brand-deep/50 dark:to-brand-deep" />
 
         <motion.div
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 5, 0], opacity: [0.1, 0.15, 0.1] }}
+          animate={reduceMotion ? { opacity: 0.1 } : { scale: [1, 1.2, 1], rotate: [0, 5, 0], opacity: [0.1, 0.15, 0.1] }}
           transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
           className="absolute top-[-10%] right-[-10%] w-[70%] h-[70%] bg-brand-magenta rounded-full blur-[140px] mix-blend-overlay"
         />
         <motion.div
-          animate={{ scale: [1.1, 1, 1.1], rotate: [0, -5, 0], opacity: [0.08, 0.12, 0.08] }}
+          animate={reduceMotion ? { opacity: 0.08 } : { scale: [1.1, 1, 1.1], rotate: [0, -5, 0], opacity: [0.08, 0.12, 0.08] }}
           transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
           className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-accent rounded-full blur-[140px] mix-blend-overlay"
         />
@@ -102,17 +104,37 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto px-4 sm:px-0"
             >
               <button
-                onClick={() => onNavigate('contact')}
+                onClick={() => onNavigate('talent-form')}
                 className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl bg-brand-magenta text-white border-2 border-brand-magenta font-black text-xs uppercase tracking-[0.2em] hover:bg-brand-magenta/90 transition-all shadow-xl hover:shadow-brand-magenta/50 min-h-[48px]"
               >
-                Apply to join
+                Book a Consultation
               </button>
               <button
-                onClick={() => onNavigate('work')}
-                className="text-gray-600 dark:text-white/40 font-bold text-xs uppercase tracking-[0.2em] hover:text-brand-magenta dark:hover:text-brand-magenta transition-colors min-h-[48px] px-4"
+                onClick={() => onNavigate('talent')}
+                className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl border-2 border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/70 font-black text-xs uppercase tracking-[0.2em] hover:border-brand-magenta hover:text-brand-magenta dark:hover:text-brand-magenta transition-colors min-h-[48px]"
               >
-                View our work -&gt;
+                Join as Talent
               </button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 2.1 }}
+              className="mt-8 grid w-full max-w-5xl grid-cols-1 gap-3 px-4 sm:grid-cols-3 sm:px-0"
+            >
+              <div className="rounded-2xl border border-gray-200/80 bg-white/80 p-4 text-center backdrop-blur-md dark:border-white/10 dark:bg-white/5">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 dark:text-white/40">Pillar</p>
+                <p className="mt-2 text-sm font-bold text-gray-900 dark:text-white">Influencer Marketing</p>
+              </div>
+              <div className="rounded-2xl border border-gray-200/80 bg-white/80 p-4 text-center backdrop-blur-md dark:border-white/10 dark:bg-white/5">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 dark:text-white/40">Pillar</p>
+                <p className="mt-2 text-sm font-bold text-gray-900 dark:text-white">Talent Management</p>
+              </div>
+              <div className="rounded-2xl border border-gray-200/80 bg-white/80 p-4 text-center backdrop-blur-md dark:border-white/10 dark:bg-white/5">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 dark:text-white/40">Pillar</p>
+                <p className="mt-2 text-sm font-bold text-gray-900 dark:text-white">Creative Media Production via Mediaboss Studio</p>
+              </div>
             </motion.div>
 
             <motion.p

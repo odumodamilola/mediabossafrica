@@ -1,5 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -9,113 +10,125 @@ import Solutions from './pages/Solutions';
 import Pricing from './pages/Pricing';
 import Resources from './pages/Resources';
 import Contact from './pages/Contact';
-import Apply from './pages/Apply';
 import Work from './pages/Work';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import Studio from './pages/Studio';
+import TalentForm from './pages/TalentForm';
+import TalentLanding from './pages/talent/TalentLanding';
+import ApplyForm from './pages/talent/ApplyForm';
+import NotFound from './pages/NotFound';
 import { PageType } from './types';
-import { SEO_CONFIG, VALID_PAGES } from './constants';
+import { SEO_CONFIG } from './constants';
 import ErrorBoundary from './components/ErrorBoundary';
 
-const SEOManager: React.FC<{ page: PageType }> = ({ page }) => {
+const SEOManager: React.FC = () => {
+  const location = useLocation();
+  const rawPage = (location.pathname.replace('/', '') || 'home') as PageType;
+  const page = rawPage === 'features' ? 'about-us' : rawPage === 'solutions' ? 'service' : rawPage;
   const config = SEO_CONFIG[page] || SEO_CONFIG.home;
-  const baseUrl = "https://mediabossafrica.com";
-  const canonicalUrl = `${baseUrl}/#${page === 'home' ? '' : page}`;
 
   useEffect(() => {
     document.title = config.title;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) metaDescription.setAttribute('content', config.description);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', config.title);
+
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) ogDescription.setAttribute('content', config.description);
+
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) twitterTitle.setAttribute('content', config.title);
+
+    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDescription) twitterDescription.setAttribute('content', config.description);
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      const path = location.pathname === '/' ? '' : location.pathname;
+      canonical.setAttribute('href', `https://mediabossafrica.com${path}`);
+    }
   }, [page, config]);
 
   return null;
 };
 
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+  return null;
+};
+
 const App: React.FC = () => {
-  const [activePage, setActivePage] = useState<PageType>('home');
+  const location = useLocation();
+  const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
-  console.log('App rendering, active page:', activePage); // DEBUG
-
-  useEffect(() => {
-    console.log('App mounted'); // DEBUG
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') || 'home';
-      console.log('Hash changed to:', hash); // DEBUG
-      // Use the centralized VALID_PAGES manifest as source of truth
-      if (VALID_PAGES.includes(hash as PageType)) {
-        console.log('Valid page, setting:', hash); // DEBUG
-        setActivePage(hash as PageType);
-      } else {
-        console.warn('Invalid page, redirecting to home:', hash); // DEBUG
-        // Failsafe: Force redirect to home for undefined routes
-        window.location.hash = 'home';
-        setActivePage('home');
-      }
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // Run on mount
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  const rawActivePage = (location.pathname.replace('/', '') || 'home') as PageType;
+  const activePage = rawActivePage === 'features' ? 'about-us' : rawActivePage === 'solutions' ? 'service' : rawActivePage;
 
   const handleNavigate = (page: PageType) => {
-    console.log('Navigate clicked:', page); // DEBUG
-    window.location.hash = page;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate(page === 'home' ? '/' : `/${page}`);
   };
 
-  const renderPage = () => {
-    try {
-      console.log('Rendering page:', activePage); // DEBUG
-      switch (activePage) {
-        case 'home': return <Home onNavigate={handleNavigate} />;
-        case 'features': return <Features />;
-        case 'solutions': return <Solutions />;
-        case 'pricing': return <Pricing onNavigate={handleNavigate} />;
-        case 'resources': return <Resources />;
-        case 'contact': return <Contact />;
-        case 'apply': return <Apply />;
-        case 'work': return <Work />;
-        case 'privacy': return <Privacy />;
-        case 'terms': return <Terms />;
-        default: {
-          console.warn('Unknown page, defaulting to home:', activePage);
-          return <Home onNavigate={handleNavigate} />;
-        }
-      }
-    } catch (error) {
-      console.error('Error rendering page:', error);
-      return <Home onNavigate={handleNavigate} />; // Failsafe
-    }
-  };
+  const isIsolatedPage = location.pathname === '/talent-form';
 
   return (
     <ErrorBoundary>
       <div className="bg-white dark:bg-brand-deep min-h-screen text-gray-900 dark:text-white selection:bg-brand-magenta selection:text-white font-sans overflow-x-hidden transition-colors duration-300">
-        <SEOManager page={activePage} />
-        <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-brand-magenta z-[110] origin-left shadow-[0_0_15px_#ff00a0]" style={{ scaleX }} />
-        <Navbar activePage={activePage} onNavigate={handleNavigate} />
-        <main className="relative z-10 min-h-screen" id="main-content">
+        <SEOManager />
+        <ScrollToTop />
+        {!isIsolatedPage && (
+          <>
+            <motion.div className="fixed top-0 left-0 right-0 h-[2px] bg-brand-magenta z-[110] origin-left shadow-[0_0_15px_#ff00a0]" style={{ scaleX }} />
+            <Navbar activePage={activePage} onNavigate={handleNavigate} />
+          </>
+        )}
+        <main className={`relative z-10 min-h-screen ${isIsolatedPage ? '' : ''}`} id="main-content">
           <ErrorBoundary>
             <AnimatePresence mode="wait">
               <motion.div
-                key={activePage}
+                key={location.pathname}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="min-h-screen"
               >
-                {renderPage()}
+                <Routes location={location}>
+                  <Route path="/" element={<Home onNavigate={handleNavigate} />} />
+                  <Route path="/about-us" element={<Features />} />
+                  <Route path="/service" element={<Solutions />} />
+                  <Route path="/features" element={<Features />} />
+                  <Route path="/solutions" element={<Solutions />} />
+                  <Route path="/pricing" element={<Pricing onNavigate={handleNavigate} />} />
+                  <Route path="/resources" element={<Resources />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/talent" element={<TalentLanding />} />
+                  <Route path="/talent/apply" element={<ApplyForm />} />
+                  <Route path="/work" element={<Work />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/studio" element={<Studio />} />
+                  <Route path="/talent-form" element={<TalentForm />} />
+                  {/* Catch-all: dedicated branded 404 page */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
               </motion.div>
             </AnimatePresence>
           </ErrorBoundary>
         </main>
-        <Footer onNavigate={handleNavigate} />
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(255,0,160,0.02)_0%,_transparent_60%)]" />
-        </div>
+        {!isIsolatedPage && <Footer onNavigate={handleNavigate} />}
+        {!isIsolatedPage && (
+          <div className="fixed inset-0 pointer-events-none z-0">
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(255,0,160,0.02)_0%,_transparent_60%)]" />
+          </div>
+        )}
       </div>
     </ErrorBoundary>
   );

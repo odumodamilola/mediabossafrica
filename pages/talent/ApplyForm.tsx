@@ -15,7 +15,7 @@ type ApplyPayload = {
 const inputClass =
   'w-full rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 px-8 py-5 text-gray-900 dark:text-white outline-none transition-all';
 
-const Apply: React.FC = () => {
+const ApplyForm: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState<ApplyPayload>({
@@ -196,4 +196,4 @@ const Apply: React.FC = () => {
   );
 };
 
-export default Apply;
+export default ApplyForm;

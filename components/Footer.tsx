@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PageType } from '../types';
 import { NAV_LINKS } from '../constants';
 import Logo from './Logo';
@@ -9,8 +10,10 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const navigate = useNavigate();
+
   const handleNav = (page: PageType) => {
-    onNavigate(page);
+    navigate(page === 'home' ? '/' : `/${page}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -31,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </button>
             </div>
             <p className="text-gray-600 dark:text-white/40 max-w-sm mb-12 text-base sm:text-lg leading-relaxed">
-              Lagos-based creator agency. We connect Nigerian talent with paying brand partnerships and provide free studio access.
+              Mediaboss Africa is a leading pan-African talent management, influencer marketing, and creative media company at the intersection of culture, entertainment, and commerce.
             </p>
             <div className="flex gap-6">
               {socialLinks.map((social) => (
@@ -54,16 +57,11 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-6 text-gray-600 dark:text-white/50 font-bold">
               {NAV_LINKS.map(link => (
                 <li key={link.href}>
-                  <button onClick={() => handleNav(link.href)} className="hover:text-brand-magenta transition-colors text-left">
+                  <a href={link.href === 'home' ? '/' : `/${link.href}`} onClick={(e) => { e.preventDefault(); handleNav(link.href); }} className="hover:text-brand-magenta transition-colors">
                     {link.label}
-                  </button>
+                  </a>
                 </li>
               ))}
-              <li>
-                <button onClick={() => handleNav('contact')} className="hover:text-brand-magenta transition-colors text-left">
-                  Contact
-                </button>
-              </li>
             </ul>
           </div>
 
@@ -76,9 +74,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>+234 (0) 900 000 0000</li>
               <li>
-                <button onClick={() => handleNav('apply')} className="text-brand-magenta font-black hover:underline decoration-brand-magenta/40">
+                <a href="/talent/apply" onClick={(e) => { e.preventDefault(); handleNav('talent/apply'); }} className="text-brand-magenta font-black hover:underline decoration-brand-magenta/40">
                   Join Our Roster
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -89,9 +87,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             © {new Date().getFullYear()} Mediaboss Africa. All rights reserved.
           </p>
           <div className="flex gap-10 text-gray-400 dark:text-white/20 text-[10px] font-black uppercase tracking-[0.2em]">
-            <button onClick={() => handleNav('privacy')} className="hover:text-brand-magenta dark:hover:text-white transition-colors">Privacy</button>
-            <button onClick={() => handleNav('terms')} className="hover:text-brand-magenta dark:hover:text-white transition-colors">Terms</button>
-            <button onClick={() => handleNav('contact')} className="hover:text-brand-magenta dark:hover:text-white transition-colors">Support</button>
+            <a href="/privacy" onClick={(e) => { e.preventDefault(); handleNav('privacy'); }} className="hover:text-brand-magenta dark:hover:text-white transition-colors">Privacy</a>
+            <a href="/terms" onClick={(e) => { e.preventDefault(); handleNav('terms'); }} className="hover:text-brand-magenta dark:hover:text-white transition-colors">Terms</a>
+            <a href="/contact" onClick={(e) => { e.preventDefault(); handleNav('contact'); }} className="hover:text-brand-magenta dark:hover:text-white transition-colors">Support</a>
           </div>
         </div>
       </div>

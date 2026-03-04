@@ -1,5 +1,20 @@
 
-export type PageType = 'home' | 'features' | 'solutions' | 'pricing' | 'resources' | 'contact' | 'apply' | 'work' | 'privacy' | 'terms';
+export type PageType =
+  | 'home'
+  | 'features'
+  | 'solutions'
+  | 'about-us'
+  | 'service'
+  | 'pricing'
+  | 'resources'
+  | 'contact'
+  | 'talent'
+  | 'talent/apply'
+  | 'work'
+  | 'privacy'
+  | 'terms'
+  | 'studio'
+  | 'talent-form';
 
 export interface NavItem {
   label: string;
@@ -17,7 +32,6 @@ export interface Service {
 export interface Feature {
   title: string;
   description: string;
-  category: string;
   category: string;
   metric?: string;
   image?: string;

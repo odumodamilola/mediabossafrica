@@ -1,30 +1,47 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CASE_STUDIES } from '../constants';
+import { CASE_STUDIES, TRUSTED_BRANDS } from '../constants';
+import { useNavigate } from 'react-router-dom';
+
+const smoothEase = [0.16, 1, 0.3, 1] as const;
 
 const Work: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="pt-40 pb-32">
       <div className="container mx-auto px-6">
+
+        {/* ── Header ───────────────────────────────────────── */}
         <div className="max-w-4xl mb-32">
-          <span className="text-brand-magenta text-[11px] font-black tracking-[0.5em] uppercase mb-6 block">Our portfolio</span>
-          <h1 className="text-7xl md:text-[10rem] font-display font-black leading-[0.85] tracking-tighter mb-12 text-gray-900 dark:text-white">
-            Selected <br /> <span className="text-brand-magenta italic text-glow">work.</span>
-          </h1>
-          <p className="text-gray-500 dark:text-white/40 text-2xl font-light leading-relaxed max-w-2xl">
-            From viral fintech campaigns to cinema-grade fashion series, explore the real results we create for our partners.
-          </p>
+          <motion.span
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-brand-magenta text-[11px] font-black tracking-[0.5em] uppercase mb-6 block"
+          >
+            Our Work
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, ease: smoothEase, delay: 0.1 }}
+            className="text-7xl md:text-[10rem] font-display font-black leading-[0.85] tracking-tighter mb-12 text-gray-900 dark:text-white transition-colors"
+          >
+            Selected <br /> <span className="text-brand-magenta italic">work.</span>
+          </motion.h1>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+        {/* ── Case Study Cards ─────────────────────────────── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 mb-40">
           {CASE_STUDIES.map((study, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.1, duration: 0.8, ease: smoothEase }}
               className="group cursor-pointer"
             >
               <div className="aspect-[16/10] overflow-hidden rounded-[48px] border border-gray-200 dark:border-white/10 mb-8 relative">
@@ -32,6 +49,8 @@ const Work: React.FC = () => {
                   src={study.image}
                   alt={study.title}
                   className="w-full h-full object-cover grayscale transition-all duration-[1.5s] group-hover:grayscale-0 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 dark:from-brand-deep/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-10">
                   <div className="glass-morphism px-8 py-4 rounded-2xl">
@@ -52,15 +71,74 @@ const Work: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-40 p-20 glass-morphism rounded-[64px] text-center shadow-xl">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mb-8 sm:mb-10 text-gray-900 dark:text-white transition-colors">Ready to work together?</h2>
-          <button
-            onClick={() => window.location.hash = 'contact'}
-            className="px-16 py-8 bg-brand-deep dark:bg-white text-white dark:text-brand-deep rounded-3xl font-black text-sm uppercase tracking-widest hover:bg-brand-magenta hover:text-white transition-all shadow-2xl"
+        {/* ── We Are Trusted By ────────────────────────────── */}
+        <div className="mb-40">
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-10 block"
           >
-            Request Strategy Proposal
-          </button>
+            We Are Trusted By
+          </motion.span>
+          <div className="relative w-full overflow-hidden py-4">
+            <motion.div
+              className="flex flex-nowrap gap-x-12 sm:gap-x-16 items-center w-max"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                repeat: Infinity,
+                ease: "linear",
+                duration: 25
+              }}
+            >
+              {[...TRUSTED_BRANDS, ...TRUSTED_BRANDS].map((brand, i) => (
+                <div
+                  key={`${brand.name}-${i}`}
+                  className="flex-shrink-0 transition-all duration-300 flex items-center justify-center hover:opacity-80 hover:-translate-y-1"
+                >
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className={`max-h-12 w-auto object-contain rounded-lg ${brand.className || ''}`}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    {(brand as any).showText && (
+                      <span className="font-display font-bold text-gray-900 dark:text-white text-sm whitespace-nowrap">{brand.name}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
+
+        {/* ── Let's Work Together ──────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: smoothEase }}
+          className="relative bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 p-16 sm:p-20 rounded-[64px] text-center shadow-xl overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,0,160,0.07),transparent_70%)]" />
+          <div className="relative z-10">
+            <span className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-6 block">
+              Let&apos;s Work Together
+            </span>
+            <p className="text-gray-600 dark:text-white/60 text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed transition-colors">
+              Whether you&apos;re a brand looking to scale influence, a talent ready to build legacy, or a partner seeking creative excellence, Mediaboss Africa delivers solutions that move culture and drive results.
+            </p>
+            <button
+              onClick={() => navigate('/contact')}
+              className="px-16 py-7 bg-brand-magenta text-white rounded-3xl font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_20px_60px_-10px_rgba(255,0,160,0.5)]"
+            >
+              Start a Conversation
+            </button>
+          </div>
+        </motion.div>
+
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import { NavItem, Service, Industry, FAQItem, Feature, PricingPlan, Resource, CaseStudy, PageType } from './types';
 
 // ROUTING MANIFEST: Type-safe list of all valid pages (prevents dead-ends)
-export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'pricing', 'resources', 'contact', 'apply', 'work', 'privacy', 'terms'] as const;
+export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'about-us', 'service', 'pricing', 'resources', 'contact', 'talent', 'talent/apply', 'work', 'privacy', 'terms', 'studio', 'talent-form'] as const;
 
 
 export const SEO_CONFIG = {
@@ -17,7 +17,17 @@ export const SEO_CONFIG = {
     description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
     keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities"
   },
+  'about-us': {
+    title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
+    description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
+    keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities"
+  },
   solutions: {
+    title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
+    description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
+    keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos"
+  },
+  service: {
     title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
     description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
     keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos"
@@ -37,10 +47,15 @@ export const SEO_CONFIG = {
     description: "Ready to turn your influence into income? Visit our Lagos studio or reach out online. Let's build something legendary.",
     keywords: "contact talent agency Lagos, Mediaboss Africa location"
   },
-  apply: {
-    title: "Join Mediaboss | Apply to Top Talent Agency in Nigeria",
-    description: "Ready to earn from your content? Apply to join Africa's premier creator agency. We handle brand deals, legal, and production.",
-    keywords: "apply influencer agency Nigeria, join talent agency Lagos"
+  talent: {
+    title: "Join Africa's Elite Creator Roster | Mediaboss Africa",
+    description: "Apply for world-class representation, professional studio access, and global brand deals. We build the future of African influence.",
+    keywords: "talent management Africa, join influencer roster Nigeria, creator agency Lagos"
+  },
+  'talent/apply': {
+    title: "Talent Application | Mediaboss Africa – Join the Legend",
+    description: "Ready to scale your career? Submit your profile for review by our talent scouts. Join the most elite creator roster in Africa.",
+    keywords: "apply talent agency Nigeria, influencer application Lagos, creator partnership"
   },
   work: {
     title: "Our Work | Nigerian Creator Success Stories",
@@ -56,13 +71,24 @@ export const SEO_CONFIG = {
     title: "Terms of Service | Mediaboss Africa",
     description: "Our legal framework for partnership and service delivery.",
     keywords: "terms of service, legal agreement"
+  },
+  studio: {
+    title: "The Mediaboss Studio | Creative Production & Digital Storytelling",
+    description: "A full-service content production and digital storytelling studio built to serve brands, creators, and campaigns. Video, podcast, photography, and more.",
+    keywords: "content studio Lagos, video production Nigeria, podcast studio, branded content Africa, The Mediaboss Studio"
+  },
+  'talent-form': {
+    title: "Client Consultation | Mediaboss Africa – Build Bold Campaigns",
+    description: "Ready to scale your brand? Book a consultation with Africa's leading creative ecosystem. We build influence that converts through strategic storytelling.",
+    keywords: "client consultation Nigeria, brand strategy Lagos, influencer marketing consultation Africa"
   }
 };
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: 'home' },
-  { label: 'About Us', href: 'features' },
-  { label: 'Services', href: 'solutions' },
+  { label: 'About Us', href: 'about-us' },
+  { label: 'Services', href: 'service' },
+  { label: 'The Studio', href: 'studio' },
   { label: 'Our Work', href: 'work' },
   { label: 'Contact', href: 'contact' },
 ];
@@ -94,42 +120,42 @@ export const CASE_STUDIES: CaseStudy[] = [
 export const FEATURES: Feature[] = [
   {
     title: "Video Production",
-    description: "Short-form & long-form content creation that captivates audiences.",
+    description: "Short-form & Long-form video production for brands, creators, and campaigns.",
     category: "Studio",
     metric: "4K Quality",
     image: "https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?q=80&w=800"
   },
   {
-    title: "Social Media Content",
-    description: "Platform-optimized content across Instagram, TikTok, YouTube, and X.",
+    title: "Social Media Content Creation",
+    description: "Platform-optimized content across Instagram, TikTok, YouTube, X (Twitter), and emerging platforms.",
     category: "Social",
     metric: "Viral Ready",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800"
   },
   {
     title: "Podcast Production",
-    description: "Full-service audio and video podcast recording and editing.",
+    description: "Full-service podcast production — audio and video recording, editing, and distribution.",
     category: "Audio",
     metric: "Pro Sound",
     image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800"
   },
   {
-    title: "Creative Direction",
-    description: "Photography, branding, and visual storytelling that sets you apart.",
+    title: "Photography & Creative Direction",
+    description: "Photography, creative direction, and visual storytelling that sets brands and talents apart.",
     category: "Creative",
     metric: "Visionary",
     image: "https://images.unsplash.com/photo-1542038784456-1ea0e93ca370?q=80&w=800"
   },
   {
-    title: "Branded Content",
-    description: "Commercial shoots and campaign assets that drive brand goals.",
+    title: "Branded Content & Commercial Shoots",
+    description: "Branded content and commercial shoots that bring campaign visions to life.",
     category: "Business",
     metric: "High ROI",
     image: "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=800"
   },
   {
-    title: "Post-Production",
-    description: "Editing, motion graphics, and finishing touches for a polished look.",
+    title: "Editing, Motion Graphics & Post-Production",
+    description: "Editing, motion graphics, and post-production ensuring every story is polished and platform-ready.",
     category: "Editing",
     metric: "Top Tier",
     image: "https://images.unsplash.com/photo-1574717432707-c67be3152631?q=80&w=800"
@@ -179,7 +205,18 @@ export const RESOURCES: Resource[] = [
   }
 ];
 
-export const TRUSTED_BRANDS = ['MTN', 'LXGlobal', 'PushBio', 'INTO REALTOR', 'POLYMATHS REALESTATE', 'TOLISA', 'UR3 Conference', 'JustArt', 'Lagos Sales Party', 'RCCG'];
+export const TRUSTED_BRANDS = [
+  { name: 'MTN', logo: 'https://cdn.worldvectorlogo.com/logos/mtn-new-logo.svg' },
+  { name: 'LXGlobal', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9149OvZ2iXZlHjBtngoJ-bfT0Xl0snuSWw&s' },
+  { name: 'PushBio', logo: 'https://www.pushbio.io/wp-content/uploads/2022/02/pusshbnewx2.png' },
+  { name: 'INTO REALTOR', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdLN35oSLW0KGfKGnLy-u1RL11Fw12l1_U4w&s', className: 'scale-[1.8]' },
+  { name: 'POLYMATHS REALESTATE', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3YbqpVlUi7J7Lrh7M3fYVd3gGx_qmQ_kQw&s' },
+  { name: 'TOLISA', logo: 'https://placehold.co/200x80/transparent/9ca3af?text=TOLISA' },
+  { name: 'UR3 Conference', logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQF1CUMyDKYLdA/company-logo_200_200/company-logo_200_200/0/1729856381630?e=2147483647&v=beta&t=GBzN9v_3k0NJEFmxP8H2cr64OAnPGEN6nI5HIXefKqg' },
+  { name: 'JustArt', logo: 'https://i.ibb.co/RG7YfGqS/image.png', showText: true },
+  { name: 'Lagos Sales Party', logo: 'https://i.ibb.co/rK3zXjD8/image.png' },
+  { name: 'RCCG', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Rccg_logo.png/250px-Rccg_logo.png' }
+];
 
 export const SERVICES: Service[] = [
   {
@@ -191,30 +228,30 @@ export const SERVICES: Service[] = [
   {
     id: 'talent-management',
     title: 'Talent Management & Development',
-    description: 'Comprehensive talent representation including personal brand strategy, deal negotiation, career growth, monetization, and media training.',
-    items: ['Brand Strategy', 'Deal Negotiation', 'Career Growth', 'Media Training']
+    description: 'Comprehensive talent representation including personal brand strategy, deal negotiation & brand endorsements, career growth and monetization, and media training & positioning.',
+    items: ['Personal Brand Strategy', 'Deal Negotiation & Brand Endorsements', 'Career Growth and Monetization', 'Media Training & Positioning']
   },
   {
     id: 'brand-partnerships',
     title: 'Brand Partnerships & Endorsements',
     description: 'Matching brands with the right talents for product launches, brand ambassadorships, event partnerships, and long-term collaborations.',
-    items: ['Product Launches', 'Ambassadorships', 'Event Partnerships', 'Long-term Collabs']
+    items: ['Product Launches', 'Brand Ambassadorships', 'Event Partnerships', 'Long-term Collaborations']
   },
   {
     id: 'campaign-strategy',
-    title: 'Strategy, Planning & Analytics',
-    description: 'Insight-led campaign development with performance tracking, reporting, and optimization to ensure measurable results.',
+    title: 'Campaign Strategy, Media Planning & Analytics',
+    description: 'Insight-led campaign development with performance tracking, reporting, and optimization.',
     items: ['Insight-led Development', 'Performance Tracking', 'Reporting', 'Optimization']
   }
 ];
 
 export const INDUSTRIES: Industry[] = [
   { name: 'Fashion & Lifestyle', image: 'https://i.ibb.co/B5BQSkPK/Snap-Insta-to-630154093-17878035255475240-2279539179607894162-n.jpg' },
-  { name: 'Beauty & Skincare', image: 'https://images.unsplash.com/photo-1596462502278-27bfdd403cc2?q=80&w=800' },
+  { name: 'Beauty & Skincare', image: 'https://images.unsplash.com/photo-1648203276014-20f97ba1f817?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
   { name: 'Tech & Fintech', image: 'https://i.ibb.co/XfdsTPmw/Snap-Insta-to-580755341-18347780410167386-4230984891800564498-n.jpg' },
-  { name: 'Food & Beverage', image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800' },
+  { name: 'Food & Beverage', image: 'https://i.ibb.co/RG6dF2WM/Save-Clip-App-590368401-18090350297483133-4434513809090978621-n.jpg' },
   { name: 'Entertainment & Music', image: 'https://i.ibb.co/CpsyhgNR/Snap-Insta-to-527543941-18526545913016640-5239305829889010376-n.jpg' },
-  { name: 'Real Estate', image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800' },
+  { name: 'Real Estate', image: 'https://i.ibb.co/9H4nmHw2/Save-Clip-App-641848384-18384113392157104-883924134643976237-n.jpg' },
   { name: 'Events & Experiences', image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=800' }
 ];
 

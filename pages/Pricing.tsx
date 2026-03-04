@@ -45,13 +45,13 @@ const Pricing: React.FC<PricingProps> = ({ onNavigate }) => {
               </div>
 
               <button
-                onClick={() => onNavigate('apply')}
+                onClick={() => onNavigate(plan.name === 'Corporate' ? 'talent-form' : 'talent')}
                 className={`w-full py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all ${plan.recommended
                     ? 'bg-white text-brand-deep hover:scale-105 shadow-xl'
                     : 'bg-gray-100 dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white'
                   }`}
               >
-                Apply for Roster
+                {plan.name === 'Corporate' ? 'Book Consultation' : 'Join as Talent'}
               </button>
             </motion.div>
           ))}

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { NAV_LINKS } from '../constants';
 import { PageType } from '../types';
 import Logo from './Logo';
@@ -14,6 +15,8 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -21,11 +24,17 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleNav = (e: React.MouseEvent, href: PageType) => {
-    e.preventDefault();
-    onNavigate(href);
+  // Close mobile menu on route change
+  useEffect(() => {
     setMobileOpen(false);
+  }, [location.pathname]);
+
+  const handleNav = (e: React.MouseEvent, page: PageType) => {
+    e.preventDefault();
+    navigate(page === 'home' ? '/' : `/${page}`);
   };
+
+  const href = (page: PageType) => (page === 'home' ? '/' : `/${page}`);
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 ${scrolled
@@ -34,9 +43,9 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
       }`} aria-label="Main Navigation">
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
 
-        {/* New Brand Logo */}
+        {/* Logo */}
         <a
-          href="#home"
+          href="/"
           onClick={(e) => handleNav(e, 'home')}
           className="cursor-pointer group hover:scale-105 transition-transform duration-300"
           aria-label="Mediaboss Africa Home"
@@ -44,13 +53,13 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
           <Logo className="origin-left" />
         </a>
 
-        {/* Dynamic Desktop Nav with Semantic Links */}
+        {/* Desktop Nav */}
         <div className={`hidden md:flex items-center gap-1 p-1.5 rounded-2xl transition-all duration-500 ${scrolled ? 'glass-morphism bg-gray-100/50 dark:bg-brand-deep/50' : 'bg-transparent'
           }`}>
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
-              href={`#${link.href}`}
+              href={href(link.href)}
               onClick={(e) => handleNav(e, link.href)}
               className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-[10px] uppercase font-black tracking-[0.2em] transition-all ${activePage === link.href
                 ? 'text-gray-900 dark:text-white'
@@ -69,15 +78,22 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
           ))}
         </div>
 
-        {/* Theme Toggle & CTA */}
+        {/* Theme Toggle & CTAs */}
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           <a
-            href="#contact"
-            onClick={(e) => handleNav(e, 'contact')}
+            href="/talent-form"
+            onClick={(e) => handleNav(e, 'talent-form')}
+            className="inline-block border border-gray-200 dark:border-white/15 bg-white dark:bg-white/5 hover:border-brand-magenta text-gray-900 dark:text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-95"
+          >
+            Book a Consultation
+          </a>
+          <a
+            href="/talent"
+            onClick={(e) => handleNav(e, 'talent')}
             className="inline-block bg-brand-magenta hover:bg-brand-magenta/90 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-95 shadow-xl"
           >
-            Let's Talk
+            Join as Talent
           </a>
         </div>
 
@@ -113,7 +129,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
               {NAV_LINKS.map((link, i) => (
                 <motion.a
                   key={link.href}
-                  href={`#${link.href}`}
+                  href={href(link.href)}
                   onClick={(e) => handleNav(e, link.href)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -125,14 +141,24 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
                 </motion.a>
               ))}
               <motion.a
-                href="#contact"
-                onClick={(e) => handleNav(e, 'contact')}
+                href="/talent-form"
+                onClick={(e) => handleNav(e, 'talent-form')}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 className="text-4xl font-display font-black tracking-tighter text-brand-magenta"
               >
-                Let's Talk
+                Book a Consultation
+              </motion.a>
+              <motion.a
+                href="/talent"
+                onClick={(e) => handleNav(e, 'talent')}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="text-4xl font-display font-black tracking-tighter text-brand-magenta"
+              >
+                Join as Talent
               </motion.a>
             </div>
           </motion.div>
