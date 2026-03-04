@@ -172,11 +172,13 @@ const Features: React.FC = () => {
                       <img
                         src={
                           i === 0
-                            ? 'https://i.pinimg.com/1200x/be/a4/4a/bea44ab9b60bacd14ec237cccbc6c150.jpg'
+                            ? 'https://i.pinimg.com/1200x/2e/72/f6/2e72f667c733ea7f9893027f83382c06.jpg'
                             : i === 1
                               ? 'https://i.pinimg.com/736x/d0/9a/9c/d09a9c0cafff6e9350c78c0319c05230.jpg'
                               : i === 2
                                 ? 'https://i.pinimg.com/736x/1e/e4/53/1ee453e7e6a44b0c78c11e65ba6a007c.jpg'
+                                : i === 3
+                                  ? 'https://i.pinimg.com/1200x/be/a4/4a/bea44ab9b60bacd14ec237cccbc6c150.jpg'
                             : FEATURES[i].image
                         }
                         alt={service.title}
