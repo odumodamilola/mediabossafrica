@@ -1,12 +1,14 @@
 // Duplicate submission detection with optional Upstash Redis REST backend.
+import crypto from 'node:crypto';
 
 const submissions = new Map();
-const DEDUP_WINDOW_MS = 5 * 60 * 1000;
-const DEDUP_WINDOW_SEC = 5 * 60;
+const DEDUP_WINDOW_MS = 45 * 60 * 1000;
+const DEDUP_WINDOW_SEC = 45 * 60;
 
 const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
 const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
 const redisEnabled = Boolean(REDIS_URL && REDIS_TOKEN);
+const isProduction = process.env.NODE_ENV === 'production';
 
 function cleanup() {
   const now = Date.now();
@@ -34,42 +36,105 @@ async function redisCheckAndMark(key) {
   return payload?.result !== null;
 }
 
-export async function checkDuplicate(data) {
+function normalizeValue(value) {
+  if (typeof value === 'string') {
+    return value.trim().toLowerCase().replace(/\s+/g, ' ');
+  }
+  if (Array.isArray(value)) {
+    return value.map(normalizeValue).sort();
+  }
+  return value;
+}
+
+function payloadHash(data) {
+  const relevant = {
+    email: normalizeValue(data.email || ''),
+    brandName: normalizeValue(data.brandName || ''),
+    formType: normalizeValue(data.formType || ''),
+    services: normalizeValue(data.services || []),
+    goals: normalizeValue(data.goals || []),
+    budget: normalizeValue(data.budget || ''),
+    campaignIdea: normalizeValue(data.campaignIdea || ''),
+    platformLink: normalizeValue(data.platformLink || ''),
+    niche: normalizeValue(data.niche || ''),
+    message: normalizeValue(data.message || ''),
+    targetAudience: normalizeValue(data.targetAudience || ''),
+  };
+  return crypto.createHash('sha256').update(JSON.stringify(relevant)).digest('hex');
+}
+
+function headerHash(value) {
+  return crypto.createHash('sha256').update(value).digest('hex');
+}
+
+export async function checkDuplicate(data, idempotencyKey) {
   try {
+    if (isProduction && !redisEnabled) {
+      return { unavailable: true, isDuplicate: false };
+    }
+
     const email = (data.email || '').toLowerCase().trim();
-    const brandName = (data.brandName || '').toLowerCase().trim();
-    const currentMinute = Math.floor(Date.now() / 60000);
+    const hash = payloadHash(data);
 
     if (!email) {
       return { isDuplicate: false };
     }
 
-    const key = `dedup:${email}:${brandName}:${currentMinute}`;
+    const key = `dedup:payload:${email}:${hash}`;
+    const idemKey = idempotencyKey
+      ? `dedup:idem:${email}:${headerHash(idempotencyKey.trim())}`
+      : null;
 
     if (redisEnabled) {
-      const inserted = await redisCheckAndMark(key);
-      return { isDuplicate: !inserted, key };
+      const [payloadInserted, idempotencyInserted] = await Promise.all([
+        redisCheckAndMark(key),
+        idemKey ? redisCheckAndMark(idemKey) : Promise.resolve(true),
+      ]);
+      return { isDuplicate: !payloadInserted || !idempotencyInserted, key };
     }
 
     if (submissions.has(key)) {
       return { isDuplicate: true, key };
     }
+    if (idemKey && submissions.has(idemKey)) {
+      return { isDuplicate: true, key: idemKey };
+    }
 
-    return { isDuplicate: false, key };
+    return { isDuplicate: false, key, idemKey };
   } catch (error) {
     console.error('Dedup check error:', error);
-    return { isDuplicate: false };
+    return { isDuplicate: false, unavailable: isProduction };
   }
 }
 
-export function markSubmitted(key) {
-  if (!key || redisEnabled) return;
-  submissions.set(key, Date.now());
+export function markSubmitted(key, idemKey) {
+  if (redisEnabled || (!key && !idemKey)) return;
+  if (key) {
+    submissions.set(key, Date.now());
+  }
+  if (idemKey) {
+    submissions.set(idemKey, Date.now());
+  }
+}
+
+export function dedupReady() {
+  if (isProduction) return redisEnabled;
+  return true;
+}
+
+export function distributedStoreReady() {
+  if (isProduction) return redisEnabled;
+  return true;
+}
+
+export function redactIdempotencyKey(value) {
+  if (!value || typeof value !== 'string') return null;
+  return `${value.slice(0, 6)}***`;
 }
 
 export function getSubmissionStats() {
   return {
     trackedSubmissions: submissions.size,
-    dedupWindowMinutes: 5,
+    dedupWindowMinutes: 45,
   };
 }

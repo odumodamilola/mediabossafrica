@@ -10,6 +10,7 @@ type ApplyPayload = {
   whyMediaboss: string;
   _gotcha: string;
   _startTime: number;
+  _turnstileToken?: string;
 };
 
 const inputClass =
@@ -28,6 +29,7 @@ const ApplyForm: React.FC = () => {
     whyMediaboss: '',
     _gotcha: '',
     _startTime: Date.now(),
+    _turnstileToken: '',
   });
 
   const updateField = <K extends keyof ApplyPayload>(key: K, value: ApplyPayload[K]) => {
@@ -43,7 +45,7 @@ const ApplyForm: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/consultation', {
+      const response = await fetch('/api/talent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -95,6 +97,7 @@ const ApplyForm: React.FC = () => {
                     whyMediaboss: '',
                     _gotcha: '',
                     _startTime: Date.now(),
+                    _turnstileToken: '',
                   });
                 }}
                 className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white/5 transition-all text-gray-900 dark:text-white"
@@ -185,6 +188,9 @@ const ApplyForm: React.FC = () => {
               >
                 {formState === 'submitting' ? 'Processing Application...' : 'Submit Application'}
               </button>
+              <p className="text-center text-[11px] text-gray-500 dark:text-white/40">
+                By submitting, you consent to secure processing and authorized follow-up by Mediaboss Africa.
+              </p>
             </form>
           )}
 

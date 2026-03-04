@@ -8,6 +8,7 @@ type ContactPayload = {
   message: string;
   _gotcha: string;
   _startTime: number;
+  _turnstileToken?: string;
 };
 
 const inputClass =
@@ -24,6 +25,7 @@ const Contact: React.FC = () => {
     message: '',
     _gotcha: '',
     _startTime: Date.now(),
+    _turnstileToken: '',
   });
 
   const updateField = <K extends keyof ContactPayload>(key: K, value: ContactPayload[K]) => {
@@ -157,6 +159,9 @@ const Contact: React.FC = () => {
                 >
                   {formState === 'submitting' ? 'Sending...' : 'Send Message'}
                 </button>
+                <p className="text-center text-[11px] text-gray-500 dark:text-white/40">
+                  By submitting, you consent to secure processing and authorized follow-up by Mediaboss Africa.
+                </p>
               </form>
             )}
           </div>

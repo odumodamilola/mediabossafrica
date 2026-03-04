@@ -10,7 +10,7 @@ export const BUDGET_OPTIONS = [
 const commonMetaFields = {
   _gotcha: z.string().max(0, 'Invalid submission').optional(),
   _startTime: z.number().optional(),
-  _nonce: z.string().max(64).optional(),
+  _turnstileToken: z.string().max(2048, 'Invalid captcha token').optional(),
 };
 
 export const consultationSchema = z.object({
@@ -44,7 +44,7 @@ export const consultationSchema = z.object({
   admiredBrands: z.string().max(1000, 'Text too long').optional(),
   additionalInfo: z.string().max(3000, 'Text too long').optional(),
   ...commonMetaFields,
-});
+}).strict();
 
 export const contactSchema = z.object({
   formType: z.literal('contact'),
@@ -56,7 +56,7 @@ export const contactSchema = z.object({
   category: z.string().min(1, 'Category is required').max(100, 'Category too long'),
   message: z.string().min(5, 'Message is too short').max(3000, 'Message too long'),
   ...commonMetaFields,
-});
+}).strict();
 
 export const applySchema = z.object({
   formType: z.literal('apply'),
@@ -70,7 +70,7 @@ export const applySchema = z.object({
   niche: z.string().min(1, 'Primary niche is required').max(100, 'Niche too long'),
   whyMediaboss: z.string().min(5, 'Please share a short reason').max(3000, 'Response too long'),
   ...commonMetaFields,
-});
+}).strict();
 
 // Sanitize user input to prevent injection attacks
 export function sanitizeForEmail(data) {
@@ -98,6 +98,34 @@ export function sanitizeForEmail(data) {
       return [key, value];
     })
   );
+}
+
+export function normalizeInput(data) {
+  if (!data || typeof data !== 'object') return data;
+
+  const normalizeString = (value) =>
+    value
+      .replace(/[\r\n]/g, ' ')
+      .replace(/\x00/g, '')
+      .trim();
+
+  const normalizedEntries = Object.entries(data).map(([key, value]) => {
+    if (typeof value === 'string') {
+      return [key, normalizeString(value)];
+    }
+    if (Array.isArray(value)) {
+      return [
+        key,
+        value.map((item) => (typeof item === 'string' ? normalizeString(item) : item)),
+      ];
+    }
+    if (value && typeof value === 'object') {
+      return [key, normalizeInput(value)];
+    }
+    return [key, value];
+  });
+
+  return Object.fromEntries(normalizedEntries);
 }
 
 export function validateWebsite(url) {

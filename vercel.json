@@ -10,7 +10,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https: data: blob:; connect-src 'self' https://api.resend.com; frame-ancestors 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://mediabossafrica.com https://www.mediabossafrica.com https://*.vercel.app; upgrade-insecure-requests;"
+          "value": "default-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests; img-src 'self' https: data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;"
         },
         {
           "key": "X-Content-Type-Options",
@@ -19,10 +19,6 @@
         {
           "key": "X-Frame-Options",
           "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
         },
         {
           "key": "Referrer-Policy",
@@ -84,6 +80,10 @@
     {
       "source": "/api/consultation",
       "destination": "/api/consultation.js"
+    },
+    {
+      "source": "/api/talent",
+      "destination": "/api/talent.js"
     },
     {
       "source": "/(.*)",

@@ -182,7 +182,7 @@ const Features: React.FC = () => {
                             : FEATURES[i].image
                         }
                         alt={service.title}
-                        className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-115"
+                        className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                         loading="lazy"
                         decoding="async"
                       />

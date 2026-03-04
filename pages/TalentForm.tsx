@@ -34,6 +34,7 @@ type FormData = {
   otherServices: string;
   _gotcha: string;
   _startTime: number;
+  _turnstileToken?: string;
 };
 
 const budgetOptions = ['NGN 1,000,000 - NGN 5,000,000', 'NGN 5,000,000+', "I'm not sure yet"];
@@ -86,8 +87,9 @@ const initialFormData: FormData = {
   otherGoals: '',
   otherPlatforms: '',
   otherServices: '',
-  _gotcha: '',
-  _startTime: Date.now(),
+    _gotcha: '',
+    _startTime: Date.now(),
+    _turnstileToken: '',
 };
 
 // --- Components ---
@@ -550,16 +552,45 @@ const TalentForm: React.FC = () => {
       submissionData.services = submissionData.services.map(s => s === 'Other' ? `Other: ${submissionData.otherServices}` : s);
     }
 
+    const payload = {
+      formType: submissionData.formType,
+      brandName: submissionData.brandName,
+      contactPerson: submissionData.contactPerson,
+      email: submissionData.email,
+      phoneNumber: submissionData.phoneNumber,
+      website: submissionData.website,
+      industry: submissionData.industry,
+      location: submissionData.location,
+      goals: submissionData.goals,
+      kpis: submissionData.kpis,
+      targetAudience: submissionData.targetAudience,
+      platforms: submissionData.platforms,
+      services: submissionData.services,
+      campaignIdea: submissionData.campaignIdea,
+      startDate: submissionData.startDate,
+      duration: submissionData.duration,
+      budget: submissionData.budget,
+      pastExperience: submissionData.pastExperience,
+      successfulStrategies: submissionData.successfulStrategies,
+      challenges: submissionData.challenges,
+      brandPersonality: submissionData.brandPersonality,
+      admiredBrands: submissionData.admiredBrands,
+      additionalInfo: submissionData.additionalInfo,
+      _gotcha: submissionData._gotcha,
+      _startTime: submissionData._startTime,
+      _turnstileToken: submissionData._turnstileToken,
+    };
+
     try {
       const response = await fetch('/api/consultation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(submissionData),
+        body: JSON.stringify(payload),
       });
 
-      const payload = await response.json().catch(() => ({}));
+      const responsePayload = await response.json().catch(() => ({}));
       if (!response.ok) {
-        setErrors({ submit: payload?.error || 'Submission failed. Please try again.' });
+        setErrors({ submit: responsePayload?.error || 'Submission failed. Please try again.' });
         return;
       }
 
@@ -684,6 +715,9 @@ const TalentForm: React.FC = () => {
                 </button>
               )}
             </div>
+            <p className="mt-4 text-center text-[11px] text-white/40">
+              By submitting, you consent to secure processing and authorized follow-up by Mediaboss Africa.
+            </p>
           </form>
         </div>
       </div>

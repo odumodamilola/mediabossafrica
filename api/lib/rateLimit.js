@@ -1,17 +1,18 @@
-// Serverless-safe rate limiting with optional Upstash Redis REST backend.
-// Fallback: in-memory map for local development.
+// Serverless-safe rate limiting with Upstash Redis REST backend in production.
+// Local development falls back to in-memory counters.
 
 const memoryStore = new Map();
 
 const CONFIG = {
-  ip: { windowSec: 15 * 60, maxRequests: 10 },
-  email: { windowSec: 60 * 60, maxRequests: 6 },
-  global: { windowSec: 60, maxRequests: 40 },
+  ip: { windowSec: 15 * 60, maxRequests: 5 },
+  email: { windowSec: 60 * 60, maxRequests: 3 },
+  global: { windowSec: 60, maxRequests: 20 },
 };
 
 const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
 const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
 const redisEnabled = Boolean(REDIS_URL && REDIS_TOKEN);
+const isProduction = process.env.NODE_ENV === 'production';
 
 async function redisIncrWithExpiry(key, ttlSeconds) {
   const endpoint = `${REDIS_URL}/pipeline`;
@@ -66,6 +67,9 @@ function memoryIncrWithExpiry(key, ttlSeconds) {
 }
 
 async function bumpCounter(key, ttlSeconds) {
+  if (isProduction && !redisEnabled) {
+    throw new Error('Distributed rate limiting is unavailable in production');
+  }
   if (redisEnabled) {
     return redisIncrWithExpiry(key, ttlSeconds);
   }
@@ -91,11 +95,24 @@ export async function checkRateLimit(req) {
   const globalKey = 'ratelimit:global';
   const emailKey = email ? `ratelimit:email:${email}` : null;
 
-  const [ipData, globalData, emailData] = await Promise.all([
-    bumpCounter(ipKey, CONFIG.ip.windowSec),
-    bumpCounter(globalKey, CONFIG.global.windowSec),
-    emailKey ? bumpCounter(emailKey, CONFIG.email.windowSec) : Promise.resolve(null),
-  ]);
+  let ipData;
+  let globalData;
+  let emailData;
+  try {
+    [ipData, globalData, emailData] = await Promise.all([
+      bumpCounter(ipKey, CONFIG.ip.windowSec),
+      bumpCounter(globalKey, CONFIG.global.windowSec),
+      emailKey ? bumpCounter(emailKey, CONFIG.email.windowSec) : Promise.resolve(null),
+    ]);
+  } catch (error) {
+    return {
+      success: false,
+      unavailable: true,
+      retryAfter: 60,
+      ip: ip.substring(0, 7) + '***',
+      error: error instanceof Error ? error.message : 'Rate limiting unavailable',
+    };
+  }
 
   const blockedByIp = ipData.count > CONFIG.ip.maxRequests;
   const blockedByGlobal = globalData.count > CONFIG.global.maxRequests;
@@ -123,45 +140,3 @@ export async function checkRateLimit(req) {
     ip: ip.substring(0, 7) + '***',
   };
 }
-
-export function generateNonce() {
-  const array = new Uint8Array(16);
-  crypto.getRandomValues(array);
-  return Array.from(array, (b) => b.toString(16).padStart(2, '0')).join('');
-}
-
-const validNonces = new Set();
-const nonceExpiry = new Map();
-
-export function createNonce() {
-  const nonce = generateNonce();
-  validNonces.add(nonce);
-  nonceExpiry.set(nonce, Date.now() + 30 * 60 * 1000);
-  return nonce;
-}
-
-export function validateNonce(nonce) {
-  if (!nonce || typeof nonce !== 'string') return false;
-  if (!validNonces.has(nonce)) return false;
-
-  const expiry = nonceExpiry.get(nonce);
-  if (!expiry || Date.now() > expiry) {
-    validNonces.delete(nonce);
-    nonceExpiry.delete(nonce);
-    return false;
-  }
-
-  validNonces.delete(nonce);
-  nonceExpiry.delete(nonce);
-  return true;
-}
-
-setInterval(() => {
-  const now = Date.now();
-  for (const [nonce, expiry] of nonceExpiry.entries()) {
-    if (now > expiry) {
-      validNonces.delete(nonce);
-      nonceExpiry.delete(nonce);
-    }
-  }
-}, 10 * 60 * 1000);
