@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import TrustSection from '../components/TrustSection';
 import Services from '../components/Services';
@@ -10,6 +11,16 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+  const smoothEasing = [0.16, 1, 0.3, 1] as const;
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: smoothEasing } },
+  };
+
   const handleNewsletterSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -25,6 +36,64 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
     <>
       <Hero onNavigate={onNavigate} />
       <TrustSection />
+
+      <section className="py-16 sm:py-24 md:py-32 relative overflow-hidden bg-gray-50/50 dark:bg-brand-void/50 transition-colors">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12 sm:gap-16 md:gap-20">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-10% 0px -20% 0px" }}
+              className="flex-1"
+            >
+              <motion.span variants={itemVariants} className="text-brand-magenta text-[10px] font-black uppercase tracking-[0.5em] mb-4 sm:mb-6 block">
+                Based in Lekki, Lagos
+              </motion.span>
+              <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black leading-tight mb-6 sm:mb-8 text-gray-900 dark:text-white transition-colors">
+                Rooted in <span className="text-brand-magenta italic">Lagos.</span> <br />
+                Built for the world.
+              </motion.h2>
+              <motion.p variants={itemVariants} className="text-gray-600 dark:text-white/50 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 sm:mb-10 max-w-xl">
+                From our production studio in Lekki to our brand partnerships across London and Dubai, we give Nigerian creators the infrastructure to compete globally.
+              </motion.p>
+
+              <motion.div variants={itemVariants} className="flex flex-wrap gap-6 sm:gap-8">
+                <div className="group">
+                  <div className="text-2xl sm:text-3xl font-display font-black text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors">500M+</div>
+                  <div className="text-[10px] font-black uppercase text-gray-500 dark:text-white/30 tracking-widest">Combined reach</div>
+                </div>
+                <div className="group">
+                  <div className="text-2xl sm:text-3xl font-display font-black text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors">12+</div>
+                  <div className="text-[10px] font-black uppercase text-gray-500 dark:text-white/30 tracking-widest">Brand partners</div>
+                </div>
+                <div className="group">
+                  <div className="text-2xl sm:text-3xl font-display font-black text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors">60-90</div>
+                  <div className="text-[10px] font-black uppercase text-gray-500 dark:text-white/30 tracking-widest">Days to first deal</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 60 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1.4, ease: smoothEasing }}
+              viewport={{ once: true, margin: "-10%" }}
+              className="flex-1 relative"
+            >
+              <div className="absolute inset-0 bg-brand-magenta/10 blur-[100px] rounded-full" />
+              <img
+                src="https://images.unsplash.com/photo-1618828665347-d870c38c95c7?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Mediaboss Lagos studio"
+                className="relative z-10 rounded-3xl sm:rounded-[40px] md:rounded-[48px] border border-gray-200/20 dark:border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000"
+                loading="lazy"
+                decoding="async"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       <Services onNavigate={onNavigate} />
       <Ecosystem onNavigate={onNavigate} />
 
