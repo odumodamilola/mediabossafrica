@@ -25,13 +25,13 @@ const NotFound: React.FC = () => {
                 />
             </div>
 
-            <div className="container relative z-10 mx-auto max-w-6xl px-6">
+            <div className="container relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-5xl [perspective:1800px]">
                     <motion.div
                         initial={{ opacity: 0, y: 24, rotateX: 9 }}
                         animate={{ opacity: 1, y: 0, rotateX: 0 }}
                         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                        className="glass-morphism relative overflow-hidden rounded-[2.8rem] border border-gray-200 bg-white/85 p-8 text-center shadow-[0_35px_100px_-30px_rgba(15,23,42,0.45)] backdrop-blur-2xl sm:p-12 md:p-16 dark:border-white/10 dark:bg-white/5 dark:shadow-none"
+                        className="glass-morphism relative overflow-hidden rounded-3xl sm:rounded-[2.8rem] border border-gray-200 bg-white/85 p-6 sm:p-12 md:p-16 text-center shadow-[0_35px_100px_-30px_rgba(15,23,42,0.45)] backdrop-blur-2xl dark:border-white/10 dark:bg-white/5 dark:shadow-none"
                     >
                         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,_rgba(255,0,160,0.18),transparent_45%),radial-gradient(circle_at_80%_80%,_rgba(255,0,160,0.12),transparent_40%)]" />
                         <div className="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(to_right,rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:32px_32px]" />
@@ -41,20 +41,20 @@ const NotFound: React.FC = () => {
                             transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut' }}
                             className="relative"
                         >
-                            <p className="mb-4 text-xs font-black uppercase tracking-[0.4em] text-brand-magenta">404</p>
-                            <h1 className="mb-4 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-500 bg-clip-text text-5xl font-display font-black leading-[0.9] tracking-tight text-transparent sm:text-6xl md:text-7xl dark:from-white dark:via-white dark:to-white/60">
+                            <p className="mb-4 text-[10px] sm:text-xs font-black uppercase tracking-[0.4em] text-brand-magenta">404</p>
+                            <h1 className="mb-4 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-500 bg-clip-text text-4xl sm:text-6xl md:text-7xl font-display font-black leading-[0.9] tracking-tight text-transparent dark:from-white dark:via-white dark:to-white/60">
                                 PAGE NOT FOUND
                             </h1>
-                            <p className="mx-auto mb-10 max-w-2xl text-base font-light leading-relaxed text-gray-600 md:text-lg dark:text-white/65">
+                            <p className="mx-auto mb-8 sm:mb-10 max-w-2xl text-sm sm:text-base md:text-lg font-light leading-relaxed text-gray-600 dark:text-white/65">
                                 The page you requested does not exist. Let&apos;s get you back to Mediaboss Africa.
                             </p>
                         </motion.div>
 
-                        <div className="relative mb-10 flex items-center justify-center gap-3 text-[11px] font-black uppercase tracking-[0.28em] text-gray-500 dark:text-white/45">
+                        <div className="relative mb-8 sm:mb-10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[9px] sm:text-[11px] font-black uppercase tracking-[0.28em] text-gray-500 dark:text-white/45">
                             <span>Creative</span>
-                            <span className="h-1.5 w-1.5 rounded-full bg-brand-magenta" />
+                            <span className="h-1 sm:h-1.5 w-1 sm:w-1.5 rounded-full bg-brand-magenta" />
                             <span>Studio</span>
-                            <span className="h-1.5 w-1.5 rounded-full bg-brand-magenta" />
+                            <span className="h-1 sm:h-1.5 w-1 sm:w-1.5 rounded-full bg-brand-magenta" />
                             <span>Media</span>
                         </div>
 
@@ -63,7 +63,7 @@ const NotFound: React.FC = () => {
                                 whileHover={{ y: -3, scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => navigate('/')}
-                                className="rounded-2xl bg-brand-magenta px-8 py-4 text-xs font-black uppercase tracking-[0.25em] text-white shadow-[0_20px_60px_-10px_rgba(255,0,160,0.5)] transition-all"
+                                className="w-full sm:w-auto rounded-xl sm:rounded-2xl bg-brand-magenta px-8 py-4 text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] text-white shadow-[0_20px_60px_-10px_rgba(255,0,160,0.5)] transition-all"
                             >
                                 Go Home
                             </motion.button>
@@ -71,7 +71,7 @@ const NotFound: React.FC = () => {
                                 whileHover={{ y: -3, scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => navigate('/studio')}
-                                className="rounded-2xl border border-gray-300 bg-white/60 px-8 py-4 text-xs font-black uppercase tracking-[0.25em] text-gray-900 transition-all hover:border-brand-magenta hover:text-brand-magenta dark:border-white/15 dark:bg-white/5 dark:text-white"
+                                className="w-full sm:w-auto rounded-xl sm:rounded-2xl border border-gray-300 bg-white/60 px-8 py-4 text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] text-gray-900 transition-all hover:border-brand-magenta hover:text-brand-magenta dark:border-white/15 dark:bg-white/5 dark:text-white"
                             >
                                 Visit Studio
                             </motion.button>

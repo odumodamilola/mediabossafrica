@@ -112,38 +112,49 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="md:hidden fixed inset-0 bg-white/98 dark:bg-brand-deep/98 backdrop-blur-2xl z-[90] flex flex-col items-center justify-center p-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="md:hidden fixed inset-0 bg-white dark:bg-brand-deep z-[90]"
           >
-            <div className="flex flex-col gap-8 w-full">
-              {NAV_LINKS.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={href(link.href)}
-                  onClick={(e) => handleNav(e, link.href)}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="absolute inset-0 flex flex-col p-6 pt-32 overflow-y-auto"
+            >
+              <div className="flex flex-col gap-6 w-full max-w-sm mx-auto">
+                {NAV_LINKS.map((link, i) => (
+                  <motion.a
+                    key={link.href}
+                    href={href(link.href)}
+                    onClick={(e) => handleNav(e, link.href)}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    className={`text-4xl sm:text-5xl font-display font-black tracking-tighter transition-colors ${activePage === link.href ? 'text-brand-magenta' : 'text-gray-900 dark:text-white/90 hover:text-brand-magenta'
+                      }`}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className={`text-3xl sm:text-4xl font-display font-black tracking-tighter text-left ${activePage === link.href ? 'text-brand-magenta' : 'text-gray-700 dark:text-white/50'
-                    }`}
+                  transition={{ delay: 0.4 }}
+                  className="mt-8 pt-8 border-t border-gray-100 dark:border-white/10"
                 >
-                  {link.label}
-                </motion.a>
-              ))}
-              <motion.a
-                href="/talent-form"
-                onClick={(e) => handleNav(e, 'talent-form')}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="text-4xl font-display font-black tracking-tighter text-brand-magenta"
-              >
-                Join as Talent
-              </motion.a>
-            </div>
+                  <a
+                    href="/talent-form"
+                    onClick={(e) => handleNav(e, 'talent-form')}
+                    className="block w-full text-center bg-brand-magenta text-white py-6 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl"
+                  >
+                    Join as Talent
+                  </a>
+                </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { PageType } from '../types';
 import brandVideo from '../assets/videos/brand.mp4';
@@ -9,31 +9,44 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const reduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceFX = reduceMotion || isMobile;
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-brand-deep py-20 sm:py-32 transition-colors duration-300" aria-labelledby="hero-title">
       <div className="absolute inset-0 z-0">
-        <video
-          src={brandVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          controls={false}
-          disablePictureInPicture
-          controlsList="nodownload noplaybackrate"
-          className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none"
-        />
+        {!isMobile && (
+          <video
+            src={brandVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls={false}
+            disablePictureInPicture
+            controlsList="nodownload noplaybackrate"
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white dark:from-brand-deep/80 dark:via-brand-deep/50 dark:to-brand-deep" />
 
         <motion.div
-          animate={reduceMotion ? { opacity: 0.1 } : { scale: [1, 1.2, 1], rotate: [0, 5, 0], opacity: [0.1, 0.15, 0.1] }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
+          animate={shouldReduceFX ? { opacity: 0.1 } : { scale: [1, 1.2, 1], rotate: [0, 5, 0], opacity: [0.1, 0.15, 0.1] }}
+          transition={{ duration: 15, repeat: shouldReduceFX ? 0 : Infinity, ease: 'linear' }}
           className="absolute top-[-10%] right-[-10%] w-[70%] h-[70%] bg-brand-magenta rounded-full blur-[140px] mix-blend-overlay"
         />
         <motion.div
-          animate={reduceMotion ? { opacity: 0.08 } : { scale: [1.1, 1, 1.1], rotate: [0, -5, 0], opacity: [0.08, 0.12, 0.08] }}
-          transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+          animate={shouldReduceFX ? { opacity: 0.08 } : { scale: [1.1, 1, 1.1], rotate: [0, -5, 0], opacity: [0.08, 0.12, 0.08] }}
+          transition={{ duration: 18, repeat: shouldReduceFX ? 0 : Infinity, ease: 'linear' }}
           className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-accent rounded-full blur-[140px] mix-blend-overlay"
         />
       </div>

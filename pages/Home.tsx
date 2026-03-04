@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
-import TrustSection from '../components/TrustSection';
-import Services from '../components/Services';
-import Ecosystem from '../components/Ecosystem';
+import DeferredSection from '../components/DeferredSection';
 import { PageType } from '../types';
+
+const TrustSection = lazy(() => import('../components/TrustSection'));
+const Services = lazy(() => import('../components/Services'));
+const Ecosystem = lazy(() => import('../components/Ecosystem'));
 
 interface HomeProps {
   onNavigate: (page: PageType) => void;
@@ -35,7 +37,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   return (
     <>
       <Hero onNavigate={onNavigate} />
-      <TrustSection />
+      <Suspense fallback={<div className="py-8" />}>
+        <TrustSection />
+      </Suspense>
 
       <section className="py-16 sm:py-24 md:py-32 relative overflow-hidden bg-gray-50/50 dark:bg-brand-void/50 transition-colors">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,6 +91,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               <img
                 src="https://images.unsplash.com/photo-1618828665347-d870c38c95c7?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Mediaboss Lagos studio"
+                width={627}
+                height={940}
                 className="relative z-10 rounded-3xl sm:rounded-[40px] md:rounded-[48px] border border-gray-200/20 dark:border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000"
                 loading="lazy"
                 decoding="async"
@@ -96,8 +102,16 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      <Services onNavigate={onNavigate} />
-      <Ecosystem onNavigate={onNavigate} />
+      <DeferredSection minHeight={420}>
+        <Suspense fallback={<div className="py-20" />}>
+          <Services onNavigate={onNavigate} />
+        </Suspense>
+      </DeferredSection>
+      <DeferredSection minHeight={420}>
+        <Suspense fallback={<div className="py-20" />}>
+          <Ecosystem onNavigate={onNavigate} />
+        </Suspense>
+      </DeferredSection>
 
       <section className="py-16 sm:py-24 md:py-28 bg-gray-50/50 dark:bg-brand-void/50 transition-colors">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 gap-8 lg:grid-cols-2">

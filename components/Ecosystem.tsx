@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { PageType } from '../types';
 import brandVideo from '../assets/videos/brand.mp4';
 
@@ -8,6 +8,18 @@ interface EcosystemProps {
 }
 
 const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
+  const reduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceFX = reduceMotion || isMobile;
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)');
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
   return (
     <section id="studio" className="py-16 sm:py-24 md:py-32 lg:py-40 xl:py-48 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,8 +32,8 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
         >
           <div className="absolute top-0 right-0 w-1/2 h-full pointer-events-none overflow-hidden">
             <motion.div
-              animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }}
-              transition={{ duration: 10, repeat: Infinity }}
+              animate={shouldReduceFX ? { opacity: 0.2 } : { opacity: [0.2, 0.4, 0.2], scale: [1, 1.2, 1] }}
+              transition={{ duration: 10, repeat: shouldReduceFX ? 0 : Infinity }}
               className="w-full h-full bg-[radial-gradient(circle_at_70%_30%,_rgba(255,0,160,0.15),transparent_70%)]"
             />
           </div>
@@ -75,21 +87,29 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
 
             <div className="relative group perspective-[2000px] flex justify-center lg:justify-end">
               <motion.div
-                whileHover={{ rotateY: -5, rotateX: 2, scale: 1.02 }}
+                whileHover={shouldReduceFX ? undefined : { rotateY: -5, rotateX: 2, scale: 1.02 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="relative w-full max-w-[320px] aspect-[9/16] rounded-[32px] overflow-hidden shadow-[0_60px_100px_-20px_rgba(255,0,160,0.3)] bg-black border-[5px] border-gray-900 dark:border-[#1a1a1a] ring-1 ring-white/10"
               >
-                <video
-                  src={brandVideo}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls={false}
-                  disablePictureInPicture
-                  controlsList="nodownload noplaybackrate"
-                  className="w-full h-full object-cover"
-                />
+                {!isMobile ? (
+                  <video
+                    src={brandVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    controls={false}
+                    disablePictureInPicture
+                    controlsList="nodownload noplaybackrate"
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div
+                    className="w-full h-full bg-cover bg-center"
+                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop')" }}
+                  />
+                )}
               </motion.div>
             </div>
           </div>

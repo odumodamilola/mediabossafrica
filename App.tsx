@@ -1,25 +1,26 @@
 
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Features from './pages/Features';
-import Solutions from './pages/Solutions';
-import Pricing from './pages/Pricing';
-import Resources from './pages/Resources';
-import Contact from './pages/Contact';
-import Work from './pages/Work';
-import Privacy from './pages/Privacy';
-import Terms from './pages/Terms';
-import Studio from './pages/Studio';
-import TalentForm from './pages/TalentForm';
-import IndustryDetail from './pages/IndustryDetail';
-import NotFound from './pages/NotFound';
 import { PageType } from './types';
 import { SEO_CONFIG } from './constants';
 import ErrorBoundary from './components/ErrorBoundary';
+
+const Features = lazy(() => import('./pages/Features'));
+const Solutions = lazy(() => import('./pages/Solutions'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const Resources = lazy(() => import('./pages/Resources'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Work = lazy(() => import('./pages/Work'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Studio = lazy(() => import('./pages/Studio'));
+const TalentForm = lazy(() => import('./pages/TalentForm'));
+const IndustryDetail = lazy(() => import('./pages/IndustryDetail'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const SEOManager: React.FC = () => {
   const location = useLocation();
@@ -113,27 +114,29 @@ const App: React.FC = () => {
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="min-h-screen"
               >
-                <Routes location={location}>
-                  <Route path="/" element={<Home onNavigate={handleNavigate} />} />
-                  <Route path="/about-us" element={<Features />} />
-                  <Route path="/service" element={<Solutions />} />
-                  <Route path="/service/:industrySlug" element={<IndustryDetail />} />
-                  <Route path="/features" element={<Features />} />
-                  <Route path="/solutions" element={<Solutions />} />
-                  <Route path="/solutions/:industrySlug" element={<IndustryDetail />} />
-                  <Route path="/pricing" element={<Pricing onNavigate={handleNavigate} />} />
-                  <Route path="/resources" element={<Resources />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/talent" element={<Navigate to="/talent-form" replace />} />
-                  <Route path="/talent/apply" element={<Navigate to="/talent-form" replace />} />
-                  <Route path="/work" element={<Work />} />
-                  <Route path="/privacy" element={<Privacy />} />
-                  <Route path="/terms" element={<Terms />} />
-                  <Route path="/studio" element={<Studio />} />
-                  <Route path="/talent-form" element={<TalentForm />} />
-                  {/* Catch-all: dedicated branded 404 page */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
+                <Suspense fallback={<div className="min-h-screen" />}>
+                  <Routes location={location}>
+                    <Route path="/" element={<Home onNavigate={handleNavigate} />} />
+                    <Route path="/about-us" element={<Features />} />
+                    <Route path="/service" element={<Solutions />} />
+                    <Route path="/service/:industrySlug" element={<IndustryDetail />} />
+                    <Route path="/features" element={<Features />} />
+                    <Route path="/solutions" element={<Solutions />} />
+                    <Route path="/solutions/:industrySlug" element={<IndustryDetail />} />
+                    <Route path="/pricing" element={<Pricing onNavigate={handleNavigate} />} />
+                    <Route path="/resources" element={<Resources />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/talent" element={<Navigate to="/talent-form" replace />} />
+                    <Route path="/talent/apply" element={<Navigate to="/talent-form" replace />} />
+                    <Route path="/work" element={<Work />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/studio" element={<Studio />} />
+                    <Route path="/talent-form" element={<TalentForm />} />
+                    {/* Catch-all: dedicated branded 404 page */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
               </motion.div>
             </AnimatePresence>
           </ErrorBoundary>

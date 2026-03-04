@@ -1,152 +1,142 @@
-// Simple in-memory rate limiting store
-// For production with multiple regions, use Redis or Vercel KV
+// Serverless-safe rate limiting with optional Upstash Redis REST backend.
+// Fallback: in-memory map for local development.
 
-const store = new Map();
+const memoryStore = new Map();
 
-// Rate limit configuration
 const CONFIG = {
-  ip: { windowMs: 15 * 60 * 1000, maxRequests: 5 }, // 5 requests per 15 minutes per IP
-  email: { windowMs: 60 * 60 * 1000, maxRequests: 3 }, // 3 requests per hour per email
-  global: { windowMs: 60 * 1000, maxRequests: 20 }, // 20 requests per minute globally
+  ip: { windowSec: 15 * 60, maxRequests: 10 },
+  email: { windowSec: 60 * 60, maxRequests: 6 },
+  global: { windowSec: 60, maxRequests: 40 },
 };
 
-function cleanup() {
+const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
+const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+const redisEnabled = Boolean(REDIS_URL && REDIS_TOKEN);
+
+async function redisIncrWithExpiry(key, ttlSeconds) {
+  const endpoint = `${REDIS_URL}/pipeline`;
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${REDIS_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify([
+      ['INCR', key],
+      ['EXPIRE', key, String(ttlSeconds), 'NX'],
+      ['TTL', key],
+    ]),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Redis pipeline failed: ${response.status}`);
+  }
+
+  const payload = await response.json();
+  const count = Number(payload?.[0]?.result ?? 0);
+  const ttl = Number(payload?.[2]?.result ?? ttlSeconds);
+  return { count, ttl: Number.isFinite(ttl) && ttl > 0 ? ttl : ttlSeconds };
+}
+
+function cleanupMemoryStore() {
   const now = Date.now();
-  for (const [key, record] of store.entries()) {
+  for (const [key, record] of memoryStore.entries()) {
     if (now > record.resetTime) {
-      store.delete(key);
+      memoryStore.delete(key);
     }
   }
 }
 
-// Run cleanup every 5 minutes
-setInterval(cleanup, 5 * 60 * 1000);
+setInterval(cleanupMemoryStore, 5 * 60 * 1000);
+
+function memoryIncrWithExpiry(key, ttlSeconds) {
+  const now = Date.now();
+  const ttlMs = ttlSeconds * 1000;
+  const existing = memoryStore.get(key);
+
+  if (!existing || now > existing.resetTime) {
+    const next = { count: 1, resetTime: now + ttlMs };
+    memoryStore.set(key, next);
+    return { count: 1, ttl: ttlSeconds };
+  }
+
+  existing.count += 1;
+  memoryStore.set(key, existing);
+  return { count: existing.count, ttl: Math.ceil((existing.resetTime - now) / 1000) };
+}
+
+async function bumpCounter(key, ttlSeconds) {
+  if (redisEnabled) {
+    return redisIncrWithExpiry(key, ttlSeconds);
+  }
+  return memoryIncrWithExpiry(key, ttlSeconds);
+}
+
+function getClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  return (
+    forwarded?.split(',')?.[0]?.trim() ||
+    req.headers['x-real-ip'] ||
+    req.socket?.remoteAddress ||
+    'unknown'
+  );
+}
 
 export async function checkRateLimit(req) {
-  const now = Date.now();
-  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
-             req.headers['x-real-ip'] ||
-             req.socket?.remoteAddress ||
-             'unknown';
+  const ip = getClientIp(req);
+  const emailRaw = req.body?.email;
+  const email = typeof emailRaw === 'string' ? emailRaw.toLowerCase().trim() : '';
 
-  // Get email from body if available
-  let email = '';
-  try {
-    if (req.body?.email) {
-      email = req.body.email.toLowerCase().trim();
-    }
-  } catch {
-    // Ignore parsing errors
-  }
-
-  const results = {
-    ip: { allowed: true, remaining: CONFIG.ip.maxRequests },
-    email: { allowed: true, remaining: CONFIG.email.maxRequests },
-    global: { allowed: true, remaining: CONFIG.global.maxRequests },
-  };
-
-  // Check IP rate limit
   const ipKey = `ratelimit:ip:${ip}`;
-  const ipRecord = store.get(ipKey) || { count: 0, resetTime: now + CONFIG.ip.windowMs };
-
-  if (now > ipRecord.resetTime) {
-    ipRecord.count = 0;
-    ipRecord.resetTime = now + CONFIG.ip.windowMs;
-  }
-
-  if (ipRecord.count >= CONFIG.ip.maxRequests) {
-    results.ip = {
-      allowed: false,
-      retryAfter: Math.ceil((ipRecord.resetTime - now) / 1000),
-      remaining: 0
-    };
-  } else {
-    results.ip.remaining = CONFIG.ip.maxRequests - ipRecord.count;
-  }
-
-  // Check email rate limit (if email provided)
-  if (email) {
-    const emailKey = `ratelimit:email:${email}`;
-    const emailRecord = store.get(emailKey) || { count: 0, resetTime: now + CONFIG.email.windowMs };
-
-    if (now > emailRecord.resetTime) {
-      emailRecord.count = 0;
-      emailRecord.resetTime = now + CONFIG.email.windowMs;
-    }
-
-    if (emailRecord.count >= CONFIG.email.maxRequests) {
-      results.email = {
-        allowed: false,
-        retryAfter: Math.ceil((emailRecord.resetTime - now) / 1000),
-        remaining: 0
-      };
-    } else {
-      results.email.remaining = CONFIG.email.maxRequests - emailRecord.count;
-    }
-
-    // Update email count if allowed
-    if (results.email.allowed && results.ip.allowed) {
-      emailRecord.count++;
-      store.set(emailKey, emailRecord);
-    }
-  }
-
-  // Check global rate limit
   const globalKey = 'ratelimit:global';
-  const globalRecord = store.get(globalKey) || { count: 0, resetTime: now + CONFIG.global.windowMs };
+  const emailKey = email ? `ratelimit:email:${email}` : null;
 
-  if (now > globalRecord.resetTime) {
-    globalRecord.count = 0;
-    globalRecord.resetTime = now + CONFIG.global.windowMs;
-  }
+  const [ipData, globalData, emailData] = await Promise.all([
+    bumpCounter(ipKey, CONFIG.ip.windowSec),
+    bumpCounter(globalKey, CONFIG.global.windowSec),
+    emailKey ? bumpCounter(emailKey, CONFIG.email.windowSec) : Promise.resolve(null),
+  ]);
 
-  if (globalRecord.count >= CONFIG.global.maxRequests) {
-    results.global = {
-      allowed: false,
-      retryAfter: Math.ceil((globalRecord.resetTime - now) / 1000),
-      remaining: 0
-    };
-  }
+  const blockedByIp = ipData.count > CONFIG.ip.maxRequests;
+  const blockedByGlobal = globalData.count > CONFIG.global.maxRequests;
+  const blockedByEmail = emailData ? emailData.count > CONFIG.email.maxRequests : false;
 
-  // Update counts if allowed
-  if (results.ip.allowed && results.email.allowed && results.global.allowed) {
-    ipRecord.count++;
-    store.set(ipKey, ipRecord);
-
-    globalRecord.count++;
-    store.set(globalKey, globalRecord);
-  }
-
-  const success = results.ip.allowed && results.email.allowed && results.global.allowed;
-  const retryAfter = Math.max(
-    results.ip.retryAfter || 0,
-    results.email.retryAfter || 0,
-    results.global.retryAfter || 0
-  );
+  const retryAfter = Math.max(ipData.ttl, globalData.ttl, emailData?.ttl || 0);
 
   return {
-    success,
-    retryAfter: retryAfter > 0 ? retryAfter : undefined,
-    limits: results,
-    ip: ip.substring(0, 7) + '***' // Mask IP for logging
+    success: !(blockedByIp || blockedByGlobal || blockedByEmail),
+    retryAfter,
+    limits: {
+      ip: {
+        allowed: !blockedByIp,
+        remaining: Math.max(0, CONFIG.ip.maxRequests - ipData.count),
+      },
+      global: {
+        allowed: !blockedByGlobal,
+        remaining: Math.max(0, CONFIG.global.maxRequests - globalData.count),
+      },
+      email: {
+        allowed: !blockedByEmail,
+        remaining: emailData ? Math.max(0, CONFIG.email.maxRequests - emailData.count) : CONFIG.email.maxRequests,
+      },
+    },
+    ip: ip.substring(0, 7) + '***',
   };
 }
 
-// Generate a simple nonce for form submissions
 export function generateNonce() {
   const array = new Uint8Array(16);
   crypto.getRandomValues(array);
-  return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+  return Array.from(array, (b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Check if nonce is valid (simple in-memory check)
 const validNonces = new Set();
 const nonceExpiry = new Map();
 
 export function createNonce() {
   const nonce = generateNonce();
   validNonces.add(nonce);
-  nonceExpiry.set(nonce, Date.now() + 30 * 60 * 1000); // 30 minute expiry
+  nonceExpiry.set(nonce, Date.now() + 30 * 60 * 1000);
   return nonce;
 }
 
@@ -161,13 +151,11 @@ export function validateNonce(nonce) {
     return false;
   }
 
-  // Single use - remove after validation
   validNonces.delete(nonce);
   nonceExpiry.delete(nonce);
   return true;
 }
 
-// Cleanup old nonces periodically
 setInterval(() => {
   const now = Date.now();
   for (const [nonce, expiry] of nonceExpiry.entries()) {
@@ -176,4 +164,4 @@ setInterval(() => {
       nonceExpiry.delete(nonce);
     }
   }
-}, 10 * 60 * 1000); // Every 10 minutes
+}, 10 * 60 * 1000);

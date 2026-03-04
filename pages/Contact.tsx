@@ -60,39 +60,39 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="pt-40 pb-32">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-24 items-start">
+    <div className="pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-32">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-12 sm:gap-24 items-start">
           <div>
-            <span className="text-brand-magenta text-xs font-black tracking-[0.4em] uppercase mb-6 block">Let's Work Together</span>
-            <p className="text-gray-500 dark:text-white/50 text-xl font-light mb-12 leading-relaxed max-w-lg transition-colors">
+            <span className="text-brand-magenta text-[10px] sm:text-xs font-black tracking-[0.4em] uppercase mb-4 sm:mb-6 block">Let's Work Together</span>
+            <p className="text-gray-500 dark:text-white/50 text-lg sm:text-xl font-light mb-8 sm:mb-12 leading-relaxed max-w-lg transition-colors">
               Whether you are a brand, talent, or partner, send us a message and we will reply shortly.
             </p>
-            <div className="space-y-4 text-gray-700 dark:text-white/70">
-              <p><strong>Email:</strong> info@mediabossafrica.com</p>
-              <p><strong>Location:</strong> Lagos, Nigeria</p>
+            <div className="space-y-4 sm:space-y-6 text-gray-700 dark:text-white/70">
+              <p className="text-sm sm:text-base"><strong>Email:</strong> info@mediabossafrica.com</p>
+              <p className="text-sm sm:text-base"><strong>Location:</strong> Lagos, Nigeria</p>
             </div>
           </div>
 
-          <div className="glass-morphism p-12 md:p-16 rounded-[64px] relative shadow-2xl">
+          <div className="glass-morphism p-8 sm:p-12 md:p-16 rounded-[40px] sm:rounded-[64px] relative shadow-2xl">
             {formState === 'success' ? (
-              <div className="text-center space-y-6">
-                <div className="w-24 h-24 bg-brand-magenta rounded-full mx-auto flex items-center justify-center text-white text-4xl">?</div>
-                <h3 className="text-3xl font-display font-black text-gray-900 dark:text-white">Message Received</h3>
-                <p className="text-gray-500 dark:text-white/40 text-lg">Your message was sent directly to our inbox.</p>
+              <div className="text-center space-y-6 py-12">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-brand-magenta rounded-full mx-auto flex items-center justify-center text-white text-3xl sm:text-4xl shadow-lg">?</div>
+                <h3 className="text-2xl sm:text-3xl font-display font-black text-gray-900 dark:text-white">Message Received</h3>
+                <p className="text-gray-500 dark:text-white/40 text-base sm:text-lg">Your message was sent directly to our inbox.</p>
                 <button
                   onClick={() => {
                     setFormState('idle');
                     setFormData((prev) => ({ ...prev, name: '', email: '', category: 'brand', message: '', _gotcha: '', _startTime: Date.now() }));
                   }}
-                  className="text-brand-magenta font-black uppercase tracking-widest text-xs"
+                  className="text-brand-magenta font-black uppercase tracking-widest text-[10px] sm:text-xs hover:underline"
                 >
                   Send Another Message
                 </button>
               </div>
             ) : (
-              <form className="space-y-8" onSubmit={handleSubmit} aria-label="Contact Form">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <form className="space-y-6 sm:space-y-8" onSubmit={handleSubmit} aria-label="Contact Form">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-[10px] font-black uppercase tracking-widest text-gray-500 dark:text-white/40 ml-2">Your Name</label>
                     <input
@@ -153,7 +153,7 @@ const Contact: React.FC = () => {
                 {errorMessage && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-300">{errorMessage}</p>}
                 <button
                   disabled={formState === 'submitting'}
-                  className="w-full bg-brand-magenta text-white py-6 rounded-3xl text-xl font-black shadow-[0_20px_40px_-10px_rgba(255,0,160,0.5)] hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50"
+                  className="w-full bg-brand-magenta text-white py-5 sm:py-6 rounded-2xl sm:rounded-3xl text-lg sm:text-xl font-black shadow-[0_20px_40px_-10px_rgba(255,0,160,0.5)] hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-50"
                 >
                   {formState === 'submitting' ? 'Sending...' : 'Send Message'}
                 </button>

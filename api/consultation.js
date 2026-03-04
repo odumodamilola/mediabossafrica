@@ -26,6 +26,15 @@ const FORM_SCHEMAS = {
   apply: applySchema,
 };
 
+function getNormalizedOrigin(value) {
+  if (!value || typeof value !== 'string') return '';
+  try {
+    return new URL(value).origin;
+  } catch {
+    return '';
+  }
+}
+
 export default async function handler(req, res) {
   const startTime = Date.now();
   const requestId = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
@@ -43,8 +52,12 @@ export default async function handler(req, res) {
   res.setHeader('X-Request-ID', requestId);
 
   const origin = req.headers.origin;
-  if (origin && ALLOWED_ORIGINS.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
+  const refererOrigin = getNormalizedOrigin(req.headers.referer);
+  const requestOrigin = getNormalizedOrigin(origin) || refererOrigin;
+  const isAllowedOrigin = requestOrigin && ALLOWED_ORIGINS.includes(requestOrigin);
+
+  if (isAllowedOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', requestOrigin);
     res.setHeader('Access-Control-Allow-Credentials', 'true');
   }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -59,6 +72,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
+  if (!isAllowedOrigin) {
+    logSecurity('forbidden_origin', { origin, refererOrigin }, context);
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+
   try {
     let body;
     try {
@@ -70,7 +88,7 @@ export default async function handler(req, res) {
     }
 
     const bodySize = Buffer.byteLength(JSON.stringify(body || {}), 'utf8');
-    if (bodySize > 100 * 1024) {
+    if (bodySize > 64 * 1024) {
       logSecurity('payload_too_large', { bodySize }, context);
       return res.status(413).json({ error: 'Payload too large' });
     }
