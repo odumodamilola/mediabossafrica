@@ -7,6 +7,20 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import { PageType } from './types';
 import { SEO_CONFIG, INDUSTRIES } from './constants';
+import ErrorBoundary from './components/ErrorBoundary';
+
+const Features = lazy(() => import('./pages/Features'));
+const Solutions = lazy(() => import('./pages/Solutions'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const Resources = lazy(() => import('./pages/Resources'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Work = lazy(() => import('./pages/Work'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Studio = lazy(() => import('./pages/Studio'));
+const TalentForm = lazy(() => import('./pages/TalentForm'));
+const IndustryDetail = lazy(() => import('./pages/IndustryDetail'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const toSlug = (value: string) =>
   value
