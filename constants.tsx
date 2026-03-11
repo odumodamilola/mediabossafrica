@@ -11,106 +11,106 @@ export const SEO_CONFIG = {
     title: "Mediaboss Africa | Influence. Innovation. Impact.",
     description: "Leading pan-African talent management and influencer marketing company. We build influence that converts through strategic storytelling and different data-driven campaigns.",
     keywords: "talent management africa, influencer marketing nigeria, creative media agency, brand partnerships, mediaboss studio",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   features: {
     title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
     description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
     keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   'about-us': {
     title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
     description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
     keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   solutions: {
     title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
     description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
     keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   service: {
     title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
     description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
     keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   pricing: {
     title: "Join Mediaboss | Partnership Plans for Nigerian Creators",
     description: "Ready to earn from your content? Join Africa's most elite creator roster. We only win when you win.",
     keywords: "join influencer agency Nigeria, talent management rates Lagos",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   resources: {
     title: "Creator Resources | Nigeria Influencer Marketing Insights 2026",
     description: "Learn how to land your first brand deal, protect your content, and build wealth as a Nigerian creator.",
     keywords: "Nigeria creator guide 2026, Lagos influencer tips, brand deals Nigeria",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   contact: {
     title: "Contact Mediaboss | Lagos Creator Agency",
     description: "Ready to turn your influence into income? Visit our Lagos studio or reach out online. Let's build something legendary.",
     keywords: "contact talent agency Lagos, Mediaboss Africa location",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   talent: {
     title: "Join Africa's Elite Creator Roster | Mediaboss Africa",
     description: "Apply for world-class representation, professional studio access, and global brand deals. We build the future of African influence.",
     keywords: "talent management Africa, join influencer roster Nigeria, creator agency Lagos",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   'talent/apply': {
     title: "Talent Application | Mediaboss Africa – Join the Legend",
     description: "Ready to scale your career? Submit your profile for review by our talent scouts. Join the most elite creator roster in Africa.",
     keywords: "apply talent agency Nigeria, influencer application Lagos, creator partnership",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   work: {
     title: "Our Work | Nigerian Creator Success Stories",
     description: "See how we've helped African creators land million-naira campaigns and build global audiences.",
     keywords: "influencer marketing case studies Nigeria, creator portfolio Africa",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   privacy: {
     title: "Privacy Policy | Mediaboss Africa",
     description: "How we protect your data and intellectual property.",
     keywords: "privacy policy, data protection",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   terms: {
     title: "Terms of Service | Mediaboss Africa",
     description: "Our legal framework for partnership and service delivery.",
     keywords: "terms of service, legal agreement",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   studio: {
     title: "The Mediaboss Studio | Creative Production & Digital Storytelling",
     description: "A full-service content production and digital storytelling studio built to serve brands, creators, and campaigns. Video, podcast, photography, and more.",
     keywords: "content studio Lagos, video production Nigeria, podcast studio, branded content Africa, The Mediaboss Studio",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   'talent-form': {
     title: "Client Consultation | Mediaboss Africa – Build Bold Campaigns",
     description: "Ready to scale your brand? Book a consultation with Africa's leading creative ecosystem. We build influence that converts through strategic storytelling.",
     keywords: "client consultation Nigeria, brand strategy Lagos, influencer marketing consultation Africa",
-    ogImage: "https://i.ibb.co/RG7YfGqS/image.png",
-    twitterImage: "https://i.ibb.co/RG7YfGqS/image.png"
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   }
 };
 
