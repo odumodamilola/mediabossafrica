@@ -87,14 +87,14 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 initial={{ opacity: 0, y: 60, scale: 0.85, rotateX: 45 }}
                 animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
                 transition={{ duration: 1.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-brand-magenta italic text-glow relative origin-center"
+                className="block text-brand-magenta italic text-glow relative origin-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mt-4 sm:mt-6"
               >
                 Let's make it mediaboss.
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: '100%' }}
                   transition={{ duration: 2, delay: 2, ease: 'easeInOut' }}
-                  className="absolute -bottom-4 sm:-bottom-6 left-0 h-[2px] bg-gradient-to-r from-transparent via-brand-magenta to-transparent opacity-40"
+                  className="absolute -bottom-2 sm:-bottom-3 left-0 h-[1.5px] bg-gradient-to-r from-transparent via-brand-magenta to-transparent opacity-40"
                 />
               </motion.span>
             </h1>
