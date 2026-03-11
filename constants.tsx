@@ -10,77 +10,107 @@ export const SEO_CONFIG = {
   home: {
     title: "Mediaboss Africa | Influence. Innovation. Impact.",
     description: "Leading pan-African talent management and influencer marketing company. We build influence that converts through strategic storytelling and different data-driven campaigns.",
-    keywords: "talent management africa, influencer marketing nigeria, creative media agency, brand partnerships, mediaboss studio"
+    keywords: "talent management africa, influencer marketing nigeria, creative media agency, brand partnerships, mediaboss studio",
+    ogImage: "https://mediabossafrica.com/og-home.jpg",
+    twitterImage: "https://mediabossafrica.com/og-home.jpg"
   },
   features: {
     title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
     description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
-    keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities"
+    keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities",
+    ogImage: "https://mediabossafrica.com/og-studio.jpg",
+    twitterImage: "https://mediabossafrica.com/og-studio.jpg"
   },
   'about-us': {
     title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
     description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
-    keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities"
+    keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities",
+    ogImage: "https://mediabossafrica.com/og-studio.jpg",
+    twitterImage: "https://mediabossafrica.com/og-studio.jpg"
   },
   solutions: {
     title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
     description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
-    keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos"
+    keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos",
+    ogImage: "https://mediabossafrica.com/og-solutions.jpg",
+    twitterImage: "https://mediabossafrica.com/og-solutions.jpg"
   },
   service: {
     title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
     description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
-    keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos"
+    keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos",
+    ogImage: "https://mediabossafrica.com/og-solutions.jpg",
+    twitterImage: "https://mediabossafrica.com/og-solutions.jpg"
   },
   pricing: {
     title: "Join Mediaboss | Partnership Plans for Nigerian Creators",
     description: "Ready to earn from your content? Join Africa's most elite creator roster. We only win when you win.",
-    keywords: "join influencer agency Nigeria, talent management rates Lagos"
+    keywords: "join influencer agency Nigeria, talent management rates Lagos",
+    ogImage: "https://mediabossafrica.com/og-join.jpg",
+    twitterImage: "https://mediabossafrica.com/og-join.jpg"
   },
   resources: {
     title: "Creator Resources | Nigeria Influencer Marketing Insights 2026",
     description: "Learn how to land your first brand deal, protect your content, and build wealth as a Nigerian creator.",
-    keywords: "Nigeria creator guide 2026, Lagos influencer tips, brand deals Nigeria"
+    keywords: "Nigeria creator guide 2026, Lagos influencer tips, brand deals Nigeria",
+    ogImage: "https://mediabossafrica.com/og-resources.jpg",
+    twitterImage: "https://mediabossafrica.com/og-resources.jpg"
   },
   contact: {
     title: "Contact Mediaboss | Lagos Creator Agency",
     description: "Ready to turn your influence into income? Visit our Lagos studio or reach out online. Let's build something legendary.",
-    keywords: "contact talent agency Lagos, Mediaboss Africa location"
+    keywords: "contact talent agency Lagos, Mediaboss Africa location",
+    ogImage: "https://mediabossafrica.com/og-contact.jpg",
+    twitterImage: "https://mediabossafrica.com/og-contact.jpg"
   },
   talent: {
     title: "Join Africa's Elite Creator Roster | Mediaboss Africa",
     description: "Apply for world-class representation, professional studio access, and global brand deals. We build the future of African influence.",
-    keywords: "talent management Africa, join influencer roster Nigeria, creator agency Lagos"
+    keywords: "talent management Africa, join influencer roster Nigeria, creator agency Lagos",
+    ogImage: "https://mediabossafrica.com/og-join.jpg",
+    twitterImage: "https://mediabossafrica.com/og-join.jpg"
   },
   'talent/apply': {
     title: "Talent Application | Mediaboss Africa – Join the Legend",
     description: "Ready to scale your career? Submit your profile for review by our talent scouts. Join the most elite creator roster in Africa.",
-    keywords: "apply talent agency Nigeria, influencer application Lagos, creator partnership"
+    keywords: "apply talent agency Nigeria, influencer application Lagos, creator partnership",
+    ogImage: "https://mediabossafrica.com/og-join.jpg",
+    twitterImage: "https://mediabossafrica.com/og-join.jpg"
   },
   work: {
     title: "Our Work | Nigerian Creator Success Stories",
     description: "See how we've helped African creators land million-naira campaigns and build global audiences.",
-    keywords: "influencer marketing case studies Nigeria, creator portfolio Africa"
+    keywords: "influencer marketing case studies Nigeria, creator portfolio Africa",
+    ogImage: "https://mediabossafrica.com/og-work.jpg",
+    twitterImage: "https://mediabossafrica.com/og-work.jpg"
   },
   privacy: {
     title: "Privacy Policy | Mediaboss Africa",
     description: "How we protect your data and intellectual property.",
-    keywords: "privacy policy, data protection"
+    keywords: "privacy policy, data protection",
+    ogImage: "https://mediabossafrica.com/og-home.jpg",
+    twitterImage: "https://mediabossafrica.com/og-home.jpg"
   },
   terms: {
     title: "Terms of Service | Mediaboss Africa",
     description: "Our legal framework for partnership and service delivery.",
-    keywords: "terms of service, legal agreement"
+    keywords: "terms of service, legal agreement",
+    ogImage: "https://mediabossafrica.com/og-home.jpg",
+    twitterImage: "https://mediabossafrica.com/og-home.jpg"
   },
   studio: {
     title: "The Mediaboss Studio | Creative Production & Digital Storytelling",
     description: "A full-service content production and digital storytelling studio built to serve brands, creators, and campaigns. Video, podcast, photography, and more.",
-    keywords: "content studio Lagos, video production Nigeria, podcast studio, branded content Africa, The Mediaboss Studio"
+    keywords: "content studio Lagos, video production Nigeria, podcast studio, branded content Africa, The Mediaboss Studio",
+    ogImage: "https://mediabossafrica.com/og-studio.jpg",
+    twitterImage: "https://mediabossafrica.com/og-studio.jpg"
   },
   'talent-form': {
     title: "Client Consultation | Mediaboss Africa – Build Bold Campaigns",
     description: "Ready to scale your brand? Book a consultation with Africa's leading creative ecosystem. We build influence that converts through strategic storytelling.",
-    keywords: "client consultation Nigeria, brand strategy Lagos, influencer marketing consultation Africa"
+    keywords: "client consultation Nigeria, brand strategy Lagos, influencer marketing consultation Africa",
+    ogImage: "https://mediabossafrica.com/og-contact.jpg",
+    twitterImage: "https://mediabossafrica.com/og-contact.jpg"
   }
 };
 

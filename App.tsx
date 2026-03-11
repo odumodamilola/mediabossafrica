@@ -6,59 +6,86 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import { PageType } from './types';
-import { SEO_CONFIG } from './constants';
-import ErrorBoundary from './components/ErrorBoundary';
+import { SEO_CONFIG, INDUSTRIES } from './constants';
 
-const Features = lazy(() => import('./pages/Features'));
-const Solutions = lazy(() => import('./pages/Solutions'));
-const Pricing = lazy(() => import('./pages/Pricing'));
-const Resources = lazy(() => import('./pages/Resources'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Work = lazy(() => import('./pages/Work'));
-const Privacy = lazy(() => import('./pages/Privacy'));
-const Terms = lazy(() => import('./pages/Terms'));
-const Studio = lazy(() => import('./pages/Studio'));
-const TalentForm = lazy(() => import('./pages/TalentForm'));
-const IndustryDetail = lazy(() => import('./pages/IndustryDetail'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const toSlug = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
 
 const SEOManager: React.FC = () => {
   const location = useLocation();
   const path = location.pathname;
-  const rawPage = (path.replace('/', '') || 'home') as PageType;
-  const page =
-    path.startsWith('/service/')
-      ? 'service'
-      : rawPage === 'features'
-        ? 'about-us'
-        : rawPage === 'solutions'
-          ? 'service'
+
+  const config = React.useMemo(() => {
+    // 1. Handle Industry Dynamic Pages
+    if (path.startsWith('/service/') || path.startsWith('/solutions/')) {
+      const slug = path.split('/').pop();
+      const industry = INDUSTRIES.find(i => toSlug(i.name) === slug);
+      if (industry) {
+        return {
+          title: `${industry.name} | Industries We Serve | Mediaboss Africa`,
+          description: `Strategic talent management and influencer marketing for the ${industry.name} sector in Africa.`,
+          keywords: `${industry.name} influencer marketing, ${industry.name} talent management Nigeria`,
+          ogImage: industry.image,
+          twitterImage: industry.image
+        };
+      }
+    }
+
+    // 2. Handle Static Pages
+    const rawPage = (path.replace('/', '') || 'home') as PageType;
+    const pageKey =
+      path.startsWith('/service/') || rawPage === 'solutions'
+        ? 'service'
+        : rawPage === 'features'
+          ? 'about-us'
           : rawPage;
-  const config = SEO_CONFIG[page] || SEO_CONFIG.home;
+    
+    return (SEO_CONFIG as any)[pageKey] || SEO_CONFIG.home;
+  }, [path]);
 
   useEffect(() => {
+    // Basic SEO
     document.title = config.title;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) metaDescription.setAttribute('content', config.description);
+    
+    const updateMeta = (name: string, content: string, attr: string = 'name') => {
+      let el = document.querySelector(`meta[${attr}="${name}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
 
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', config.title);
+    updateMeta('description', config.description);
+    if (config.keywords) updateMeta('keywords', config.keywords);
 
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) ogDescription.setAttribute('content', config.description);
+    // Open Graph
+    updateMeta('og:title', config.title, 'property');
+    updateMeta('og:description', config.description, 'property');
+    updateMeta('og:image', config.ogImage || 'https://mediabossafrica.com/og-home.jpg', 'property');
+    updateMeta('og:url', `https://mediabossafrica.com${path}`, 'property');
 
-    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twitterTitle) twitterTitle.setAttribute('content', config.title);
+    // Twitter
+    updateMeta('twitter:title', config.title);
+    updateMeta('twitter:description', config.description);
+    updateMeta('twitter:image', config.twitterImage || 'https://mediabossafrica.com/og-home.jpg');
 
-    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
-    if (twitterDescription) twitterDescription.setAttribute('content', config.description);
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      const path = location.pathname === '/' ? '' : location.pathname;
-      canonical.setAttribute('href', `https://mediabossafrica.com${path}`);
+    // Canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
     }
-  }, [page, config]);
+    const cleanPath = path === '/' ? '' : path;
+    canonical.setAttribute('href', `https://mediabossafrica.com${cleanPath}`);
+  }, [config, path]);
 
   return null;
 };
