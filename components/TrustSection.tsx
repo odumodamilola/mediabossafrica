@@ -17,10 +17,14 @@ const TrustSection: React.FC = () => {
           We Are Trusted By
         </motion.p>
 
-        <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {TRUSTED_BRANDS.slice(0, 6).map((brand) => (
-            <div
+        <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
+          {TRUSTED_BRANDS.slice(0, 6).map((brand, i) => (
+            <motion.div
               key={`grid-${brand.name}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.5 }}
               className="rounded-2xl border border-gray-200 bg-white/90 px-4 py-4 dark:border-white/10 dark:bg-white/5"
             >
               <img
@@ -30,7 +34,7 @@ const TrustSection: React.FC = () => {
                 loading="lazy"
                 decoding="async"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
 

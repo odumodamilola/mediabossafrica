@@ -69,13 +69,13 @@ const Services: React.FC<ServicesProps> = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:gap-8 xl:grid-cols-12">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-12">
           {CORE_SERVICES.map((service, i) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.8, delay: i * 0.12, ease: smoothEase }}
               className="group bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[40px] p-8 sm:p-10 relative overflow-hidden shadow-sm dark:shadow-none flex flex-col hover:scale-[1.01] transition-transform xl:col-span-6"
             >

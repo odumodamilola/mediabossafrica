@@ -87,8 +87,11 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
 
             <div className="relative group perspective-[2000px] flex justify-center lg:justify-end">
               <motion.div
+                initial={{ opacity: 0, rotateY: 20, scale: 0.9 }}
+                whileInView={{ opacity: 1, rotateY: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={shouldReduceFX ? undefined : { rotateY: -5, rotateX: 2, scale: 1.02 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
                 className="relative w-full max-w-[320px] aspect-[9/16] rounded-[32px] overflow-hidden shadow-[0_60px_100px_-20px_rgba(255,0,160,0.3)] bg-black border-[5px] border-gray-900 dark:border-[#1a1a1a] ring-1 ring-white/10"
               >
                 {!isMobile ? (
@@ -98,16 +101,20 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
                     loop
                     muted
                     playsInline
+                    poster="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop"
                     controls={false}
                     disablePictureInPicture
                     controlsList="nodownload noplaybackrate"
-                    preload="metadata"
+                    preload="none"
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div
-                    className="w-full h-full bg-cover bg-center"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop')" }}
+                  <img
+                    src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop"
+                    alt="The Mediaboss Studio"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 )}
               </motion.div>
