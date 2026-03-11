@@ -174,6 +174,7 @@ const App: React.FC = () => {
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/studio" element={<Studio />} />
                     <Route path="/talent-form" element={<TalentForm />} />
+                    <Route path="/favicon.ico" element={null} />
                     {/* Catch-all: dedicated branded 404 page */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
