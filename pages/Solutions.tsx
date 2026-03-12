@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import Services from '../components/Services';
 import { INDUSTRIES } from '../constants';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
@@ -66,6 +67,52 @@ const Solutions: React.FC = () => {
               </Link>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-24">
+          <motion.span
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="text-brand-magenta text-[10px] font-black uppercase tracking-[0.5em] mb-8 block"
+          >
+            Specialized Solutions
+          </motion.span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { href: '/influencer-marketing-nigeria', label: 'Influencer Marketing', icon: Megaphone },
+              { href: '/talent-management-nigeria', label: 'Talent Management', icon: Users2 },
+              { href: '/film-production-nigeria', label: 'Film Production', icon: Clapperboard },
+              { href: '/event-marketing-nigeria', label: 'Event Marketing', icon: Target },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.6, ease: smoothEase }}
+                  className="group relative overflow-hidden rounded-[32px] border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-8 hover:scale-[1.02] transition-all"
+                >
+                  <Link to={item.href} className="block relative z-10">
+                    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-magenta/10 text-brand-magenta group-hover:scale-110 transition-transform">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-xl font-display font-black text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors">
+                      {item.label}
+                    </h3>
+                    <p className="mt-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-white/20">
+                      Explore Service
+                    </p>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-20">
+          <Services />
         </div>
       </div>
     </div>

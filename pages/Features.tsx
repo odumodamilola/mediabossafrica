@@ -170,7 +170,7 @@ const Features: React.FC = () => {
         {/* ── Trusted Brands (Marquee) ────────────────────── */}
         <section className="pt-16 border-t border-gray-100 dark:border-white/5">
           <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4 text-center md:text-left">
-            <h2 className="text-2xl font-display font-black text-gray-900 dark:text-white uppercase tracking-tighter">Trusted By Giants</h2>
+            <h2 className="text-2xl font-display font-black text-gray-900 dark:text-white uppercase tracking-tighter">We Are Trusted By</h2>
             <div className="h-px flex-1 bg-gray-100 dark:bg-white/5 hidden md:block mx-8" />
             <p className="text-gray-400 dark:text-white/20 text-xs font-black uppercase tracking-[0.3em]">Pan-African Impact</p>
           </div>
