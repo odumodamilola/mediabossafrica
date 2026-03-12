@@ -189,7 +189,7 @@ const Features: React.FC = () => {
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className={`max-h-10 w-auto object-contain ${brand.className || ''}`}
+                    className={`max-h-7 sm:max-h-10 w-auto object-contain transition-all ${brand.className || ''}`}
                     loading="lazy"
                   />
                 </div>

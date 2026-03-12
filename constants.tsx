@@ -118,6 +118,7 @@ export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: 'home' },
   { label: 'About Us', href: 'about-us' },
   { label: 'Services', href: 'service' },
+  { label: 'Talent', href: 'talent' },
   { label: 'The Studio', href: 'studio' },
   { label: 'Our Work', href: 'work' },
   { label: 'Contact', href: 'contact' },
@@ -239,11 +240,11 @@ export const TRUSTED_BRANDS = [
   { name: 'MTN', logo: 'https://cdn.worldvectorlogo.com/logos/mtn-new-logo.svg' },
   { name: 'LXGlobal', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9149OvZ2iXZlHjBtngoJ-bfT0Xl0snuSWw&s' },
   { name: 'PushBio', logo: 'https://www.pushbio.io/wp-content/uploads/2022/02/pusshbnewx2.png' },
-  { name: 'INTO REALTOR', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdLN35oSLW0KGfKGnLy-u1RL11Fw12l1_U4w&s', className: 'scale-[1.8]' },
+  { name: 'INTO REALTOR', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdLN35oSLW0KGfKGnLy-u1RL11Fw12l1_U4w&s', className: 'sm:scale-[1.5] scale-[1.1]' },
   { name: 'POLYMATHS REALESTATE', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3YbqpVlUi7J7Lrh7M3fYVd3gGx_qmQ_kQw&s' },
   { name: 'TOLISA', logo: 'https://placehold.co/200x80/transparent/9ca3af?text=TOLISA' },
   { name: 'UR3 Conference', logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQF1CUMyDKYLdA/company-logo_200_200/company-logo_200_200/0/1729856381630?e=2147483647&v=beta&t=GBzN9v_3k0NJEFmxP8H2cr64OAnPGEN6nI5HIXefKqg' },
-  { name: 'JustArt', logo: 'https://i.ibb.co/RG7YfGqS/image.png', showText: true },
+  { name: 'JustArt', logo: 'https://i.ibb.co/RG7YfGqS/image.png', showText: true, className: 'sm:scale-110 scale-95' },
   { name: 'Lagos Sales Party', logo: 'https://i.ibb.co/rK3zXjD8/image.png' },
   { name: 'RCCG', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Rccg_logo.png/250px-Rccg_logo.png' }
 ];

@@ -17,27 +17,6 @@ const TrustSection: React.FC = () => {
           We Are Trusted By
         </motion.p>
 
-        <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
-          {TRUSTED_BRANDS.slice(0, 6).map((brand, i) => (
-            <motion.div
-              key={`grid-${brand.name}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.5 }}
-              className="rounded-2xl border border-gray-200 bg-white/90 px-4 py-4 dark:border-white/10 dark:bg-white/5"
-            >
-              <img
-                src={brand.logo}
-                alt={`${brand.name} logo`}
-                className={`mx-auto h-10 w-auto object-contain ${brand.className || ''}`}
-                loading="lazy"
-                decoding="async"
-              />
-            </motion.div>
-          ))}
-        </div>
-
         <div className="relative w-full overflow-hidden">
           <motion.div
             className="flex flex-nowrap gap-x-12 sm:gap-x-16 md:gap-x-24 items-center w-max"
@@ -58,7 +37,7 @@ const TrustSection: React.FC = () => {
                   <img
                     src={brand.logo}
                     alt={`${brand.name} logo`}
-                    className={`max-h-12 md:max-h-14 w-auto object-contain rounded-lg ${brand.className || ''}`}
+                    className={`max-h-8 sm:max-h-12 md:max-h-14 w-auto object-contain rounded-lg transition-all ${brand.className || ''}`}
                     loading="lazy"
                     decoding="async"
                   />
