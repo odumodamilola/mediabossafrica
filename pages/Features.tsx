@@ -14,9 +14,9 @@ const fadeUp = (delay = 0) => ({
 
 const leadership = [
   {
-    name: 'Peace Jamb',
+    name: 'Seyi Buhari',
     role: 'Founder / CEO',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop', // Placeholder
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQEWjhmKnVB36w/profile-displayphoto-shrink_800_800/B4DZas0oYUG0Ac-/0/1746656202884?e=1775088000&v=beta&t=jVIDRrYbnPnuOaTFDR8nBbXZGkkK25Yas5vq__fzEN8',
     bio: 'Visionary leader driving the pan-African media revolution.',
   },
   {
@@ -184,7 +184,7 @@ const Features: React.FC = () => {
               {[...TRUSTED_BRANDS, ...TRUSTED_BRANDS].map((brand, i) => (
                 <div
                   key={`${brand.name}-${i}`}
-                  className="flex-shrink-0 transition-all duration-300 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 cursor-pointer"
+                  className="flex-shrink-0 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 >
                   <img
                     src={brand.logo}

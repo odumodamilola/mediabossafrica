@@ -82,8 +82,8 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           <a
-            href="/talent-form"
-            onClick={(e) => handleNav(e, 'talent-form')}
+            href="/talent/apply"
+            onClick={(e) => handleNav(e, 'talent/apply')}
             className="inline-block bg-brand-magenta hover:bg-brand-magenta/90 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-95 shadow-xl"
           >
             Join as Talent
@@ -146,8 +146,8 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
                   className="mt-8 pt-8 border-t border-gray-100 dark:border-white/10"
                 >
                   <a
-                    href="/talent-form"
-                    onClick={(e) => handleNav(e, 'talent-form')}
+                    href="/talent/apply"
+                    onClick={(e) => handleNav(e, 'talent/apply')}
                     className="block w-full text-center bg-brand-magenta text-white py-6 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl"
                   >
                     Join as Talent

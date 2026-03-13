@@ -108,7 +108,7 @@ const TalentLanding: React.FC = () => {
       <section className="py-20 border-y border-gray-100 dark:border-white/5">
         <div className="container mx-auto px-6">
           <p className="text-center text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-12">Building with world-class brands</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 transition-all duration-700">
             {TRUSTED_BRANDS.slice(0, 5).map((brand, i) => (
               <img key={i} src={brand.logo} alt={brand.name} className={`h-8 md:h-12 w-auto object-contain ${brand.className || ''}`} loading="lazy" decoding="async" />
             ))}

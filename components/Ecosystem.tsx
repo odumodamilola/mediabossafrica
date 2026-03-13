@@ -106,13 +106,15 @@ const Ecosystem: React.FC<EcosystemProps> = ({ onNavigate }) => {
                     disablePictureInPicture
                     controlsList="nodownload noplaybackrate"
                     preload="none"
-                    className="w-full h-full object-cover"
+                    aria-hidden="true"
+                    tabIndex={-1}
+                    className="w-full h-full object-cover pointer-events-none select-none"
                   />
                 ) : (
                   <img
                     src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200&auto=format&fit=crop"
                     alt="The Mediaboss Studio"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover pointer-events-none select-none"
                     loading="lazy"
                     decoding="async"
                   />

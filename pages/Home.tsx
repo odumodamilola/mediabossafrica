@@ -136,17 +136,12 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           <p className="text-gray-600 dark:text-white/40 text-sm sm:text-base font-light">
             Whether youre a brand looking to scale influence, a talent ready to build legacy, or a partner seeking creative excellence, Mediaboss Africa delivers solutions that move culture and drive results.
           </p>
-          <p className="text-gray-600 dark:text-white/40 text-sm sm:text-base font-light">Headquarters: Lagos, Nigeria</p>
-          <p className="text-gray-600 dark:text-white/40 text-sm sm:text-base font-light">Operations: Africa | UK | US (Remote Capabilities)</p>
-          <p className="text-gray-600 dark:text-white/40 text-sm sm:text-base font-light">Email: info@mediabossafrica.com</p>
-          <p className="text-gray-600 dark:text-white/40 text-sm sm:text-base font-light">Instagram: @mediabossafrica</p>
-          <p className="text-gray-600 dark:text-white/40 text-sm sm:text-base font-light">Studio Arm: The Mediaboss Studio</p>
           <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row">
             <button
               onClick={() => onNavigate('talent-form')}
               className="w-full md:w-auto px-12 sm:px-16 py-6 sm:py-7 bg-brand-magenta rounded-2xl sm:rounded-3xl font-black text-sm uppercase tracking-[0.2em] text-white shadow-[0_20px_60px_-10px_rgba(255,0,160,0.5)] transition-all min-h-[48px]"
             >
-              Lets Work Together
+              Work With Us
             </button>
           </div>
         </div>

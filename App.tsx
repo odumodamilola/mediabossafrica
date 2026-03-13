@@ -1,6 +1,6 @@
 
 import React, { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -18,7 +18,10 @@ const Work = lazy(() => import('./pages/Work'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Studio = lazy(() => import('./pages/Studio'));
+const Talent = lazy(() => import('./pages/Talent'));
 const TalentForm = lazy(() => import('./pages/TalentForm'));
+const TalentApply = lazy(() => import('./pages/talent/ApplyForm'));
+const TalentDetail = lazy(() => import('./pages/TalentDetail'));
 const IndustryDetail = lazy(() => import('./pages/IndustryDetail'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -121,6 +124,8 @@ const App: React.FC = () => {
   const rawActivePage = (location.pathname.replace('/', '') || 'home') as PageType;
   const activePage = location.pathname.startsWith('/service/')
     ? 'service'
+    : location.pathname.startsWith('/talent/')
+      ? 'talent'
     : rawActivePage === 'features'
       ? 'about-us'
       : rawActivePage === 'solutions'
@@ -167,8 +172,9 @@ const App: React.FC = () => {
                     <Route path="/pricing" element={<Pricing onNavigate={handleNavigate} />} />
                     <Route path="/resources" element={<Resources />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/talent" element={<Navigate to="/talent-form" replace />} />
-                    <Route path="/talent/apply" element={<Navigate to="/talent-form" replace />} />
+                    <Route path="/talent" element={<Talent />} />
+                    <Route path="/talent/apply" element={<TalentApply />} />
+                    <Route path="/talent/:talentSlug" element={<TalentDetail />} />
                     <Route path="/work" element={<Work />} />
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/terms" element={<Terms />} />

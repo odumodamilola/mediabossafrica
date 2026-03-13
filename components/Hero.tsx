@@ -34,10 +34,12 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             disablePictureInPicture
             controlsList="nodownload noplaybackrate"
             preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none"
+            aria-hidden="true"
+            tabIndex={-1}
+            className="absolute inset-0 w-full h-full object-cover opacity-10 dark:opacity-20 pointer-events-none select-none"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/50 to-white dark:from-brand-deep/80 dark:via-brand-deep/50 dark:to-brand-deep" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/65 via-white/35 to-white/90 dark:from-brand-deep/65 dark:via-brand-deep/35 dark:to-brand-deep/90" />
 
         <motion.div
           animate={shouldReduceFX ? { opacity: 0.1 } : { scale: [1, 1.2, 1], rotate: [0, 5, 0], opacity: [0.1, 0.15, 0.1] }}

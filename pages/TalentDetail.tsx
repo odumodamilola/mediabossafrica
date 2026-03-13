@@ -111,7 +111,7 @@ const TalentDetail: React.FC = () => {
           <Link to="/talent" className="rounded-2xl bg-brand-magenta px-8 py-4 text-xs font-black uppercase tracking-[0.2em] text-white">
             Back to Talent
           </Link>
-          <Link to="/consultation" className="rounded-2xl border border-gray-300 px-8 py-4 text-xs font-black uppercase tracking-[0.2em] text-gray-900 dark:border-white/20 dark:text-white">
+          <Link to="/talent-form" className="rounded-2xl border border-gray-300 px-8 py-4 text-xs font-black uppercase tracking-[0.2em] text-gray-900 dark:border-white/20 dark:text-white">
             Work With Us
           </Link>
         </div>

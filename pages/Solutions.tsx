@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Clapperboard, Megaphone, Target, Users2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Services from '../components/Services';
 import { INDUSTRIES } from '../constants';

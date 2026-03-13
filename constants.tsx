@@ -64,9 +64,9 @@ export const SEO_CONFIG = {
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   talent: {
-    title: "Join Africa's Elite Creator Roster | Mediaboss Africa",
-    description: "Apply for world-class representation, professional studio access, and global brand deals. We build the future of African influence.",
-    keywords: "talent management Africa, join influencer roster Nigeria, creator agency Lagos",
+    title: "MediaBoss Africa Talent Profiles | Actors, Hosts, and Creators",
+    description: "Browse MediaBoss Africa talent profiles, specialties, and selected work across entertainment, branded content, and African media storytelling.",
+    keywords: "MediaBoss Africa talent profiles, Nollywood talent Nigeria, creator profiles Africa, entertainment talent Lagos",
     ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
