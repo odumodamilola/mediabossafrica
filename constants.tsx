@@ -29,16 +29,16 @@ export const SEO_CONFIG = {
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   solutions: {
-    title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
-    description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
-    keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos",
+    title: "Services We Render | Mediaboss Africa",
+    description: "Explore MediaBoss Africa services across influencer marketing, talent management, film production, event marketing, brand partnerships, and campaign strategy.",
+    keywords: "influencer marketing Nigeria, talent management Lagos, film production Nigeria, event marketing Africa",
     ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   service: {
-    title: "Industries We Serve | Tech, Fashion & Lifestyle Nigeria",
-    description: "Helping Nigerian brands and creators dominate in tech, fashion, music, and lifestyle. Real culture, real results.",
-    keywords: "fintech influencer marketing Nigeria, fashion influencer agency Lagos",
+    title: "Services We Render | Mediaboss Africa",
+    description: "Explore MediaBoss Africa services across influencer marketing, talent management, film production, event marketing, brand partnerships, and campaign strategy.",
+    keywords: "influencer marketing Nigeria, talent management Lagos, film production Nigeria, event marketing Africa",
     ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },

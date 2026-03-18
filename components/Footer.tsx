@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Instagram, Linkedin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { PageType } from '../types';
 import { NAV_LINKS } from '../constants';
@@ -8,6 +9,12 @@ import Logo from './Logo';
 interface FooterProps {
   onNavigate: (page: PageType) => void;
 }
+
+const XIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+    <path d="M18.244 2H21.5l-7.112 8.13L22.75 22h-6.547l-5.127-6.705L5.21 22H1.95l7.606-8.694L1.5 2h6.713l4.634 6.11L18.244 2Zm-1.145 18h1.804L7.228 3.895H5.29L17.1 20Z" />
+  </svg>
+);
 
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const navigate = useNavigate();
@@ -18,9 +25,9 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   const socialLinks = [
-    { label: 'Instagram', icon: 'I', url: 'https://instagram.com/mediabossafrica' },
-    { label: 'X', icon: 'X', url: 'https://twitter.com/mediabossafrica' },
-    { label: 'LinkedIn', icon: 'L', url: 'https://linkedin.com/company/mediabossafrica' }
+    { label: 'Instagram', icon: Instagram, url: 'https://instagram.com/mediabossafrica' },
+    { label: 'X', icon: XIcon, url: 'https://twitter.com/mediabossafrica' },
+    { label: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com/company/mediabossafrica' }
   ];
 
   return (
@@ -37,18 +44,21 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Mediaboss Africa is a leading pan-African talent management, influencer marketing, and creative media company at the intersection of culture, entertainment, and commerce.
             </p>
             <div className="flex gap-4 sm:gap-6">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-xs font-black text-brand-deep dark:text-white hover:bg-brand-magenta hover:text-white dark:hover:bg-brand-magenta dark:hover:text-white transition-all transform hover:-translate-y-1"
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </a>
-              ))}
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-brand-deep dark:text-white hover:bg-brand-magenta hover:text-white dark:hover:bg-brand-magenta dark:hover:text-white transition-all transform hover:-translate-y-1"
+                    aria-label={social.label}
+                  >
+                    <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                  </a>
+                );
+              })}
             </div>
           </div>
 

@@ -21,9 +21,9 @@ const leadership = [
   },
   {
     name: 'Damilola Odumo',
-    role: 'Co-Founder / COO',
+    role: 'Software Engineer',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop', // Placeholder
-    bio: 'Architect of strategy and operational excellence.',
+    bio: 'Building and maintaining the digital infrastructure behind Mediaboss Africa.',
   },
   {
     name: 'Creative Director',
@@ -66,9 +66,7 @@ const Features: React.FC = () => {
               transition={{ duration: 1, ease: smoothEase }}
               className="text-5xl sm:text-7xl lg:text-8xl font-display font-black leading-[0.85] tracking-tighter text-gray-900 dark:text-white"
             >
-              Influence. <br />
-              <span className="text-brand-magenta italic">Innovation.</span> <br />
-              Impact.
+              Why choose us
             </motion.h1>
             <motion.div
               {...fadeUp(0.2)}

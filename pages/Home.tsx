@@ -5,7 +5,6 @@ import DeferredSection from '../components/DeferredSection';
 import { PageType } from '../types';
 
 const TrustSection = lazy(() => import('../components/TrustSection'));
-const Services = lazy(() => import('../components/Services'));
 const Ecosystem = lazy(() => import('../components/Ecosystem'));
 
 interface HomeProps {
@@ -104,31 +103,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
       <DeferredSection minHeight={420}>
         <Suspense fallback={<div className="py-20" />}>
-          <Services onNavigate={onNavigate} />
-        </Suspense>
-      </DeferredSection>
-      <DeferredSection minHeight={420}>
-        <Suspense fallback={<div className="py-20" />}>
           <Ecosystem onNavigate={onNavigate} />
         </Suspense>
       </DeferredSection>
-
-      <section className="py-16 sm:py-24 md:py-28 bg-gray-50/50 dark:bg-brand-void/50 transition-colors">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <article className="rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-8">
-            <h3 className="text-3xl font-display font-black text-gray-900 dark:text-white">Vision</h3>
-            <p className="mt-4 text-gray-700 dark:text-white/70 leading-relaxed">
-              To become Africas most influential media ecosystem, shaping global conversations through talent, creativity, and culture.
-            </p>
-          </article>
-          <article className="rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 p-8">
-            <h3 className="text-3xl font-display font-black text-gray-900 dark:text-white">Mission</h3>
-            <p className="mt-4 text-gray-700 dark:text-white/70 leading-relaxed">
-              To empower brands and creators to tell compelling stories, build strong communities, and achieve measurable growth through influence-led marketing and premium content production.
-            </p>
-          </article>
-        </div>
-      </section>
 
       <section className="py-16 sm:py-24 md:py-32 bg-gray-50 dark:bg-brand-void border-y border-gray-200/20 dark:border-white/5 transition-colors">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-8">
