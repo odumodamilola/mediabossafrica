@@ -145,7 +145,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 Work With Us
               </button>
               <button
-                onClick={() => onNavigate('service')}
+                onClick={() => onNavigate('talent')}
                 className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl border-2 border-gray-300 dark:border-white/35 text-gray-700 dark:text-white/85 font-black text-xs uppercase tracking-[0.2em] hover:border-brand-magenta hover:text-brand-magenta transition-colors min-h-[48px]"
               >
                 Join Our Talent
