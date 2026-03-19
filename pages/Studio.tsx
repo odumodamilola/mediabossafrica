@@ -188,14 +188,14 @@ const Studio: React.FC = () => {
       </section>
 
       {/* Full-Width Video Showcase (Primary) */}
-      <section className="py-12 sm:py-20 bg-black overflow-hidden relative group">
-        <div className="absolute inset-0 z-0 opacity-40">
-           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-transparent to-black" />
+      <section className="py-12 sm:py-20 bg-gray-100 dark:bg-black overflow-hidden relative group transition-colors">
+        <div className="absolute inset-0 z-0 opacity-60 dark:opacity-40 transition-opacity">
+           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white via-transparent to-white dark:from-black dark:to-black transition-colors" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
           <motion.div 
             {...fadeIn()}
-            className="w-full aspect-video rounded-2xl sm:rounded-[48px] overflow-hidden bg-white/5 border border-white/10 shadow-2xl shadow-brand-magenta/10"
+            className="w-full aspect-video rounded-2xl sm:rounded-[48px] overflow-hidden bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 shadow-2xl shadow-brand-magenta/10 transition-colors"
           >
             <ScrollActivatedYouTube
               embed="https://www.youtube.com/embed/OvW7bjGKk6Q?si=skocnQb1-VS5AyXF"
@@ -206,19 +206,19 @@ const Studio: React.FC = () => {
           <div className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-end">
              <div className="px-2">
                 <span className="text-brand-magenta text-[9px] sm:text-[10px] font-black tracking-widest uppercase mb-3 sm:mb-4 block">Featured Masterpiece</span>
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-display font-black text-white mb-4 sm:mb-6 uppercase tracking-tight leading-none">NO ONE HAS TO <br /> <span className="italic">KNOW (2025)</span></h2>
-                <p className="text-white/50 text-base sm:text-lg font-light leading-relaxed max-w-xl">
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-display font-black text-gray-900 dark:text-white mb-4 sm:mb-6 uppercase tracking-tight leading-none transition-colors">NO ONE HAS TO <br /> <span className="italic">KNOW (2025)</span></h2>
+                <p className="text-gray-600 dark:text-white/50 text-base sm:text-lg font-light leading-relaxed max-w-xl transition-colors">
                    Our latest Nollywood feature film production. From script consultation to final color grade, we delivered a cinematic experience that resonated across borders.
                 </p>
              </div>
-             <div className="flex gap-6 sm:gap-8 border-t border-white/10 pt-6 sm:pt-8 md:justify-end px-2">
+             <div className="flex gap-6 sm:gap-8 border-t border-gray-200 dark:border-white/10 pt-6 sm:pt-8 md:justify-end px-2 transition-colors">
                 <div className="text-center">
                    <div className="text-3xl sm:text-4xl font-display font-black text-brand-magenta">1.2M+</div>
-                   <div className="text-[9px] sm:text-[10px] font-black uppercase text-white/30 tracking-widest mt-1">Total Views</div>
+                   <div className="text-[9px] sm:text-[10px] font-black uppercase text-gray-500 dark:text-white/30 tracking-widest mt-1 transition-colors">Total Views</div>
                 </div>
-                <div className="text-center border-l border-white/10 pl-6 sm:pl-8">
-                   <div className="text-3xl sm:text-4xl font-display font-black text-white">#1</div>
-                   <div className="text-[9px] sm:text-[10px] font-black uppercase text-white/30 tracking-widest mt-1">Trending</div>
+                <div className="text-center border-l border-gray-200 dark:border-white/10 pl-6 sm:pl-8 transition-colors">
+                   <div className="text-3xl sm:text-4xl font-display font-black text-gray-900 dark:text-white transition-colors">#1</div>
+                   <div className="text-[9px] sm:text-[10px] font-black uppercase text-gray-500 dark:text-white/30 tracking-widest mt-1 transition-colors">Trending</div>
                 </div>
              </div>
           </div>

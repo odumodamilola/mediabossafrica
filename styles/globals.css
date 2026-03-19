@@ -94,6 +94,24 @@ body {
   pointer-events: none;
 }
 
+@keyframes mba-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.mba-marquee {
+  animation: mba-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.mba-marquee-pause:hover .mba-marquee {
+  animation-play-state: paused;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

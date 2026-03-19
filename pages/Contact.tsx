@@ -157,7 +157,7 @@ const Contact: React.FC = () => {
                   disabled={formState === 'submitting'}
                   className="w-full bg-brand-magenta text-white py-5 sm:py-6 rounded-2xl sm:rounded-3xl text-lg sm:text-xl font-black shadow-[0_20px_40px_-10px_rgba(255,0,160,0.5)] hover:scale-[1.01] active:scale-95 transition-all disabled:opacity-50"
                 >
-                  {formState === 'submitting' ? 'Sending...' : 'Send Message'}
+                  {formState === 'submitting' ? 'Sending...' : 'Send Us a Brief'}
                 </button>
                 <p className="text-center text-[11px] text-gray-500 dark:text-white/40">
                   By submitting, you consent to secure processing and authorized follow-up by Mediaboss Africa.

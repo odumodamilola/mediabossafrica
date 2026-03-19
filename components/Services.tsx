@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BarChart3, Briefcase, Megaphone, Users2 } from 'lucide-react';
+import { Clapperboard, Megaphone, Radio, ShieldCheck, Target, Users2 } from 'lucide-react';
 import { PageType } from '../types';
 
 interface ServicesProps {
@@ -12,37 +12,37 @@ const smoothEase = [0.16, 1, 0.3, 1] as const;
 const CORE_SERVICES = [
   {
     id: 'influencer-marketing',
-    title: 'Influencer Marketing & Campaigns',
-    description:
-      'Strategic influencer-led campaigns designed for reach, engagement, and conversion across Instagram, TikTok, YouTube, X (Twitter), and emerging platforms.',
-    bullets: null,
+    title: 'Influencer Marketing',
+    description: 'Campaigns built to grow visibility, engagement, and brand relevance across creator-led platforms.',
   },
   {
     id: 'talent-management',
-    title: 'Talent Management & Development',
-    description: 'Comprehensive talent representation including:',
-    bullets: [
-      'Personal brand strategy',
-      'Deal negotiation & brand endorsements',
-      'Career growth and monetization',
-      'Media training & positioning',
-    ],
+    title: 'Talent Management',
+    description: 'Representation and growth support for creators, actors, and public-facing talent.',
   },
   {
-    id: 'brand-partnerships',
-    title: 'Brand Partnerships & Endorsements',
-    description: 'Matching brands with the right talents for:',
-    bullets: ['Product launches', 'Brand ambassadorships', 'Event partnerships', 'Long-term collaborations'],
+    id: 'content-production',
+    title: 'Content Production',
+    description: 'High-quality visual and digital content for campaigns, storytelling, and branded media.',
   },
   {
-    id: 'campaign-strategy',
-    title: 'Campaign Strategy, Media Planning & Analytics',
-    description: 'Insight-led campaign development with performance tracking, reporting, and optimization.',
-    bullets: null,
+    id: 'public-relations',
+    title: 'Public Relations',
+    description: 'Strategic communication that strengthens brand perception, visibility, and industry presence.',
+  },
+  {
+    id: 'digital-marketing',
+    title: 'Digital Marketing',
+    description: 'Online growth strategies designed to drive audience engagement, awareness, and conversion.',
+  },
+  {
+    id: 'event-marketing',
+    title: 'Event Marketing',
+    description: 'Launches, activations, and event campaigns designed to create momentum before, during, and after the event.',
   },
 ];
 
-const SERVICE_ICONS = [Megaphone, Users2, Briefcase, BarChart3];
+const SERVICE_ICONS = [Megaphone, Users2, Clapperboard, ShieldCheck, Radio, Target];
 
 const Services: React.FC<ServicesProps> = () => {
   return (
@@ -56,12 +56,12 @@ const Services: React.FC<ServicesProps> = () => {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-brand-magenta text-[11px] font-black tracking-[0.6em] uppercase mb-6 sm:mb-8 block"
+            className="text-brand-magenta text-[11px] font-black tracking-[0.6em] uppercase mb-6 sm:mb-8 block"
             >
-              Core Services
+              Our Services
             </motion.span>
             <h2 id="services-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black tracking-[-0.03em] leading-[0.9] text-gray-900 dark:text-white transition-colors">
-              Core Services
+              Our Services
             </h2>
           </div>
           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-gray-600 dark:text-white/40 text-base sm:text-lg md:text-xl font-light max-w-md leading-relaxed">
@@ -69,7 +69,7 @@ const Services: React.FC<ServicesProps> = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-12">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-12">
           {CORE_SERVICES.map((service, i) => (
             <motion.div
               key={service.id}
@@ -77,7 +77,7 @@ const Services: React.FC<ServicesProps> = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.8, delay: i * 0.12, ease: smoothEase }}
-              className="group bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[40px] p-8 sm:p-10 relative overflow-hidden shadow-sm dark:shadow-none flex flex-col hover:scale-[1.01] transition-transform xl:col-span-6"
+              className="group bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[40px] p-8 sm:p-10 relative overflow-hidden shadow-sm dark:shadow-none flex flex-col hover:scale-[1.01] transition-transform xl:col-span-4"
             >
               <div className="absolute -right-8 -top-8 w-48 h-48 bg-brand-magenta/5 rounded-full blur-[80px] group-hover:bg-brand-magenta/15 transition-all duration-700" />
 
@@ -95,17 +95,6 @@ const Services: React.FC<ServicesProps> = () => {
                 </h3>
 
                 <p className="text-gray-600 dark:text-white/50 text-base sm:text-lg leading-relaxed mb-5 transition-colors">{service.description}</p>
-
-                {service.bullets && (
-                  <ul className="space-y-3 mt-auto">
-                    {service.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-brand-magenta flex-shrink-0 mt-2" />
-                        <span className="text-gray-700 dark:text-white/70 text-base transition-colors">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </div>
             </motion.div>
           ))}

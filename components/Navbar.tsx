@@ -17,6 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -54,25 +55,28 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
         </a>
 
         {/* Desktop Nav */}
-        <div className={`hidden md:flex items-center gap-1 p-1.5 rounded-2xl transition-all duration-500 ${scrolled ? 'glass-morphism bg-gray-100/50 dark:bg-brand-deep/50' : 'bg-transparent'
-          }`}>
+        <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={href(link.href)}
               onClick={(e) => handleNav(e, link.href)}
-              className={`relative px-4 sm:px-5 py-2.5 rounded-xl text-[10px] uppercase font-black tracking-[0.2em] transition-all ${activePage === link.href
-                ? 'text-gray-900 dark:text-white'
-                : 'text-gray-600 dark:text-white/40 hover:text-gray-900 dark:hover:text-white/70'
+              className={`relative py-2 text-[10px] uppercase font-black tracking-[0.2em] transition-colors ${activePage === link.href
+                ? scrolled
+                  ? 'text-gray-900 dark:text-white'
+                  : isHome
+                    ? 'text-white'
+                    : 'text-gray-900 dark:text-white'
+                : scrolled
+                  ? 'text-gray-600 dark:text-white/40 hover:text-gray-900 dark:hover:text-white/70'
+                  : isHome
+                    ? 'text-white/80 hover:text-white'
+                    : 'text-gray-600 dark:text-white/40 hover:text-gray-900 dark:hover:text-white/70'
                 }`}
             >
               {link.label}
               {activePage === link.href && (
-                <motion.div
-                  layoutId="activeNav"
-                  className="absolute inset-0 bg-white/10 dark:bg-white/5 border border-gray-300/30 dark:border-white/10 rounded-xl z-[-1]"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
+                <span className={`absolute left-0 -bottom-1 h-[2px] w-full ${scrolled ? 'bg-brand-magenta' : isHome ? 'bg-white' : 'bg-brand-magenta'}`} />
               )}
             </a>
           ))}
@@ -84,9 +88,9 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
           <a
             href="/talent/apply"
             onClick={(e) => handleNav(e, 'talent/apply')}
-            className="inline-block bg-brand-magenta hover:bg-brand-magenta/90 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-95 shadow-xl"
+            className={`inline-block bg-brand-magenta hover:bg-brand-magenta/90 text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all transform active:scale-95 shadow-xl ${scrolled ? '' : isHome ? 'shadow-[0_18px_50px_-12px_rgba(0,0,0,0.55)]' : ''}`}
           >
-            Join as Talent
+            Work With Us
           </a>
         </div>
 
@@ -150,7 +154,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate }) => {
                     onClick={(e) => handleNav(e, 'talent/apply')}
                     className="block w-full text-center bg-brand-magenta text-white py-6 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl"
                   >
-                    Join as Talent
+                    Work With Us
                   </a>
                 </motion.div>
               </div>
