@@ -277,13 +277,11 @@ export const SERVICES: Service[] = [
 ];
 
 export const INDUSTRIES: Industry[] = [
-  { name: 'Fashion & Lifestyle', image: 'https://i.ibb.co/B5BQSkPK/Snap-Insta-to-630154093-17878035255475240-2279539179607894162-n.jpg' },
-  { name: 'Beauty & Skincare', image: 'https://images.unsplash.com/photo-1648203276014-20f97ba1f817?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  { name: 'Tech & Fintech', image: 'https://i.ibb.co/XfdsTPmw/Snap-Insta-to-580755341-18347780410167386-4230984891800564498-n.jpg' },
-  { name: 'Food & Beverage', image: 'https://i.ibb.co/RG6dF2WM/Save-Clip-App-590368401-18090350297483133-4434513809090978621-n.jpg' },
-  { name: 'Entertainment & Music', image: 'https://i.ibb.co/CpsyhgNR/Snap-Insta-to-527543941-18526545913016640-5239305829889010376-n.jpg' },
-  { name: 'Real Estate', image: 'https://i.ibb.co/9H4nmHw2/Save-Clip-App-641848384-18384113392157104-883924134643976237-n.jpg' },
-  { name: 'Events & Experiences', image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=800' }
+  { name: 'Beauty & Skincare', image: 'https://i.ibb.co/N6ZXzjp5/Whats-App-Image-2026-03-22-at-5-30-53-PM-1.jpg' },
+  { name: 'Tech & Fintech', image: 'https://i.ibb.co/qMkryzNX/Whats-App-Image-2026-03-22-at-5-30-54-PM.jpg' },
+  { name: 'Food & Beverage', image: 'https://i.ibb.co/Psz3QdjB/Whats-App-Image-2026-03-22-at-5-41-15-PM.jpg' },
+  { name: 'Entertainment & Music', image: 'https://i.ibb.co/B530bMRd/Whats-App-Image-2026-03-22-at-5-41-15-PM-1.jpg' },
+  { name: 'Real Estate', image: 'https://i.ibb.co/LL7KGyz/Whats-App-Image-2026-03-22-at-5-41-15-PM-2.jpg' }
 ];
 
 export const FAQS: FAQItem[] = [

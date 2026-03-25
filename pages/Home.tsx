@@ -16,6 +16,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const smoothEasing = [0.16, 1, 0.3, 1] as const;
   const [projectIndex, setProjectIndex] = useState(0);
   const [behindIndex, setBehindIndex] = useState(0);
+  const [loadedBehindSlides, setLoadedBehindSlides] = useState<Record<string, boolean>>({});
+  const behindSlides = INDUSTRIES;
+  const currentBehindSlide = behindSlides[behindIndex] ?? behindSlides[0];
+  const currentBehindSlideLoaded = currentBehindSlide ? loadedBehindSlides[currentBehindSlide.image] === true : false;
   const projectSlides = React.useMemo(
     () => {
       const base = CASE_STUDIES.map((s, i) =>
@@ -79,17 +83,45 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   }, [projectSlides.length]);
 
   useEffect(() => {
-    if (!INDUSTRIES.length) return;
+    if (!behindSlides.length) return;
     const id = window.setInterval(() => {
-      setBehindIndex((prev) => (prev + 1) % INDUSTRIES.length);
+      setBehindIndex((prev) => (prev + 1) % behindSlides.length);
     }, 8000);
     return () => window.clearInterval(id);
-  }, []);
+  }, [behindSlides.length]);
+
+  useEffect(() => {
+    if (!behindSlides.length) return;
+    if (behindIndex >= behindSlides.length) {
+      setBehindIndex(0);
+    }
+  }, [behindIndex, behindSlides.length]);
+
+  useEffect(() => {
+    if (!currentBehindSlide?.image || loadedBehindSlides[currentBehindSlide.image]) return;
+
+    const image = new window.Image();
+    image.src = currentBehindSlide.image;
+
+    const markLoaded = () => {
+      setLoadedBehindSlides((prev) =>
+        prev[currentBehindSlide.image] ? prev : { ...prev, [currentBehindSlide.image]: true }
+      );
+    };
+
+    image.onload = markLoaded;
+    image.onerror = markLoaded;
+
+    return () => {
+      image.onload = null;
+      image.onerror = null;
+    };
+  }, [currentBehindSlide, loadedBehindSlides]);
 
   const projectPrev = () => setProjectIndex((prev) => (prev - 1 + projectSlides.length) % projectSlides.length);
   const projectNext = () => setProjectIndex((prev) => (prev + 1) % projectSlides.length);
-  const behindPrev = () => setBehindIndex((prev) => (prev - 1 + INDUSTRIES.length) % INDUSTRIES.length);
-  const behindNext = () => setBehindIndex((prev) => (prev + 1) % INDUSTRIES.length);
+  const behindPrev = () => setBehindIndex((prev) => (prev - 1 + behindSlides.length) % behindSlides.length);
+  const behindNext = () => setBehindIndex((prev) => (prev + 1) % behindSlides.length);
 
   return (
     <>
@@ -185,7 +217,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             aria-label="Previous project"
             className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full border border-gray-300/70 dark:border-white/35 bg-white/80 dark:bg-black/25 text-gray-900 dark:text-white backdrop-blur-md hover:bg-white dark:hover:bg-black/35 transition-colors"
           >
-            <span className="block text-xl leading-none">‹</span>
+            <span className="block text-xl leading-none">&lsaquo;</span>
           </button>
           <button
             type="button"
@@ -193,7 +225,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             aria-label="Next project"
             className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full border border-gray-300/70 dark:border-white/35 bg-white/80 dark:bg-black/25 text-gray-900 dark:text-white backdrop-blur-md hover:bg-white dark:hover:bg-black/35 transition-colors"
           >
-            <span className="block text-xl leading-none">›</span>
+            <span className="block text-xl leading-none">&rsaquo;</span>
           </button>
         </div>
 
@@ -300,7 +332,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <div className="relative w-full overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
-              key={INDUSTRIES[behindIndex]?.image}
+              key={currentBehindSlide?.image}
               initial={{ opacity: 0.0, scale: 1.01 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0.0, scale: 1.01 }}
@@ -308,12 +340,27 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               className="relative"
             >
               <div className="relative aspect-[16/9] md:aspect-[21/9] bg-gray-100 dark:bg-black transition-colors">
+                {!currentBehindSlideLoaded && (
+                  <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 dark:from-white/10 dark:via-white/5 dark:to-white/10" />
+                )}
                 <img
-                  src={INDUSTRIES[behindIndex]?.image}
-                  alt={INDUSTRIES[behindIndex]?.name}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  src={currentBehindSlide?.image}
+                  alt=""
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${currentBehindSlideLoaded ? 'opacity-100' : 'opacity-0'}`}
                   loading="lazy"
                   decoding="async"
+                  onLoad={() => {
+                    if (!currentBehindSlide?.image) return;
+                    setLoadedBehindSlides((prev) =>
+                      prev[currentBehindSlide.image] ? prev : { ...prev, [currentBehindSlide.image]: true }
+                    );
+                  }}
+                  onError={() => {
+                    if (!currentBehindSlide?.image) return;
+                    setLoadedBehindSlides((prev) =>
+                      prev[currentBehindSlide.image] ? prev : { ...prev, [currentBehindSlide.image]: true }
+                    );
+                  }}
                 />
                 <div className="absolute inset-0 bg-black/30" />
               </div>
@@ -326,7 +373,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             aria-label="Previous behind the scenes"
             className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full border border-gray-300/70 dark:border-white/35 bg-white/80 dark:bg-black/25 text-gray-900 dark:text-white backdrop-blur-md hover:bg-white dark:hover:bg-black/35 transition-colors"
           >
-            <span className="block text-xl leading-none">‹</span>
+            <span className="block text-xl leading-none">&lsaquo;</span>
           </button>
           <button
             type="button"
@@ -334,18 +381,18 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             aria-label="Next behind the scenes"
             className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full border border-gray-300/70 dark:border-white/35 bg-white/80 dark:bg-black/25 text-gray-900 dark:text-white backdrop-blur-md hover:bg-white dark:hover:bg-black/35 transition-colors"
           >
-            <span className="block text-xl leading-none">›</span>
+            <span className="block text-xl leading-none">&rsaquo;</span>
           </button>
 
           <div className="bg-gray-50 dark:bg-black py-10 sm:py-12 transition-colors">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
               <div className="flex items-center gap-2 flex-wrap justify-center max-w-5xl">
-                {INDUSTRIES.map((_, i) => (
+                {behindSlides.map((slide, i) => (
                   <button
-                    key={i}
+                    key={slide.image}
                     type="button"
                     onClick={() => setBehindIndex(i)}
-                    aria-label={`Go to behind the scenes ${i + 1}`}
+                    aria-label={`Go to behind the scenes slide ${i + 1}`}
                     className={`h-2.5 w-2.5 rounded-full transition-all ${i === behindIndex ? 'bg-brand-magenta scale-110' : 'bg-gray-400 hover:bg-gray-500 dark:bg-white/45 dark:hover:bg-white/70'}`}
                   />
                 ))}
@@ -468,3 +515,4 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 };
 
 export default Home;
+
