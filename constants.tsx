@@ -281,7 +281,12 @@ export const INDUSTRIES: Industry[] = [
   { name: 'Tech & Fintech', image: 'https://i.ibb.co/qMkryzNX/Whats-App-Image-2026-03-22-at-5-30-54-PM.jpg' },
   { name: 'Food & Beverage', image: 'https://i.ibb.co/Psz3QdjB/Whats-App-Image-2026-03-22-at-5-41-15-PM.jpg' },
   { name: 'Entertainment & Music', image: 'https://i.ibb.co/B530bMRd/Whats-App-Image-2026-03-22-at-5-41-15-PM-1.jpg' },
-  { name: 'Real Estate', image: 'https://i.ibb.co/LL7KGyz/Whats-App-Image-2026-03-22-at-5-41-15-PM-2.jpg' }
+  { name: 'Real Estate', image: 'https://i.ibb.co/LL7KGyz/Whats-App-Image-2026-03-22-at-5-41-15-PM-2.jpg' },
+  { name: 'Events & Experiences', image: 'https://i.ibb.co/3y09vCV8/Whats-App-Image-2026-03-22-at-5-30-53-PM.jpg' },
+  { name: 'Media & Production', image: 'https://i.ibb.co/rR1wkRGF/Whats-App-Image-2026-03-22-at-5-46-05-PM.jpg' },
+  { name: 'Creative Campaigns', image: 'https://i.ibb.co/35xVcRPW/Whats-App-Image-2026-03-22-at-5-46-05-PM-1.jpg' },
+  { name: 'Studio Moments', image: 'https://i.ibb.co/BKKvV1ng/Whats-App-Image-2026-03-22-at-5-46-05-PM-2.jpg' },
+  { name: 'Behind the Scenes Video', streamableId: 'wgvixo' }
 ];
 
 export const FAQS: FAQItem[] = [

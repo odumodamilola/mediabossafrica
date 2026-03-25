@@ -12,14 +12,34 @@ interface HomeProps {
   onNavigate: (page: PageType) => void;
 }
 
+interface StreamableVideoSource {
+  durationMs: number;
+  posterUrl?: string;
+  src: string;
+}
+
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const smoothEasing = [0.16, 1, 0.3, 1] as const;
   const [projectIndex, setProjectIndex] = useState(0);
   const [behindIndex, setBehindIndex] = useState(0);
   const [loadedBehindSlides, setLoadedBehindSlides] = useState<Record<string, boolean>>({});
-  const behindSlides = INDUSTRIES;
+  const [behindVideoSources, setBehindVideoSources] = useState<Record<string, StreamableVideoSource>>({});
+  const behindSlides = React.useMemo(
+    () =>
+      INDUSTRIES.filter((slide, index, slides) => {
+        const slideKey = slide.streamableId ?? slide.image ?? `${slide.name}-${index}`;
+        return slides.findIndex((candidate) => (candidate.streamableId ?? candidate.image ?? '') === slideKey) === index;
+      }),
+    []
+  );
   const currentBehindSlide = behindSlides[behindIndex] ?? behindSlides[0];
-  const currentBehindSlideLoaded = currentBehindSlide ? loadedBehindSlides[currentBehindSlide.image] === true : false;
+  const currentBehindSlideKey = currentBehindSlide?.streamableId ?? currentBehindSlide?.image ?? '';
+  const currentBehindVideo = currentBehindSlide?.streamableId ? behindVideoSources[currentBehindSlide.streamableId] : null;
+  const isCurrentBehindVideo = Boolean(currentBehindSlide?.streamableId);
+  const currentBehindSlideLoaded = currentBehindSlideKey ? loadedBehindSlides[currentBehindSlideKey] === true : false;
+  const currentBehindSlidePending = isCurrentBehindVideo
+    ? !currentBehindVideo?.src || !currentBehindSlideLoaded
+    : !currentBehindSlideLoaded;
   const projectSlides = React.useMemo(
     () => {
       const base = CASE_STUDIES.map((s, i) =>
@@ -84,11 +104,12 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
   useEffect(() => {
     if (!behindSlides.length) return;
+    if (isCurrentBehindVideo) return;
     const id = window.setInterval(() => {
       setBehindIndex((prev) => (prev + 1) % behindSlides.length);
     }, 8000);
     return () => window.clearInterval(id);
-  }, [behindSlides.length]);
+  }, [behindSlides.length, isCurrentBehindVideo]);
 
   useEffect(() => {
     if (!behindSlides.length) return;
@@ -98,14 +119,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   }, [behindIndex, behindSlides.length]);
 
   useEffect(() => {
-    if (!currentBehindSlide?.image || loadedBehindSlides[currentBehindSlide.image]) return;
+    if (!currentBehindSlide?.image || !currentBehindSlideKey || loadedBehindSlides[currentBehindSlideKey]) return;
 
     const image = new window.Image();
     image.src = currentBehindSlide.image;
 
     const markLoaded = () => {
       setLoadedBehindSlides((prev) =>
-        prev[currentBehindSlide.image] ? prev : { ...prev, [currentBehindSlide.image]: true }
+        prev[currentBehindSlideKey] ? prev : { ...prev, [currentBehindSlideKey]: true }
       );
     };
 
@@ -116,7 +137,60 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       image.onload = null;
       image.onerror = null;
     };
-  }, [currentBehindSlide, loadedBehindSlides]);
+  }, [currentBehindSlide?.image, currentBehindSlideKey, loadedBehindSlides]);
+
+  useEffect(() => {
+    if (!currentBehindSlide?.streamableId || behindVideoSources[currentBehindSlide.streamableId]) return;
+
+    let active = true;
+
+    const loadVideoSource = async () => {
+      try {
+        const response = await fetch(`https://api.streamable.com/videos/${currentBehindSlide.streamableId}`);
+        if (!response.ok) throw new Error(`Streamable request failed: ${response.status}`);
+
+        const data = await response.json();
+        const mp4File = data?.files?.mp4;
+        const src = typeof mp4File?.url === 'string' ? mp4File.url : '';
+        if (!src) throw new Error('Missing Streamable MP4 URL');
+
+        const posterUrl =
+          typeof data?.thumbnail_url === 'string'
+            ? data.thumbnail_url.startsWith('//')
+              ? `https:${data.thumbnail_url}`
+              : data.thumbnail_url
+            : undefined;
+
+        const durationMs =
+          typeof mp4File?.duration === 'number' && Number.isFinite(mp4File.duration)
+            ? Math.round(mp4File.duration * 1000)
+            : 20000;
+
+        if (!active) return;
+
+        setBehindVideoSources((prev) =>
+          prev[currentBehindSlide.streamableId!]
+            ? prev
+            : {
+                ...prev,
+                [currentBehindSlide.streamableId!]: {
+                  durationMs,
+                  posterUrl,
+                  src,
+                },
+              }
+        );
+      } catch (error) {
+        console.error('Failed to load Streamable video source', error);
+      }
+    };
+
+    loadVideoSource();
+
+    return () => {
+      active = false;
+    };
+  }, [behindVideoSources, currentBehindSlide?.streamableId]);
 
   const projectPrev = () => setProjectIndex((prev) => (prev - 1 + projectSlides.length) % projectSlides.length);
   const projectNext = () => setProjectIndex((prev) => (prev + 1) % projectSlides.length);
@@ -332,37 +406,67 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <div className="relative w-full overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentBehindSlide?.image}
+              key={currentBehindSlideKey}
               initial={{ opacity: 0.0, scale: 1.01 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0.0, scale: 1.01 }}
               transition={{ duration: 0.9, ease: smoothEasing }}
               className="relative"
             >
-              <div className="relative aspect-[16/9] md:aspect-[21/9] bg-gray-100 dark:bg-black transition-colors">
-                {!currentBehindSlideLoaded && (
-                  <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 dark:from-white/10 dark:via-white/5 dark:to-white/10" />
+              <div className="relative aspect-[16/9] min-h-[240px] sm:min-h-[360px] md:aspect-[21/9] md:min-h-[420px] lg:min-h-[520px] bg-gray-100 dark:bg-black transition-colors">
+                {currentBehindSlidePending && (
+                  <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 dark:from-white/10 dark:via-white/5 dark:to-white/10">
+                    <div className="absolute inset-0 animate-pulse bg-[linear-gradient(110deg,transparent_20%,rgba(255,255,255,0.45)_50%,transparent_80%)] dark:bg-[linear-gradient(110deg,transparent_20%,rgba(255,255,255,0.08)_50%,transparent_80%)] bg-[length:200%_100%]" />
+                  </div>
                 )}
-                <img
-                  src={currentBehindSlide?.image}
-                  alt=""
-                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${currentBehindSlideLoaded ? 'opacity-100' : 'opacity-0'}`}
-                  loading="lazy"
-                  decoding="async"
-                  onLoad={() => {
-                    if (!currentBehindSlide?.image) return;
-                    setLoadedBehindSlides((prev) =>
-                      prev[currentBehindSlide.image] ? prev : { ...prev, [currentBehindSlide.image]: true }
-                    );
-                  }}
-                  onError={() => {
-                    if (!currentBehindSlide?.image) return;
-                    setLoadedBehindSlides((prev) =>
-                      prev[currentBehindSlide.image] ? prev : { ...prev, [currentBehindSlide.image]: true }
-                    );
-                  }}
-                />
-                <div className="absolute inset-0 bg-black/30" />
+                {isCurrentBehindVideo && currentBehindVideo?.src ? (
+                  <video
+                    key={currentBehindVideo.src}
+                    src={currentBehindVideo.src}
+                    poster={currentBehindVideo.posterUrl}
+                    autoPlay
+                    muted
+                    playsInline
+                    preload="auto"
+                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${currentBehindSlideLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    onLoadedData={() => {
+                      if (!currentBehindSlideKey) return;
+                      setLoadedBehindSlides((prev) =>
+                        prev[currentBehindSlideKey] ? prev : { ...prev, [currentBehindSlideKey]: true }
+                      );
+                    }}
+                    onEnded={() => {
+                      setBehindIndex((prev) => (prev + 1) % behindSlides.length);
+                    }}
+                    onError={() => {
+                      if (!currentBehindSlideKey) return;
+                      setLoadedBehindSlides((prev) =>
+                        prev[currentBehindSlideKey] ? prev : { ...prev, [currentBehindSlideKey]: true }
+                      );
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={currentBehindSlide?.image}
+                    alt=""
+                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${currentBehindSlideLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={() => {
+                      if (!currentBehindSlideKey) return;
+                      setLoadedBehindSlides((prev) =>
+                        prev[currentBehindSlideKey] ? prev : { ...prev, [currentBehindSlideKey]: true }
+                      );
+                    }}
+                    onError={() => {
+                      if (!currentBehindSlideKey) return;
+                      setLoadedBehindSlides((prev) =>
+                        prev[currentBehindSlideKey] ? prev : { ...prev, [currentBehindSlideKey]: true }
+                      );
+                    }}
+                  />
+                )}
+                <div className="pointer-events-none absolute inset-0 bg-black/30" />
               </div>
             </motion.div>
           </AnimatePresence>
@@ -389,7 +493,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               <div className="flex items-center gap-2 flex-wrap justify-center max-w-5xl">
                 {behindSlides.map((slide, i) => (
                   <button
-                    key={slide.image}
+                    key={slide.streamableId ?? slide.image ?? `${slide.name}-${i}`}
                     type="button"
                     onClick={() => setBehindIndex(i)}
                     aria-label={`Go to behind the scenes slide ${i + 1}`}

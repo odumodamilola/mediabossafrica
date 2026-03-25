@@ -54,7 +54,8 @@ export interface Resource {
 
 export interface Industry {
   name: string;
-  image: string;
+  image?: string;
+  streamableId?: string;
 }
 
 export interface FAQItem {

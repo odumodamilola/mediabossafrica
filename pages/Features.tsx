@@ -22,7 +22,7 @@ const leadership = [
   {
     name: 'Damilola Odumo',
     role: 'Software Engineer',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop', // Placeholder
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ07fiRBVtcZLBx7-BabG94LLug_1O6Y3xYQ&s',
     bio: 'Building and maintaining the digital infrastructure behind Mediaboss Africa.',
   },
   {
