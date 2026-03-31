@@ -72,6 +72,7 @@ const Contact: React.FC = () => {
             </p>
             <div className="space-y-4 sm:space-y-6 text-gray-700 dark:text-white/70">
               <p className="text-sm sm:text-base"><strong>Email:</strong> info@mediabossafrica.com</p>
+              <p className="text-sm sm:text-base"><strong>Phone:</strong> +2349029982101</p>
               <p className="text-sm sm:text-base"><strong>Location:</strong> Lagos, Nigeria</p>
             </div>
           </div>
