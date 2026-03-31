@@ -82,7 +82,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <a href="mailto:info@mediabossafrica.com" className="hover:text-brand-magenta block truncate">info@mediabossafrica.com</a>
               </li>
-              <li>+234 (0) 900 000 0000</li>
+              <li>+2349029982101</li>
               <li>
                 <a href="/talent-form" onClick={(e) => { e.preventDefault(); handleNav('talent-form'); }} className="text-brand-magenta font-black hover:underline decoration-brand-magenta/40">
                   Lets Work Together
