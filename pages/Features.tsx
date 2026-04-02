@@ -20,6 +20,12 @@ const leadership = [
     bio: 'Visionary leader driving the pan-African media revolution.',
   },
   {
+    name: 'Excel Olanrewaju',
+    role: 'Executive Director',
+    image: 'https://i.ibb.co/qY1pk1ZH/Whats-App-Image-2026-04-02-at-2-38-27-PM.jpg',
+    bio: 'Driving strategic direction and operational excellence across Mediaboss Africa.',
+  },
+  {
     name: 'Damilola Odumo',
     role: 'Software Engineer',
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ07fiRBVtcZLBx7-BabG94LLug_1O6Y3xYQ&s',
