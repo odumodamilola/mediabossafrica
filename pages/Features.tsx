@@ -16,7 +16,7 @@ const leadership = [
   {
     name: 'Seyi Buhari',
     role: 'Founder / CEO',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQEWjhmKnVB36w/profile-displayphoto-shrink_800_800/B4DZas0oYUG0Ac-/0/1746656202884?e=1775088000&v=beta&t=jVIDRrYbnPnuOaTFDR8nBbXZGkkK25Yas5vq__fzEN8',
+    image: 'https://i.ibb.co/nsqYVPMn/image.png',
     bio: 'Visionary leader driving the pan-African media revolution.',
   },
   {
