@@ -92,7 +92,7 @@ const Talent: React.FC = () => {
                     </div>
                   )}
                   <Link
-                    to={`/talent/${person.slug}`}
+                    to={`/${person.slug}`}
                     className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-brand-magenta px-6 py-3 text-xs font-black uppercase tracking-[0.2em] text-white"
                   >
                     View profile

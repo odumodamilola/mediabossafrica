@@ -126,6 +126,8 @@ const App: React.FC = () => {
     ? 'service'
     : location.pathname.startsWith('/talent/')
       ? 'talent'
+    : rawActivePage === 'talent/apply'
+      ? 'talent'
     : rawActivePage === 'features'
       ? 'about-us'
       : rawActivePage === 'solutions'
@@ -174,13 +176,13 @@ const App: React.FC = () => {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/talent" element={<Talent />} />
                     <Route path="/talent/apply" element={<TalentApply />} />
-                    <Route path="/talent/:talentSlug" element={<TalentDetail />} />
                     <Route path="/work" element={<Work />} />
                     <Route path="/privacy" element={<Privacy />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/studio" element={<Studio />} />
                     <Route path="/talent-form" element={<TalentForm />} />
                     <Route path="/favicon.ico" element={null} />
+                    <Route path="/:talentSlug" element={<TalentDetail />} />
                     {/* Catch-all: dedicated branded 404 page */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

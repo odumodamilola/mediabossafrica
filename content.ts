@@ -26,6 +26,17 @@ export type TalentProfile = {
   biography: string[];
   specialties: string[];
   knownFor: string[];
+  portfolioHighlights?: string[];
+  filmography?: Array<{
+    year: string;
+    title: string;
+    filmRole: string;
+  }>;
+  brandPackage?: {
+    idealFor: string[];
+    offerings: string[];
+    uniqueAdvantage: string;
+  };
   socials?: Array<{
     platform: string;
     link: string;
@@ -190,16 +201,53 @@ export const TALENT_PROFILES: TalentProfile[] = [
   {
     slug: 'tobi-makinde',
     name: 'Tobi Makinde',
-    role: 'Actor, Producer, and Show Host',
+    role: 'Actor, Filmmaker & Director',
     location: 'Nigeria',
     description:
-      'Tobi Makinde is a leading force in African entertainment, known for his versatile acting, production expertise, and engaging screen presence.',
+      'One of Nollywood\'s most dynamic multi-hyphenate creatives — an actor, filmmaker, and director whose career spans over two decades, combining performance with production intelligence.',
     biography: [
-      'Tobi Makinde operates at the intersection of acting, producing, and audience-facing storytelling. His profile fits projects that need credibility, familiarity, and strong screen presence.',
-      'He has built a significant presence across digital platforms, engaging audiences with premium content and authentic storytelling through The Tobi Makinde Show.',
+      'Tobi Makinde is one of Nollywood\'s most dynamic multi-hyphenate creatives, an actor, filmmaker, and director whose career spans over two decades. Beginning as a child actor at year 7, he has evolved into a key contributor to Nigeria\'s modern film renaissance, combining performance with production intelligence.',
+      'He gained widespread recognition for his role as "Timini" in Jenifa\'s Diary and further solidified his industry relevance by co-directing Battle on Buka Street, one of Nollywood\'s highest-grossing films. His portrayal of "Shina Judah" in A Tribe Called Judah (2024) earned both critical and commercial acclaim.',
+      'Makinde represents a rare category of talent who understands both creative execution and commercial storytelling, making him highly valuable for brands and large-scale productions.',
     ],
-    specialties: ['Nollywood entertainment', 'Show development', 'Audience-facing storytelling'],
-    knownFor: ['The Tobi Makinde Show', 'Top-tier Nollywood productions'],
+    specialties: ['Acting', 'Film Direction', 'Executive Production', 'Branded Storytelling'],
+    knownFor: [
+      'Executive Producer/Director: No One Has To Know (2025)',
+      'Supporting Lead Actor: Benefactor (2025)',
+      'Co-director: Battle on Buka Street (₦1B+ box office success)',
+      'Lead/Supporting Actor: A Tribe Called Judah (2024 blockbuster)',
+      'Breakout TV Role: Jenifa\'s Diary',
+      'International recognition via festival selections',
+      'Supporting Actor: 3 Working Days (2024)',
+    ],
+    portfolioHighlights: [
+      'Executive Producer/Director: No One Has To Know (2025)',
+      'Supporting Lead Actor: Benefactor (2025)',
+      'Co-director: Battle on Buka Street (₦1B+ box office success)',
+      'Lead/Supporting Actor: A Tribe Called Judah (2024 blockbuster)',
+      'Breakout TV Role: Jenifa\'s Diary',
+      'International recognition via festival selections',
+      'Supporting Actor: 3 Working Days (2024)',
+    ],
+    filmography: [
+      { year: '2025', title: 'No One Has To Know', filmRole: 'Executive Producer/Director — Pastor David' },
+      { year: '2025', title: 'The Benefactor', filmRole: 'David' },
+      { year: '2024', title: 'A Tribe Called Judah', filmRole: 'Shina Judah' },
+      { year: '2022', title: 'Battle on Buka Street', filmRole: 'Co-Director' },
+      { year: '2015–Present', title: 'Jenifa\'s Diary', filmRole: 'Timini' },
+      { year: '2018', title: 'My Siblings and I', filmRole: 'Samson' },
+      { year: '2024', title: 'Everybody Loves Jenifa', filmRole: 'Timini' },
+    ],
+    brandPackage: {
+      idealFor: ['FMCG', 'Telecoms', 'Streaming Platforms', 'Lifestyle Brands'],
+      offerings: [
+        'Brand ambassador (film + digital integration)',
+        'Campaign storytelling (scripted branded content)',
+        'Film-led brand placements',
+        'Event hosting & media appearances',
+      ],
+      uniqueAdvantage: 'Combines actor + director + storyteller — can deliver both performance and production value.',
+    },
     socials: [
       { platform: 'Instagram', link: 'https://www.instagram.com/tobimakinde?igsh=MW14eTFidWk3MzkyMQ==' },
       { platform: 'TikTok', link: 'https://www.tiktok.com/@tobimakinde?_r=1&_t=ZS-948rEJZgHDN' },
@@ -215,45 +263,47 @@ export const TALENT_PROFILES: TalentProfile[] = [
     ],
   },
   {
-    slug: 'okawa-shazney',
-    name: 'Okawa Shazney',
-    role: 'Actor and Entertainment Talent',
-    location: 'Nigeria',
-    description:
-      'Okawa Shazney is an award-winning actress who brings depth and elegance to every performance, captivating audiences across Africa and beyond.',
-    biography: [
-      'Okawa Shazney contributes to the entertainment landscape through work that suits storytelling, visibility, and high-impact campaign activity.',
-      'Her profile is a strong fit for audience-led productions and international brand collaborations that need personality and screen connection.',
-    ],
-    specialties: ['Award-winning acting', 'Global brand collaborations', 'Screen storytelling'],
-    knownFor: ['Nollywood Feature Films', 'International Television Series'],
-    socials: [
-      { platform: 'Instagram', link: 'https://www.instagram.com/okawashaznay?igsh=c2Y0ZzdydWFtaHZ2' },
-      { platform: 'TikTok', link: 'https://www.tiktok.com/@okawashaznay?_r=1&_t=ZS-948r2xBWLxY' },
-      { platform: 'YouTube', link: 'https://youtube.com/@okawashaznaytv?si=tznxYdSOM7N56lCe' },
-    ],
-    portfolio: [
-      {
-        title: 'Cinematic Performances',
-        role: 'Lead Actor',
-        summary: 'Powerhouse performances in leading Nollywood and international productions.',
-        image: 'https://i.ibb.co/Y448f6Q1/Save-Clip-App-639874761-18568291957011667-3292274657129245430-n-2.jpg',
-      },
-    ],
-  },
-  {
     slug: 'abayomi-alvin',
     name: 'Abayomi Alvin',
-    role: 'Actor and Creative Talent',
+    role: 'Actor & Model',
     location: 'Nigeria',
     description:
-      'Abayomi Alvin is a multi-talented actor and creative whose work bridges the gap between traditional cinema and modern digital content.',
+      'A Nollywood actor and model recognized for his versatility across film and television, with cross-platform appeal spanning mainstream cinema, series, and youth-focused productions.',
     biography: [
-      'Abayomi Alvin is relevant to work across screen talent, branded entertainment, and production-led storytelling.',
-      'His portfolio direction supports conversations around talent management, project visibility, and campaign-ready creative partnerships.',
+      'Abayomi Alvin is a Nollywood actor and model recognized for his versatility across film and television. Since debuting in 2013, he has steadily built a portfolio spanning mainstream cinema, series, and youth-focused productions.',
+      'His performances in titles like A Naija Christmas, Breakout, and MTV Shuga position him as a cross-platform actor capable of appealing to both traditional and digital audiences.',
+      'Alvin\'s strength lies in his ability to embody modern African characters with emotional realism and commercial appeal.',
     ],
-    specialties: ['Dynamic screen acting', 'Content creation', 'Brand positioning'],
-    knownFor: ['Popular Nollywood Series', 'Viral Content Collaborations'],
+    specialties: ['Screen Acting', 'Modelling', 'Youth-Focused Productions', 'Netflix-Backed Projects'],
+    knownFor: [
+      'Featured in Netflix-backed productions (A Naija Christmas)',
+      'Starred in Nigeria\'s first dance-drama series (Breakout)',
+      'Roles across film, TV, and youth culture projects',
+    ],
+    portfolioHighlights: [
+      'Featured in Netflix-backed productions (A Naija Christmas)',
+      'Starred in Nigeria\'s first dance-drama series (Breakout)',
+      'Roles across film, TV, and youth culture projects',
+    ],
+    filmography: [
+      { year: '2017–2019', title: 'MTV Shuga Naija', filmRole: '—' },
+      { year: '2017', title: 'Jemeji', filmRole: '—' },
+      { year: '2022', title: 'Breakout', filmRole: 'Femi Bankole' },
+      { year: '2016–2018', title: "Jenifa's Diary", filmRole: 'Austin' },
+      { year: '2021', title: 'A Naija Christmas', filmRole: 'Chike' },
+      { year: '2026', title: 'Wire Wire', filmRole: 'Ayo' },
+      { year: '2018', title: 'Moms at War', filmRole: 'Supporting' },
+      { year: '2017', title: 'Kasala', filmRole: 'Bully' },
+    ],
+    brandPackage: {
+      idealFor: ['Youth Brands', 'Fashion', 'Streaming Platforms'],
+      offerings: [
+        'Lead actor in branded series',
+        'Fashion & lifestyle campaigns',
+        'Social storytelling campaigns',
+      ],
+      uniqueAdvantage: 'Strong Gen Z + millennial appeal + Nollywood credibility.',
+    },
     socials: [
       { platform: 'Instagram', link: 'https://www.instagram.com/abayomi_alvin?igsh=bWF0ZjJ4cGYxYWFk' },
       { platform: 'TikTok', link: 'https://www.tiktok.com/@abayomi_alvin?_r=1&_t=ZS-948rYaLpxmz' },
@@ -269,17 +319,93 @@ export const TALENT_PROFILES: TalentProfile[] = [
     ],
   },
   {
+    slug: 'okawa-shaznay',
+    name: 'Okawa Shaznay',
+    role: 'Actress & Pan-African Screen Talent',
+    location: 'Cameroon / Nigeria',
+    description:
+      'A defining figure in pan-African cinema, widely recognised as the first Cameroonian actor to gain prominence within Nollywood — specialising in roles that reflect identity, migration, and cultural intersection.',
+    biography: [
+      'Okawa Shaznay stands as a defining figure in pan-African cinema, widely recognised as the first Cameroonian actor to gain prominence within Nollywood.',
+      'Her career represents the expansion of Nollywood beyond borders, contributing to a more unified African storytelling ecosystem.',
+      'She specialises in roles that reflect identity, migration, and cultural intersection, positioning her as a powerful voice for brands and productions seeking continental relevance.',
+    ],
+    specialties: ['Lead Acting', 'Pan-African Storytelling', 'Cross-Border Productions', 'Cultural Representation'],
+    knownFor: [
+      'AMAA Nominee for Best Actress in a Leading Role 2018',
+      'ELOY Award for Best TV Actress 2016 Winner',
+      'First Cameroonian actor to gain Nollywood prominence',
+      'Cross-border African productions',
+    ],
+    portfolioHighlights: [
+      'AMAA Nominee for Best Actress in a Leading Role 2018',
+      'ELOY Award for Best TV Actress 2016 Winner',
+      'Nollywood film appearances',
+      'Cross-border African productions',
+      'Representation of pan-African narratives',
+    ],
+    filmography: [
+      { year: '2015', title: 'Iyore', filmRole: 'Supporting Actress' },
+      { year: '2015–2018', title: 'Delilah Ambrose Series', filmRole: 'Lead Actress' },
+      { year: '2021', title: 'Movement Japa Series', filmRole: 'Lead Actress' },
+      { year: '2025', title: 'Tarella', filmRole: 'Lead Actress' },
+      { year: '2018', title: 'In My Country', filmRole: 'Lead Actress' },
+    ],
+    brandPackage: {
+      idealFor: ['International Brands', 'NGOs', 'Pan-African Campaigns'],
+      offerings: [
+        'Lead Actress in Movies & Series',
+        'Cross-border campaigns',
+        'Cultural storytelling campaigns',
+        'Representation-focused brand partnerships',
+      ],
+      uniqueAdvantage: 'Pan-African identity + Nollywood integration.',
+    },
+    socials: [
+      { platform: 'Instagram', link: 'https://www.instagram.com/okawashaznay?igsh=c2Y0ZzdydWFtaHZ2' },
+      { platform: 'TikTok', link: 'https://www.tiktok.com/@okawashaznay?_r=1&_t=ZS-948r2xBWLxY' },
+      { platform: 'YouTube', link: 'https://youtube.com/@okawashaznaytv?si=tznxYdSOM7N56lCe' },
+    ],
+    portfolio: [
+      {
+        title: 'Cinematic Performances',
+        role: 'Lead Actress',
+        summary: 'Powerhouse performances in leading Nollywood and international productions.',
+        image: 'https://i.ibb.co/Y448f6Q1/Save-Clip-App-639874761-18568291957011667-3292274657129245430-n-2.jpg',
+      },
+    ],
+  },
+  {
     slug: 'wale-daniel',
     name: 'Wale Daniel',
-    role: 'Creative Talent',
+    role: 'Digital Content Creator',
     location: 'Nigeria',
     description:
-      'Wale Daniel is a visionary creative, delivering high-impact narratives that redefine the African digital landscape.',
+      'A digital-first content creator whose work reflects the rhythm of contemporary Nigerian culture — rooted in relatability, humor, and social commentary, making him highly shareable across platforms.',
     biography: [
-      'Wale Daniel focuses on high-impact visual storytelling and creative direction, building brand authority through content.',
+      'Wale Daniel is a digital-first content creator whose work reflects the rhythm of contemporary Nigerian culture. His storytelling is rooted in relatability, humor, and social commentary, making him highly shareable across platforms.',
+      'He operates within the fast-moving creator economy, where relevance is driven by speed, cultural awareness, and audience engagement.',
     ],
-    specialties: ['Creative direction', 'Visual storytelling', 'Strategic content production'],
-    knownFor: ['High-impact brand content', 'Visionary creative direction'],
+    specialties: ['Viral Content Creation', 'Social Commentary', 'Audience Engagement', 'Cultural Storytelling'],
+    knownFor: [
+      'Viral social media campaigns',
+      'High engagement content across platforms',
+      'Youth-driven storytelling',
+    ],
+    portfolioHighlights: [
+      'Viral social media campaigns',
+      'High engagement content across platforms',
+      'Youth-driven storytelling',
+    ],
+    brandPackage: {
+      idealFor: ['Fintech', 'FMCG', 'Youth Brands'],
+      offerings: [
+        'Viral campaign creation',
+        'Social media takeovers',
+        'Influencer-led storytelling',
+      ],
+      uniqueAdvantage: 'Built for reach, virality, and audience connection.',
+    },
     socials: [
       { platform: 'Instagram', link: 'https://www.instagram.com/waledaniel_?igsh=OTN6eHR6bnJ2a2lk' },
       { platform: 'TikTok', link: 'https://www.tiktok.com/@thewaledaniel?_r=1&_t=ZS-94PH5NxNP7J' },
@@ -294,17 +420,45 @@ export const TALENT_PROFILES: TalentProfile[] = [
     ],
   },
   {
-    slug: 'ayomide-yussuf',
-    name: 'Ayomide Yussuf',
-    role: 'Creative Talent',
+    slug: 'ayomide-yusuf',
+    name: 'Ayomide Yusuf',
+    role: 'Gospel Minister & Lifestyle Creator',
     location: 'Nigeria',
     description:
-      'Ayomide Yussuf is an emerging star in media and storytelling, committed to pushing the boundaries of creativity in Africa.',
+      'A gospel minister and storyteller whose work sits at the intersection of spirit, lifestyle, and personal branding — highly valuable for consumer-facing brands seeking authentic audience trust.',
     biography: [
-      'Ayomide Yussuf building a legacy through consistent and creative contribution to the entertainment ecosystem.',
+      'Ayomide Yusuf is a gospel minister and a storyteller whose work is defined by aesthetic clarity and emotional relatability. His content sits at the intersection of spirit, lifestyle, and personal branding, making him highly valuable for consumer-facing brands.',
+      'He represents the modern digital creator who understands both visual identity and audience psychology.',
     ],
-    specialties: ['Creative storytelling', 'Media production', 'Digital presence building'],
-    knownFor: ['Fresh creative perspectives', 'Emerging talent in African media'],
+    specialties: ['Gospel Ministry', 'Lifestyle Content', 'Visual Storytelling', 'Music Collaboration'],
+    knownFor: [
+      'Global Worship Leader of the Year Award (2024) – Harvesters International Christian Centre',
+      'Featured on Shekere Worship 17.0 (2024) with Pastor Tony Rapu',
+      'Featured on the Yielded album by Peterson Okopi (Testimony)',
+      'Lifestyle & beauty campaigns',
+      'High-quality visual storytelling',
+    ],
+    portfolioHighlights: [
+      'Recipient of the Global Worship Leader of the Year Award (2024) – Harvesters International Christian Centre',
+      'Featured on Shekere Worship 17.0 (2024) with Pastor Tony Rapu',
+      'Featured on the Yielded album by Peterson Okopi (Testimony)',
+      'Lifestyle & beauty campaigns',
+      'High-quality visual storytelling',
+      'Audience-driven engagement',
+    ],
+    brandPackage: {
+      idealFor: ['Beauty', 'Fashion', 'Lifestyle Brands', 'Music Brands', 'Churches', 'Event Promoters', 'Concert Organizers', 'Kingdom-Centered Campaigns'],
+      offerings: [
+        'Influencer campaigns',
+        'Product storytelling',
+        'Visual brand campaigns',
+        'Music project collaborations',
+        'Tour & concert partnerships',
+        'Event & ministry promotions',
+        'Worship event visibility campaigns',
+      ],
+      uniqueAdvantage: 'Strong aesthetic + audience trust + brand alignment.',
+    },
     socials: [
       { platform: 'Instagram', link: 'https://www.instagram.com/waledaniel_?igsh=OTN6eHR6bnJ2a2lk' },
       { platform: 'TikTok', link: 'https://www.tiktok.com/@ayomideyusuf221?_r=1&_t=ZS-94PHCx6d2e1' },
