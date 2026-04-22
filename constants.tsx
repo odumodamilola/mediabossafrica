@@ -3,7 +3,7 @@
 import { NavItem, Service, Industry, FAQItem, Feature, PricingPlan, Resource, CaseStudy, PageType } from './types';
 
 // ROUTING MANIFEST: Type-safe list of all valid pages (prevents dead-ends)
-export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'about-us', 'service', 'pricing', 'resources', 'contact', 'talent', 'talent/apply', 'work', 'privacy', 'terms', 'studio', 'talent-form'] as const;
+export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'about-us', 'pricing', 'resources', 'contact', 'talent', 'talent/apply', 'work', 'privacy', 'terms', 'studio', 'talent-form', 'digital-marketing', 'public-relations', 'talent-management', 'content-production'] as const;
 
 
 export const SEO_CONFIG = {
@@ -11,6 +11,34 @@ export const SEO_CONFIG = {
     title: "Mediaboss Africa | Influence. Innovation. Impact.",
     description: "Leading pan-African talent management and influencer marketing company. We build influence that converts through strategic storytelling and different data-driven campaigns.",
     keywords: "talent management africa, influencer marketing nigeria, creative media agency, brand partnerships, mediaboss studio",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'digital-marketing': {
+    title: "Digital Marketing | Mediaboss Africa – Influencer & Event Marketing",
+    description: "Data-driven digital marketing strategies. We specialize in high-impact influencer campaigns and event marketing that drive real growth.",
+    keywords: "digital marketing nigeria, influencer marketing africa, event marketing lagos",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'public-relations': {
+    title: "Public Relations | Mediaboss Africa – Strategic Communications",
+    description: "Strategic PR and brand communication. We build and protect reputations for Africa's leading brands and personalities.",
+    keywords: "public relations nigeria, brand strategy africa, strategic communications lagos",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'talent-management': {
+    title: "Talent Management | Mediaboss Africa – Elite Creator Roster",
+    description: "The premier home for Africa's most elite creators. Strategic management, brand deals, and career growth.",
+    keywords: "talent management africa, creator agency nigeria, influencer management",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'content-production': {
+    title: "Content Production | Mediaboss Africa – Studio & Storytelling",
+    description: "High-fidelity visual storytelling. From brand films to studio productions, we create content that moves culture.",
+    keywords: "video production lagos, content studio nigeria, cinematic storytelling africa",
     ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
@@ -116,35 +144,51 @@ export const SEO_CONFIG = {
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: 'home' },
-  { label: 'About Us', href: 'about-us' },
-  { label: 'Services', href: 'service' },
+  { 
+    label: 'Services', 
+    href: 'digital-marketing', // Placeholder parent href, but used for active state
+    children: [
+      { label: 'Digital Marketing', href: 'digital-marketing' },
+      { label: 'Public Relations', href: 'public-relations' },
+      { label: 'Talent Management', href: 'talent-management' },
+      { label: 'Content Production', href: 'content-production' }
+    ]
+  },
+  { label: 'Work', href: 'work' },
+  { label: 'Studio', href: 'studio' },
   { label: 'Talent', href: 'talent' },
-  { label: 'The Studio', href: 'studio' },
-  { label: 'Our Work', href: 'work' },
+  { label: 'About Us', href: 'about-us' },
   { label: 'Contact', href: 'contact' },
 ];
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    title: "The Fintech Revolution",
-    client: "PayFuture Africa",
-    category: "Influencer Campaign",
-    image: "https://i.ibb.co/Qj9JvWN6/Save-Clip-App-522829130-18394235239142600-4624636850389265179-n.jpg",
-    result: "4.2M New Users in 90 Days"
+    title: "MTN Brand Campaign 2026",
+    client: "MTN Nigeria",
+    category: "Influencer Marketing",
+    image: "https://i.ibb.co/99C4hKQC/Whats-App-Image-2026-03-18-at-6-11-56-PM.jpg",
+    result: "4.2M Reach in 90 Days"
   },
   {
-    title: "Lagos Fashion Week 2025",
+    title: "Lagos Fashion Week",
     client: "LFW Global",
-    category: "Cinematic Production",
+    category: "Event Marketing",
     image: "https://i.ibb.co/tp8V5rJh/Save-Clip-App-615090775-18556831825025304-3688801026426920160-n.jpg",
     result: "12M Organic Video Views"
   },
   {
-    title: "Sound of the Continent",
+    title: "The Studio Session",
     client: "Audiomack NG",
-    category: "Content Strategy",
-    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800",
-    result: "+400% Creator Retention"
+    category: "Content Production",
+    image: "https://i.ibb.co/HTxVcFsq/Whats-App-Image-2026-03-18-at-6-15-52-PM.jpg",
+    result: "+400% Engagement"
+  },
+  {
+    title: "Social Growth Project",
+    client: "Fintech Startup",
+    category: "Digital Marketing",
+    image: "https://i.ibb.co/mCGgTgK0/Whats-App-Image-2026-03-18-at-6-13-16-PM.jpg",
+    result: "85K New Followers"
   }
 ];
 

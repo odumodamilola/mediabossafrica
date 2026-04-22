@@ -14,11 +14,16 @@ export type PageType =
   | 'privacy'
   | 'terms'
   | 'studio'
-  | 'talent-form';
+  | 'talent-form'
+  | 'digital-marketing'
+  | 'public-relations'
+  | 'talent-management'
+  | 'content-production';
 
 export interface NavItem {
   label: string;
   href: PageType;
+  children?: { label: string; href: string }[];
 }
 
 export interface Service {

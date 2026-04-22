@@ -11,46 +11,36 @@ const smoothEase = [0.16, 1, 0.3, 1] as const;
 
 const CORE_SERVICES = [
   {
-    id: 'influencer-marketing',
-    title: 'Influencer Marketing',
-    description: 'Campaigns built to grow visibility, engagement, and brand relevance across creator-led platforms.',
+    id: 'digital-marketing',
+    title: 'Digital Marketing',
+    description: 'Data-driven strategies including Influencer Marketing and Event Marketing to drive visibility and measurable growth.',
+  },
+  {
+    id: 'pr',
+    title: 'Public Relations',
+    description: 'Strategic communication and reputation management that strengthens brand perception and industry presence.',
   },
   {
     id: 'talent-management',
     title: 'Talent Management',
-    description: 'Representation and growth support for creators, actors, and public-facing talent.',
+    description: 'Comprehensive representation and career growth support for Africa\'s most elite creators and actors.',
   },
   {
     id: 'content-production',
     title: 'Content Production',
-    description: 'High-quality visual and digital content for campaigns, storytelling, and branded media.',
-  },
-  {
-    id: 'public-relations',
-    title: 'Public Relations',
-    description: 'Strategic communication that strengthens brand perception, visibility, and industry presence.',
-  },
-  {
-    id: 'digital-marketing',
-    title: 'Digital Marketing',
-    description: 'Online growth strategies designed to drive audience engagement, awareness, and conversion.',
-  },
-  {
-    id: 'event-marketing',
-    title: 'Event Marketing',
-    description: 'Launches, activations, and event campaigns designed to create momentum before, during, and after the event.',
+    description: 'High-fidelity visual storytelling and branded media production built for the modern attention economy.',
   },
 ];
 
-const SERVICE_ICONS = [Megaphone, Users2, Clapperboard, ShieldCheck, Radio, Target];
+const SERVICE_ICONS = [Megaphone, ShieldCheck, Users2, Clapperboard];
 
 const Services: React.FC<ServicesProps> = () => {
   return (
-    <section id="services" className="py-16 sm:py-24 md:py-32 lg:py-40 xl:py-48 relative overflow-hidden" aria-labelledby="services-title">
+    <section id="services" className="py-16 sm:py-24 md:py-32 relative overflow-hidden" aria-labelledby="services-title">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_rgba(255,0,160,0.05)_0%,_transparent_50%)] pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 sm:gap-12 mb-16 sm:mb-24 lg:mb-32">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 sm:gap-12 mb-16 sm:mb-24">
           <div className="max-w-3xl">
             <motion.span
               initial={{ opacity: 0, x: -30 }}
@@ -58,10 +48,10 @@ const Services: React.FC<ServicesProps> = () => {
               transition={{ duration: 0.8 }}
             className="text-brand-magenta text-[11px] font-black tracking-[0.6em] uppercase mb-6 sm:mb-8 block"
             >
-              Our Services
+              Our Ecosystem
             </motion.span>
-            <h2 id="services-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black tracking-[-0.03em] leading-[0.9] text-gray-900 dark:text-white transition-colors">
-              Our Services
+            <h2 id="services-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-[-0.03em] leading-[0.9] text-gray-900 dark:text-white transition-colors">
+              Core Expertise
             </h2>
           </div>
           <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-gray-600 dark:text-white/40 text-base sm:text-lg md:text-xl font-light max-w-md leading-relaxed">
@@ -69,15 +59,16 @@ const Services: React.FC<ServicesProps> = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-12">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {CORE_SERVICES.map((service, i) => (
             <motion.div
               key={service.id}
+              id={service.id === 'digital-marketing' ? 'digital-marketing' : service.id === 'pr' ? 'pr' : undefined}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.8, delay: i * 0.12, ease: smoothEase }}
-              className="group bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[40px] p-8 sm:p-10 relative overflow-hidden shadow-sm dark:shadow-none flex flex-col hover:scale-[1.01] transition-transform xl:col-span-4"
+              className="group bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-[40px] p-8 sm:p-10 relative overflow-hidden shadow-sm dark:shadow-none flex flex-col hover:scale-[1.01] transition-transform"
             >
               <div className="absolute -right-8 -top-8 w-48 h-48 bg-brand-magenta/5 rounded-full blur-[80px] group-hover:bg-brand-magenta/15 transition-all duration-700" />
 

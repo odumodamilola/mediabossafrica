@@ -19,6 +19,10 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Studio = lazy(() => import('./pages/Studio'));
 const Talent = lazy(() => import('./pages/Talent'));
+const DigitalMarketing = lazy(() => import('./pages/DigitalMarketing'));
+const PublicRelations = lazy(() => import('./pages/PublicRelations'));
+const TalentManagement = lazy(() => import('./pages/TalentManagement'));
+const ContentProduction = lazy(() => import('./pages/ContentProduction'));
 const TalentForm = lazy(() => import('./pages/TalentForm'));
 const TalentApply = lazy(() => import('./pages/talent/ApplyForm'));
 const TalentDetail = lazy(() => import('./pages/TalentDetail'));
@@ -122,16 +126,15 @@ const App: React.FC = () => {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   const rawActivePage = (location.pathname.replace('/', '') || 'home') as PageType;
-  const activePage = location.pathname.startsWith('/service/')
-    ? 'service'
-    : location.pathname.startsWith('/talent/')
-      ? 'talent'
-    : rawActivePage === 'talent/apply'
-      ? 'talent'
-    : rawActivePage === 'features'
-      ? 'about-us'
-      : rawActivePage === 'solutions'
-        ? 'service'
+  const activePage = 
+    ['digital-marketing', 'public-relations', 'talent-management', 'content-production'].includes(rawActivePage)
+      ? rawActivePage
+      : location.pathname.startsWith('/talent/')
+        ? 'talent'
+      : rawActivePage === 'talent/apply'
+        ? 'talent'
+      : rawActivePage === 'features'
+        ? 'about-us'
         : rawActivePage;
 
   const handleNavigate = (page: PageType) => {
@@ -166,11 +169,10 @@ const App: React.FC = () => {
                   <Routes location={location}>
                     <Route path="/" element={<Home onNavigate={handleNavigate} />} />
                     <Route path="/about-us" element={<Features />} />
-                    <Route path="/service" element={<Solutions />} />
-                    <Route path="/service/:industrySlug" element={<IndustryDetail />} />
-                    <Route path="/features" element={<Features />} />
-                    <Route path="/solutions" element={<Solutions />} />
-                    <Route path="/solutions/:industrySlug" element={<IndustryDetail />} />
+                    <Route path="/digital-marketing" element={<DigitalMarketing />} />
+                    <Route path="/public-relations" element={<PublicRelations />} />
+                    <Route path="/talent-management" element={<TalentManagement />} />
+                    <Route path="/content-production" element={<ContentProduction />} />
                     <Route path="/pricing" element={<Pricing onNavigate={handleNavigate} />} />
                     <Route path="/resources" element={<Resources />} />
                     <Route path="/contact" element={<Contact />} />

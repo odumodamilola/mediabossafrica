@@ -73,12 +73,12 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 sm:py-32">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-start text-left"
+            className="flex flex-col items-center text-center"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -97,37 +97,31 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
             <h1
               id="hero-title"
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-display font-black leading-[0.9] md:leading-[0.85] tracking-[-0.04em] mb-8 sm:mb-10 md:mb-12 select-none"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-black leading-[1.1] md:leading-[1] tracking-tight mb-8 sm:mb-10 select-none"
             >
               <motion.span
-                initial={{ opacity: 0, y: 80, scale: 0.95, rotateX: 30 }}
-                animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-                transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-gray-900 dark:text-white transition-colors"
               >
                 Influence. Innovation. Impact.
               </motion.span>
               <motion.span
-                initial={{ opacity: 0, y: 60, scale: 0.85, rotateX: 45 }}
-                animate={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
-                transition={{ duration: 1.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-brand-magenta italic text-glow relative origin-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mt-4 sm:mt-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-brand-magenta italic text-xl sm:text-2xl md:text-3xl lg:text-4xl mt-4 sm:mt-6"
               >
                 Let's make it mediaboss.
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 2, delay: 2, ease: 'easeInOut' }}
-                  className="absolute -bottom-2 sm:-bottom-3 left-0 h-[1.5px] bg-gradient-to-r from-transparent via-brand-magenta to-transparent opacity-40"
-                />
               </motion.span>
             </h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: 1.5 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-white/75 max-w-3xl leading-relaxed mb-10 sm:mb-12 md:mb-12 tracking-tight transition-colors"
+              transition={{ duration: 1.5, delay: 1.2 }}
+              className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-white/75 max-w-2xl leading-relaxed mb-10 sm:mb-12 tracking-tight transition-colors"
             >
               At Mediaboss Africa, we dont just create visibility - we build influence that converts.
             </motion.p>
@@ -135,18 +129,18 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.8 }}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full sm:w-auto"
+              transition={{ duration: 0.8, delay: 1.5 }}
+              className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto"
             >
               <button
                 onClick={() => onNavigate('talent-form')}
-                className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl bg-brand-magenta text-white border-2 border-brand-magenta font-black text-xs uppercase tracking-[0.2em] hover:bg-brand-magenta/90 transition-all shadow-xl hover:shadow-brand-magenta/50 min-h-[48px]"
+                className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-5 rounded-xl bg-brand-magenta text-white border-2 border-brand-magenta font-black text-xs uppercase tracking-[0.2em] hover:bg-brand-magenta/90 transition-all shadow-xl hover:shadow-brand-magenta/50"
               >
                 Work With Us
               </button>
               <button
                 onClick={() => onNavigate('talent')}
-                className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl border-2 border-gray-300 dark:border-white/35 text-gray-700 dark:text-white/85 font-black text-xs uppercase tracking-[0.2em] hover:border-brand-magenta hover:text-brand-magenta transition-colors min-h-[48px]"
+                className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-5 rounded-xl border-2 border-gray-300 dark:border-white/35 text-gray-700 dark:text-white/85 font-black text-xs uppercase tracking-[0.2em] hover:border-brand-magenta hover:text-brand-magenta transition-colors"
               >
                 Join Our Talent
               </button>
