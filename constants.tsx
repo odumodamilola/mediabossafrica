@@ -217,6 +217,18 @@ export const PRICING_PLANS: PricingPlan[] = [
 
 export const RESOURCES: Resource[] = [
   {
+    title: "Why Talent Needs Investment to Thrive in the Modern Economy",
+    type: "Article",
+    author: "Seyi Buhari",
+    date: "April 14, 2026",
+    image: "https://cdn.pmnewsnigeria.com/wp-content/uploads/2026/04/Seyi-1.jpg",
+    readTime: "8 min read",
+    excerpt: "Seyi Buhari, Founder of Mediaboss Africa, explains why talent must be treated as a long-term business asset in the 2026 global economy.",
+    source: "PM News Nigeria",
+    url: "https://pmnewsnigeria.com/2026/04/14/why-talents-needs-investment-to-thrive-in-the-modern-economy/",
+    imagePosition: "center 15%"
+  },
+  {
     title: "How to Land Your First $1,000 Brand Deal in Lagos",
     type: "Article",
     image: "https://images.unsplash.com/photo-1553481187-be93c21490a9?q=80&w=400",
@@ -227,12 +239,6 @@ export const RESOURCES: Resource[] = [
     type: "Case Study",
     image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=400",
     readTime: "12 min read"
-  },
-  {
-    title: "Navigating Nigerian Copyright Law for Creators",
-    type: "Article",
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=400",
-    readTime: "8 min read"
   }
 ];
 

@@ -50,6 +50,12 @@ export interface Resource {
   type: 'Article' | 'Case Study' | 'Report';
   image: string;
   readTime: string;
+  author?: string;
+  date?: string;
+  excerpt?: string;
+  url?: string;
+  source?: string;
+  imagePosition?: string;
 }
 
 export interface Industry {

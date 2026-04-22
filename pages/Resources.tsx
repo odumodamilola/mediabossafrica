@@ -21,31 +21,71 @@ const Resources: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
           {RESOURCES.map((res, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group"
             >
-              <div className="aspect-[16/10] rounded-2xl sm:rounded-[32px] overflow-hidden mb-4 sm:mb-6 relative shadow-lg">
-                <img
-                  src={res.image}
-                  alt={res.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute top-4 sm:top-6 left-4 sm:left-6">
-                  <span className="bg-white/90 dark:bg-brand-deep/80 backdrop-blur-md text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-brand-magenta border border-brand-magenta/30 shadow-md">
-                    {res.type}
-                  </span>
+              <a 
+                href={res.url || "#"} 
+                target={res.url ? "_blank" : "_self"}
+                rel={res.url ? "noopener noreferrer" : ""}
+                className="block"
+              >
+                <div className="aspect-[16/10] rounded-2xl overflow-hidden mb-6 relative shadow-xl bg-gray-100 dark:bg-white/5 transition-colors">
+                  <img
+                    src={res.image}
+                    alt={res.title}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                    style={{ objectPosition: res.imagePosition || 'center center' }}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white/90 dark:bg-black/80 backdrop-blur-md text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-lg text-brand-magenta border border-brand-magenta/20 shadow-lg">
+                      {res.type}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-display font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors leading-tight">{res.title}</h3>
-              <p className="text-gray-400 dark:text-white/30 text-[10px] sm:text-xs font-black uppercase tracking-widest transition-colors">{res.readTime}</p>
+                
+                <div className="flex items-center gap-3 mb-4 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-white/30">
+                  <span>{res.readTime}</span>
+                  {res.source && (
+                    <>
+                      <span className="w-1 h-1 rounded-full bg-brand-magenta" />
+                      <span className="text-brand-magenta">{res.source}</span>
+                    </>
+                  )}
+                  {res.date && (
+                    <>
+                      <span className="w-1 h-1 rounded-full bg-brand-magenta" />
+                      <span>{res.date}</span>
+                    </>
+                  )}
+                </div>
+
+                <h3 className="text-2xl font-display font-bold mb-4 text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors leading-tight">
+                  {res.title}
+                </h3>
+
+                {res.excerpt && (
+                  <p className="text-gray-500 dark:text-white/50 text-sm font-light leading-relaxed mb-6 line-clamp-2">
+                    {res.excerpt}
+                  </p>
+                )}
+
+                {res.author && (
+                  <div className="flex items-center gap-2 text-xs font-medium text-gray-900 dark:text-white/70">
+                    <span className="w-6 h-px bg-brand-magenta/50" />
+                    <span>{res.author}</span>
+                  </div>
+                )}
+              </a>
             </motion.div>
           ))}
         </div>

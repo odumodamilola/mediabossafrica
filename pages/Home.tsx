@@ -342,27 +342,56 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             {RESOURCES.slice(0, 2).map((res) => (
               <a
                 key={res.title}
-                href="/resources"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate('resources');
-                }}
+                href={res.url || "/resources"}
+                target={res.url ? "_blank" : "_self"}
+                rel={res.url ? "noopener noreferrer" : ""}
                 className="group block"
               >
-                <div className="aspect-[16/9] overflow-hidden bg-gray-100 dark:bg-black transition-colors">
+                <div className="aspect-[16/9] overflow-hidden bg-gray-100 dark:bg-black transition-colors rounded-xl shadow-lg">
                   <img
                     src={res.image}
                     alt={res.title}
                     className="w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                    style={{ objectPosition: res.imagePosition || 'center center' }}
                     loading="lazy"
                     decoding="async"
                   />
                 </div>
-                <div className="mt-5 flex items-center justify-between gap-6">
-                  <p className="text-gray-700 dark:text-white/85 text-sm sm:text-base font-light leading-relaxed max-w-[36ch] transition-colors">
-                    {res.title}
-                  </p>
-                  <span className="text-gray-500 dark:text-white/70 text-2xl leading-none transition-colors group-hover:text-brand-magenta">→</span>
+                <div className="mt-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-brand-magenta">
+                      {res.type}
+                    </span>
+                    <span className="text-[10px] font-medium uppercase tracking-widest text-gray-400 dark:text-white/30">
+                      {res.readTime}
+                    </span>
+                    {res.source && (
+                      <>
+                        <span className="w-1 h-1 rounded-full bg-brand-magenta" />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-brand-magenta">
+                          {res.source}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                  <div className="flex items-start justify-between gap-6">
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-display font-bold leading-tight text-gray-900 dark:text-white group-hover:text-brand-magenta transition-colors">
+                        {res.title}
+                      </h3>
+                      {res.author && (
+                        <p className="mt-1 text-xs font-bold text-gray-400 dark:text-white/30">
+                          {res.author} {res.author.includes("Seyi") && "- Founder, Mediaboss Africa"}
+                        </p>
+                      )}
+                      {res.excerpt && (
+                        <p className="mt-3 text-gray-600 dark:text-white/60 text-sm font-light line-clamp-2">
+                          {res.excerpt}
+                        </p>
+                      )}
+                    </div>
+                    <span className="text-gray-300 dark:text-white/20 text-3xl leading-none transition-colors group-hover:text-brand-magenta translate-y-1">→</span>
+                  </div>
                 </div>
               </a>
             ))}
