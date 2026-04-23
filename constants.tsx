@@ -273,10 +273,15 @@ export const RESOURCES: Resource[] = [
     imagePosition: "center 15%"
   },
   {
-    title: "How to Land Your First $1,000 Brand Deal in Lagos",
+    title: "Dancing doesn’t guarantee movie success — Abayomi Alvin",
     type: "Article",
-    image: "https://images.unsplash.com/photo-1553481187-be93c21490a9?q=80&w=400",
-    readTime: "10 min read"
+    author: "Kehinde Ajose",
+    date: "April 12, 2026",
+    image: "https://cdn.punchng.com/wp-content/uploads/2026/04/12001738/ABAYOMI-ALVIN-REAL.jpg",
+    readTime: "6 min read",
+    excerpt: "Actor and content creator Abayomi Alvin emphasizes that attracting audiences is more about understanding what works within the local industry than simply copying Hollywood formulas.",
+    source: "Punch NG",
+    url: "https://punchng.com/dancing-doesnt-guarantee-movie-success-abayomi-alvin/"
   },
   {
     title: "The Rise of Nigerian Fintech Influencers",

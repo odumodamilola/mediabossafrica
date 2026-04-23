@@ -232,11 +232,11 @@ export const TALENT_PROFILES: TalentProfile[] = [
     filmography: [
       { year: '2025', title: 'No One Has To Know', filmRole: 'Executive Producer/Director — Pastor David' },
       { year: '2025', title: 'The Benefactor', filmRole: 'David' },
+      { year: '2024', title: 'Everybody Loves Jenifa', filmRole: 'Timini' },
       { year: '2024', title: 'A Tribe Called Judah', filmRole: 'Shina Judah' },
       { year: '2022', title: 'Battle on Buka Street', filmRole: 'Co-Director' },
-      { year: '2015–Present', title: 'Jenifa\'s Diary', filmRole: 'Timini' },
       { year: '2018', title: 'My Siblings and I', filmRole: 'Samson' },
-      { year: '2024', title: 'Everybody Loves Jenifa', filmRole: 'Timini' },
+      { year: '2015–Present', title: "Jenifa's Diary", filmRole: 'Timini' },
     ],
     brandPackage: {
       idealFor: ['FMCG', 'Telecoms', 'Streaming Platforms', 'Lifestyle Brands'],
@@ -286,13 +286,13 @@ export const TALENT_PROFILES: TalentProfile[] = [
       'Roles across film, TV, and youth culture projects',
     ],
     filmography: [
-      { year: '2017–2019', title: 'MTV Shuga Naija', filmRole: '—' },
-      { year: '2017', title: 'Jemeji', filmRole: '—' },
-      { year: '2022', title: 'Breakout', filmRole: 'Femi Bankole' },
-      { year: '2016–2018', title: "Jenifa's Diary", filmRole: 'Austin' },
-      { year: '2021', title: 'A Naija Christmas', filmRole: 'Chike' },
       { year: '2026', title: 'Wire Wire', filmRole: 'Ayo' },
+      { year: '2022', title: 'Breakout', filmRole: 'Femi Bankole' },
+      { year: '2021', title: 'A Naija Christmas', filmRole: 'Chike' },
+      { year: '2017–2019', title: 'MTV Shuga Naija', filmRole: '—' },
       { year: '2018', title: 'Moms at War', filmRole: 'Supporting' },
+      { year: '2016–2018', title: "Jenifa's Diary", filmRole: 'Austin' },
+      { year: '2017', title: 'Jemeji', filmRole: '—' },
       { year: '2017', title: 'Kasala', filmRole: 'Bully' },
     ],
     brandPackage: {
@@ -345,11 +345,11 @@ export const TALENT_PROFILES: TalentProfile[] = [
       'Representation of pan-African narratives',
     ],
     filmography: [
-      { year: '2015', title: 'Iyore', filmRole: 'Supporting Actress' },
-      { year: '2015–2018', title: 'Delilah Ambrose Series', filmRole: 'Lead Actress' },
-      { year: '2021', title: 'Movement Japa Series', filmRole: 'Lead Actress' },
       { year: '2025', title: 'Tarella', filmRole: 'Lead Actress' },
+      { year: '2021', title: 'Movement Japa Series', filmRole: 'Lead Actress' },
       { year: '2018', title: 'In My Country', filmRole: 'Lead Actress' },
+      { year: '2015–2018', title: 'Delilah Ambrose Series', filmRole: 'Lead Actress' },
+      { year: '2015', title: 'Iyore', filmRole: 'Supporting Actress' },
     ],
     brandPackage: {
       idealFor: ['International Brands', 'NGOs', 'Pan-African Campaigns'],
