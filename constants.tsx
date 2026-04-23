@@ -1,9 +1,7 @@
-
-
 import { NavItem, Service, Industry, FAQItem, Feature, PricingPlan, Resource, CaseStudy, PageType } from './types';
 
 // ROUTING MANIFEST: Type-safe list of all valid pages (prevents dead-ends)
-export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'about-us', 'pricing', 'resources', 'contact', 'talent', 'talent/apply', 'work', 'privacy', 'terms', 'studio', 'talent-form', 'digital-marketing', 'public-relations', 'talent-management', 'content-production'] as const;
+export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'about-us', 'pricing', 'resources', 'contact', 'talent', 'talent/apply', 'privacy', 'terms', 'studio', 'talent-form', 'digital-marketing', 'public-relations', 'talent-management', 'content-production'] as const;
 
 
 export const SEO_CONFIG = {
@@ -50,9 +48,16 @@ export const SEO_CONFIG = {
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
   'about-us': {
-    title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
-    description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
-    keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities",
+    title: "About Us | Mediaboss Africa – The Future of African Influence",
+    description: "Mediaboss Africa is a high-velocity ecosystem building global influence through strategic talent management and cinematic production. Rooted in Lagos, built for the world.",
+    keywords: "about mediaboss africa, lagos creative agency, talent management legacy",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  studio: {
+    title: "The Mediaboss Studio | Professional Production & Digital Storytelling",
+    description: "Access world-class production infrastructure. Video, podcast, and photography studio built to serve brands and creators. Based in Lekki.",
+    keywords: "content studio lekki, video production lagos, professional photography nigeria, Mediaboss Studio",
     ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
@@ -105,13 +110,6 @@ export const SEO_CONFIG = {
     ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
-  work: {
-    title: "Our Work | Nigerian Creator Success Stories",
-    description: "See how we've helped African creators land million-naira campaigns and build global audiences.",
-    keywords: "influencer marketing case studies Nigeria, creator portfolio Africa",
-    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
-    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
-  },
   privacy: {
     title: "Privacy Policy | Mediaboss Africa",
     description: "How we protect your data and intellectual property.",
@@ -123,13 +121,6 @@ export const SEO_CONFIG = {
     title: "Terms of Service | Mediaboss Africa",
     description: "Our legal framework for partnership and service delivery.",
     keywords: "terms of service, legal agreement",
-    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
-    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
-  },
-  studio: {
-    title: "The Mediaboss Studio | Creative Production & Digital Storytelling",
-    description: "A full-service content production and digital storytelling studio built to serve brands, creators, and campaigns. Video, podcast, photography, and more.",
-    keywords: "content studio Lagos, video production Nigeria, podcast studio, branded content Africa, The Mediaboss Studio",
     ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
@@ -154,7 +145,6 @@ export const NAV_LINKS: NavItem[] = [
       { label: 'Content Production', href: 'content-production' }
     ]
   },
-  { label: 'Work', href: 'work' },
   { label: 'Studio', href: 'studio' },
   { label: 'Talent', href: 'talent' },
   { label: 'About Us', href: 'about-us' },
@@ -163,32 +153,32 @@ export const NAV_LINKS: NavItem[] = [
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    title: "MTN Brand Campaign 2026",
+    title: "MTN Brand Ambassador",
     client: "MTN Nigeria",
-    category: "Influencer Marketing",
-    image: "https://i.ibb.co/99C4hKQC/Whats-App-Image-2026-03-18-at-6-11-56-PM.jpg",
-    result: "4.2M Reach in 90 Days"
+    category: "Strategic Partnership",
+    image: "https://i.ibb.co/k2QYDRST/2025-was-a-year-of-bold-moves-powerful-storytelling-and-undeniable-growth-From-redefining-conv.jpg",
+    result: "Elite Influence"
   },
   {
     title: "Lagos Fashion Week",
     client: "LFW Global",
     category: "Event Marketing",
     image: "https://i.ibb.co/tp8V5rJh/Save-Clip-App-615090775-18556831825025304-3688801026426920160-n.jpg",
-    result: "12M Organic Video Views"
+    result: "12M+ Organic Views"
   },
   {
-    title: "The Studio Session",
-    client: "Audiomack NG",
+    title: "No One Has To Know",
+    client: "TTM / Branded Film",
     category: "Content Production",
-    image: "https://i.ibb.co/HTxVcFsq/Whats-App-Image-2026-03-18-at-6-15-52-PM.jpg",
-    result: "+400% Engagement"
+    image: "https://i.ibb.co/99C4hKQC/Whats-App-Image-2026-03-18-at-6-11-56-PM.jpg",
+    result: "1.2M+ YouTube Views"
   },
   {
-    title: "Social Growth Project",
-    client: "Fintech Startup",
-    category: "Digital Marketing",
-    image: "https://i.ibb.co/mCGgTgK0/Whats-App-Image-2026-03-18-at-6-13-16-PM.jpg",
-    result: "85K New Followers"
+    title: "The Tobi Makinde Show",
+    client: "Digital Series",
+    category: "IP Development",
+    image: "https://i.ibb.co/HTxVcFsq/Whats-App-Image-2026-03-18-at-6-15-52-PM.jpg",
+    result: "Viral Digital Launch"
   }
 ];
 

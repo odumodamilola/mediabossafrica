@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import { PageType } from './types';
 import { SEO_CONFIG, INDUSTRIES } from './constants';
+import { TALENT_PROFILES } from './content';
 import ErrorBoundary from './components/ErrorBoundary';
 
 const Features = lazy(() => import('./pages/Features'));
@@ -42,7 +43,32 @@ const SEOManager: React.FC = () => {
   const path = location.pathname;
 
   const config = React.useMemo(() => {
-    // 1. Handle Industry Dynamic Pages
+    // 1. Handle Talent Dynamic Pages
+    const talentSlug = path.startsWith('/') ? path.slice(1) : path;
+    const talent = TALENT_PROFILES.find(t => t.slug === talentSlug);
+    
+    if (talent) {
+      const specialties = talent.specialties.join(', ');
+      return {
+        title: `${talent.name} | ${talent.role} | Mediaboss Africa Elite Talent`,
+        description: `${talent.name} is a leading ${talent.role} based in ${talent.location}. Specializing in ${specialties}. Browse portfolio and management details.`,
+        keywords: `${talent.name}, ${talent.name} Nollywood, ${talent.role} Nigeria, ${talent.name} portfolio, Mediaboss Africa talent`,
+        ogImage: talent.portfolio[0]?.image || 'https://mediabossafrica.com/og-home.jpg',
+        twitterImage: talent.portfolio[0]?.image || 'https://mediabossafrica.com/og-home.jpg',
+        schema: {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": talent.name,
+          "jobTitle": talent.role,
+          "description": talent.description,
+          "image": talent.portfolio[0]?.image,
+          "url": `https://mediabossafrica.com/${talent.slug}`,
+          "sameAs": talent.socials?.map(s => s.link) || []
+        }
+      };
+    }
+
+    // 2. Handle Industry Dynamic Pages
     if (path.startsWith('/service/') || path.startsWith('/solutions/')) {
       const slug = path.split('/').pop();
       const industry = INDUSTRIES.find(i => toSlug(i.name) === slug);
@@ -57,16 +83,30 @@ const SEOManager: React.FC = () => {
       }
     }
 
-    // 2. Handle Static Pages
+    // 3. Handle Static Pages
     const rawPage = (path.replace('/', '') || 'home') as PageType;
     const pageKey =
-      path.startsWith('/service/') || rawPage === 'solutions'
-        ? 'service'
+      ['digital-marketing', 'public-relations', 'talent-management', 'content-production'].includes(rawPage)
+        ? rawPage
         : rawPage === 'features'
           ? 'about-us'
           : rawPage;
     
-    return (SEO_CONFIG as any)[pageKey] || SEO_CONFIG.home;
+    const staticConfig = (SEO_CONFIG as any)[pageKey] || SEO_CONFIG.home;
+    return {
+      ...staticConfig,
+      schema: {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Mediaboss Africa",
+        "url": "https://mediabossafrica.com",
+        "logo": "https://mediabossafrica.com/logo.png",
+        "sameAs": [
+          "https://instagram.com/mediabossafrica",
+          "https://linkedin.com/company/mediabossafrica"
+        ]
+      }
+    };
   }, [path]);
 
   useEffect(() => {
@@ -106,6 +146,15 @@ const SEOManager: React.FC = () => {
     }
     const cleanPath = path === '/' ? '' : path;
     canonical.setAttribute('href', `https://mediabossafrica.com${cleanPath}`);
+
+    // Structured Data (JSON-LD)
+    let script = document.querySelector('script[type="application/ld+json"]');
+    if (!script) {
+      script = document.createElement('script');
+      script.setAttribute('type', 'application/ld+json');
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(config.schema);
   }, [config, path]);
 
   return null;

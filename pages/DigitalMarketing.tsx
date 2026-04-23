@@ -143,10 +143,21 @@ const DigitalMarketing: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-white/60 font-light max-w-2xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-white/60 font-light max-w-2xl mx-auto leading-relaxed mb-12"
             >
               From SEO to Automation, we deliver comprehensive digital strategies that dominate the African market and move culture.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <button className="group relative px-12 py-6 bg-brand-magenta text-white rounded-2xl font-black text-sm uppercase tracking-widest shadow-2xl hover:scale-105 transition-all overflow-hidden">
+                <span className="relative z-10">Growth Strategy Session</span>
+                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+              </button>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -239,10 +250,10 @@ const DigitalMarketing: React.FC = () => {
       <section className="py-24 sm:py-32 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl sm:text-6xl font-display font-black text-gray-900 dark:text-white mb-10 uppercase tracking-tight">
-            Ready to scale <br /> <span className="text-brand-magenta">your brand?</span>
+            Scale Your <br /> <span className="text-brand-magenta">Dominance.</span>
           </h2>
           <button className="group relative px-12 py-6 bg-brand-magenta text-white rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-all overflow-hidden">
-            <span className="relative z-10">Start Your Campaign</span>
+            <span className="relative z-10">Command the Feed</span>
             <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
           </button>
         </div>

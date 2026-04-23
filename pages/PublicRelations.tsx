@@ -112,7 +112,7 @@ const PublicRelations: React.FC = () => {
                 className="flex flex-wrap gap-4"
               >
                 <button className="px-10 py-5 bg-gray-900 dark:bg-white text-white dark:text-black rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-brand-magenta dark:hover:bg-brand-magenta dark:hover:text-white transition-all shadow-xl">
-                  Build Your Reputation
+                  Strategic Consultation
                 </button>
               </motion.div>
             </div>
@@ -211,14 +211,14 @@ const PublicRelations: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Final CTA */}
       <section className="py-24 sm:py-32 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl sm:text-6xl font-display font-black text-gray-900 dark:text-white mb-10 uppercase tracking-tight">
-            Protect Your <br /> <span className="text-brand-magenta">Identity.</span>
+            Secure Your <br /> <span className="text-brand-magenta">Legacy.</span>
           </h2>
           <button className="group relative px-12 py-6 bg-brand-magenta text-white rounded-2xl font-black text-sm uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-all overflow-hidden">
-            <span className="relative z-10">Start a Conversation</span>
+            <span className="relative z-10">Command the Narrative</span>
             <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
           </button>
         </div>
