@@ -7,6 +7,7 @@ import LazyImage from '../components/LazyImage';
 import seyiImg from '../assets/images/seyi-founder.png';
 import yetundeImg from '../assets/images/yetunde.png';
 import stephenImg from '../assets/images/stephen.png';
+import damilolaImg from '../assets/images/damilola.png';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -33,7 +34,7 @@ const leadership = [
   {
     name: 'Damilola Odumo',
     role: 'Software Engineer',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ07fiRBVtcZLBx7-BabG94LLug_1O6Y3xYQ&s',
+    image: damilolaImg,
     bio: 'Building and maintaining the digital infrastructure behind Mediaboss Africa.',
   },
   {
