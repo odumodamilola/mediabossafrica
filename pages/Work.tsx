@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CASE_STUDIES, TRUSTED_BRANDS } from '../constants';
@@ -10,11 +9,11 @@ const Work: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-32">
+    <div className="pt-24 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 lg:pb-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
         {/* ── Header ───────────────────────────────────────── */}
-        <div className="max-w-4xl mb-16 sm:mb-24 md:mb-32">
+        <div className="max-w-4xl mb-12 sm:mb-16 md:mb-20">
           <motion.span
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -27,14 +26,14 @@ const Work: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: smoothEase, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-8xl lg:text-[9rem] xl:text-[10rem] font-display font-black leading-[0.85] tracking-tighter mb-8 sm:mb-12 text-gray-900 dark:text-white transition-colors"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-black leading-[1.1] tracking-tight mb-6 sm:mb-8 text-gray-900 dark:text-white transition-colors"
           >
-            Selected <br /> <span className="text-brand-magenta italic">work.</span>
+            From ideas to execution — <br /> <span className="text-brand-magenta italic">discover the work we’re proud of.</span>
           </motion.h1>
         </div>
 
         {/* ── Case Study Cards ─────────────────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 mb-24 sm:mb-32 md:mb-40">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 mb-16 sm:mb-24 md:mb-28">
           {CASE_STUDIES.map((study, i) => (
             <motion.div
               key={i}
@@ -78,7 +77,7 @@ const Work: React.FC = () => {
         </div>
 
         {/* ── We Are Trusted By ────────────────────────────── */}
-        <div className="mb-24 sm:mb-32 md:mb-40">
+        <div className="mb-16 sm:mb-24 md:mb-28">
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -126,7 +125,7 @@ const Work: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: smoothEase }}
-          className="relative bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 p-10 sm:p-16 md:p-20 rounded-[40px] sm:rounded-[64px] text-center shadow-xl overflow-hidden"
+          className="relative bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 p-8 sm:p-12 md:p-16 rounded-[40px] sm:rounded-[64px] text-center shadow-xl overflow-hidden"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,0,160,0.07),transparent_70%)]" />
           <div className="relative z-10">

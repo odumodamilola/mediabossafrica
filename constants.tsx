@@ -1,7 +1,7 @@
 import { NavItem, Service, Industry, FAQItem, Feature, PricingPlan, Resource, CaseStudy, PageType } from './types';
 
 // ROUTING MANIFEST: Type-safe list of all valid pages (prevents dead-ends)
-export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'about-us', 'pricing', 'resources', 'contact', 'talent', 'talent/apply', 'privacy', 'terms', 'studio', 'talent-form', 'digital-marketing', 'public-relations', 'talent-management', 'content-production'] as const;
+export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'about-us', 'pricing', 'resources', 'contact', 'talent', 'talent/apply', 'work', 'privacy', 'terms', 'studio', 'talent-form', 'digital-marketing', 'public-relations', 'talent-management', 'content-production'] as const;
 
 
 export const SEO_CONFIG = {
@@ -110,6 +110,14 @@ export const SEO_CONFIG = {
     ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
     twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
   },
+  work: {
+    title: "Our Work | Cinematic Portfolios & Growth Results",
+    description: "Explore our track record of digital dominance. From historical Box Office success to record-breaking brand campaigns.",
+    keywords: "mediaboss case studies, MTN brand campaign, Lagos fashion week results",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+
   privacy: {
     title: "Privacy Policy | Mediaboss Africa",
     description: "How we protect your data and intellectual property.",
@@ -145,6 +153,7 @@ export const NAV_LINKS: NavItem[] = [
       { label: 'Content Production', href: 'content-production' }
     ]
   },
+  { label: 'Work', href: 'work' },
   { label: 'Studio', href: 'studio' },
   { label: 'Talent', href: 'talent' },
   { label: 'About Us', href: 'about-us' },
@@ -253,11 +262,11 @@ export const RESOURCES: Resource[] = [
   {
     title: "Why Talent Needs Investment to Thrive in the Modern Economy",
     type: "Article",
-    author: "Seyi Buhari",
+    author: "Seyi Busari",
     date: "April 14, 2026",
     image: "https://cdn.pmnewsnigeria.com/wp-content/uploads/2026/04/Seyi-1.jpg",
     readTime: "8 min read",
-    excerpt: "Seyi Buhari, Founder of Mediaboss Africa, explains why talent must be treated as a long-term business asset in the 2026 global economy.",
+    excerpt: "Seyi Busari, Founder of Mediaboss Africa, explains why talent must be treated as a long-term business asset in the 2026 global economy.",
     source: "PM News Nigeria",
     url: "https://pmnewsnigeria.com/2026/04/14/why-talents-needs-investment-to-thrive-in-the-modern-economy/",
     imagePosition: "center 15%"

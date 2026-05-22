@@ -10,6 +10,7 @@ export type PageType =
   | 'contact'
   | 'talent'
   | 'talent/apply'
+  | 'work'
   | 'privacy'
   | 'terms'
   | 'studio'

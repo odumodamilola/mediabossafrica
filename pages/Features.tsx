@@ -2,6 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Clapperboard, Crown, Megaphone, Users2, Shield, Zap, Target } from 'lucide-react';
 import { TRUSTED_BRANDS } from '../constants';
+import LazyImage from '../components/LazyImage';
+
+import seyiImg from '../assets/images/seyi-founder.png';
+import yetundeImg from '../assets/images/yetunde.png';
+import stephenImg from '../assets/images/stephen.png';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -14,14 +19,14 @@ const fadeUp = (delay = 0) => ({
 
 const leadership = [
   {
-    name: 'Seyi Buhari',
+    name: 'Seyi Busari',
     role: 'Founder / CEO',
-    image: 'https://i.ibb.co/nsqYVPMn/image.png',
+    image: seyiImg,
     bio: 'Visionary leader driving the pan-African media revolution.',
   },
   {
     name: 'Excel Olanrewaju',
-    role: 'Executive Director',
+    role: 'Managing partner',
     image: 'https://i.ibb.co/qY1pk1ZH/Whats-App-Image-2026-04-02-at-2-38-27-PM.jpg',
     bio: 'Driving strategic direction and operational excellence across Mediaboss Africa.',
   },
@@ -32,15 +37,15 @@ const leadership = [
     bio: 'Building and maintaining the digital infrastructure behind Mediaboss Africa.',
   },
   {
-    name: 'Creative Director',
-    role: 'Head of Production',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop', // Placeholder
+    name: 'Yetunde Abegunde',
+    role: 'Talent Coordinator',
+    image: yetundeImg,
     bio: 'Crafting the visual language of African influence.',
   },
   {
-    name: 'Talent Lead',
-    role: 'Head of Partnerships',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop', // Placeholder
+    name: 'Stephen Obuseh',
+    role: 'Managing partner',
+    image: stephenImg,
     bio: 'Building bridges between brands and audience power.',
   },
 ];
@@ -125,13 +130,12 @@ const Features: React.FC = () => {
                 {...fadeUp(i * 0.1)}
                 className="group relative"
               >
-                <div className="aspect-[4/5] overflow-hidden rounded-[32px] mb-6 grayscale hover:grayscale-0 transition-all duration-700 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
+                <LazyImage
+                  src={member.image}
+                  alt={member.name}
+                  wrapperClassName="aspect-[4/5] overflow-hidden rounded-[32px] mb-6 transition-all duration-700 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10"
+                  className="w-full h-full object-cover group-hover:scale-105"
+                />
                 <div className="px-2">
                   <h4 className="text-xl font-display font-black text-gray-900 dark:text-white">{member.name}</h4>
                   <p className="text-brand-magenta text-[10px] font-black uppercase tracking-widest mb-3 mt-1">{member.role}</p>
