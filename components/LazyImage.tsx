@@ -76,7 +76,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
         <img
           src={src}
           alt={alt}
-          className={`${className} transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`${className} transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] grayscale hover:grayscale-0 ${
             isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
           }`}
           loading="lazy"

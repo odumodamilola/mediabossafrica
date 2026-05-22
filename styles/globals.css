@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  img {
+    @apply grayscale transition-all duration-700;
+  }
+  img:hover {
+    @apply grayscale-0;
+  }
+}
+
 :root {
   --brand-magenta: #ff00a0;
   --bg-primary: #ffffff;

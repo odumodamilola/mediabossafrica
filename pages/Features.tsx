@@ -32,10 +32,10 @@ const leadership = [
     bio: 'Driving strategic direction and operational excellence across Mediaboss Africa.',
   },
   {
-    name: 'Damilola Odumo',
-    role: 'Software Engineer',
-    image: damilolaImg,
-    bio: 'Building and maintaining the digital infrastructure behind Mediaboss Africa.',
+    name: 'Stephen Obuseh',
+    role: 'Managing partner',
+    image: stephenImg,
+    bio: 'Building bridges between brands and audience power.',
   },
   {
     name: 'Yetunde Abegunde',
@@ -44,10 +44,10 @@ const leadership = [
     bio: 'Crafting the visual language of African influence.',
   },
   {
-    name: 'Stephen Obuseh',
-    role: 'Managing partner',
-    image: stephenImg,
-    bio: 'Building bridges between brands and audience power.',
+    name: 'Damilola Odumo',
+    role: 'Software Engineer',
+    image: damilolaImg,
+    bio: 'Building and maintaining the digital infrastructure behind Mediaboss Africa.',
   },
 ];
 
