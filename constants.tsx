@@ -1,0 +1,386 @@
+import { NavItem, Service, Industry, FAQItem, Feature, PricingPlan, Resource, CaseStudy, PageType } from './types';
+
+// ROUTING MANIFEST: Type-safe list of all valid pages (prevents dead-ends)
+export const VALID_PAGES: readonly PageType[] = ['home', 'features', 'solutions', 'about-us', 'pricing', 'resources', 'contact', 'talent', 'talent/apply', 'work', 'privacy', 'terms', 'studio', 'consultation', 'talent-form', 'digital-marketing', 'public-relations', 'talent-management', 'content-production', 'news'] as const;
+
+
+export const SEO_CONFIG = {
+  home: {
+    title: "Mediaboss Africa | Influence. Innovation. Impact.",
+    description: "Leading pan-African talent management and influencer marketing company. We build influence that converts through strategic storytelling and different data-driven campaigns.",
+    keywords: "talent management africa, influencer marketing nigeria, creative media agency, brand partnerships, mediaboss studio",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'digital-marketing': {
+    title: "Digital Marketing | Mediaboss Africa – Influencer & Event Marketing",
+    description: "Data-driven digital marketing strategies. We specialize in high-impact influencer campaigns and event marketing that drive real growth.",
+    keywords: "digital marketing nigeria, influencer marketing africa, event marketing lagos",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'public-relations': {
+    title: "Public Relations | Mediaboss Africa – Strategic Communications",
+    description: "Strategic PR and brand communication. We build and protect reputations for Africa's leading brands and personalities.",
+    keywords: "public relations nigeria, brand strategy africa, strategic communications lagos",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'talent-management': {
+    title: "Talent Management | Mediaboss Africa – Elite Creator Roster",
+    description: "The premier home for Africa's most elite creators. Strategic management, brand deals, and career growth.",
+    keywords: "talent management africa, creator agency nigeria, influencer management",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'content-production': {
+    title: "Content Production | Mediaboss Africa – Studio & Storytelling",
+    description: "High-fidelity visual storytelling. From brand films to studio productions, we create content that moves culture.",
+    keywords: "video production lagos, content studio nigeria, cinematic storytelling africa",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  features: {
+    title: "Professional Content Studio in Lekki, Lagos | Mediaboss Africa",
+    description: "Access world-class production facilities in Lagos. Create premium content that attracts brand partnerships. Based in Lekki.",
+    keywords: "content production studio Lagos, video production Nigeria, creator studio Lekki, Lagos production facilities",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'about-us': {
+    title: "About Us | Mediaboss Africa – The Future of African Influence",
+    description: "Mediaboss Africa is a high-velocity ecosystem building global influence through strategic talent management and cinematic production. Rooted in Lagos, built for the world.",
+    keywords: "about mediaboss africa, lagos creative agency, talent management legacy",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  studio: {
+    title: "The Mediaboss Studio | Professional Production & Digital Storytelling",
+    description: "Access world-class production infrastructure. Video, podcast, and photography studio built to serve brands and creators. Based in Lekki.",
+    keywords: "content studio lekki, video production lagos, professional photography nigeria, Mediaboss Studio",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  solutions: {
+    title: "Services We Render | Mediaboss Africa",
+    description: "Explore MediaBoss Africa services across influencer marketing, talent management, film production, event marketing, brand partnerships, and campaign strategy.",
+    keywords: "influencer marketing Nigeria, talent management Lagos, film production Nigeria, event marketing Africa",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  service: {
+    title: "Services We Render | Mediaboss Africa",
+    description: "Explore MediaBoss Africa services across influencer marketing, talent management, film production, event marketing, brand partnerships, and campaign strategy.",
+    keywords: "influencer marketing Nigeria, talent management Lagos, film production Nigeria, event marketing Africa",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  pricing: {
+    title: "Join Mediaboss | Partnership Plans for Nigerian Creators",
+    description: "Ready to earn from your content? Join Africa's most elite creator roster. We only win when you win.",
+    keywords: "join influencer agency Nigeria, talent management rates Lagos",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  resources: {
+    title: "Creator Resources | Nigeria Influencer Marketing Insights 2026",
+    description: "Learn how to land your first brand deal, protect your content, and build wealth as a Nigerian creator.",
+    keywords: "Nigeria creator guide 2026, Lagos influencer tips, brand deals Nigeria",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  contact: {
+    title: "Contact Mediaboss | Lagos Creator Agency",
+    description: "Ready to turn your influence into income? Visit our Lagos studio or reach out online. Let's build something legendary.",
+    keywords: "contact talent agency Lagos, Mediaboss Africa location",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  talent: {
+    title: "MediaBoss Africa Talent Profiles | Actors, Hosts, and Creators",
+    description: "Browse MediaBoss Africa talent profiles, specialties, and selected work across entertainment, branded content, and African media storytelling.",
+    keywords: "MediaBoss Africa talent profiles, Nollywood talent Nigeria, creator profiles Africa, entertainment talent Lagos",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'talent/apply': {
+    title: "Talent Application | Mediaboss Africa – Join the Legend",
+    description: "Ready to scale your career? Submit your profile for review by our talent scouts. Join the most elite creator roster in Africa.",
+    keywords: "apply talent agency Nigeria, influencer application Lagos, creator partnership",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  work: {
+    title: "Our Work | Cinematic Portfolios & Growth Results",
+    description: "Explore our track record of digital dominance. From historical Box Office success to record-breaking brand campaigns.",
+    keywords: "mediaboss case studies, MTN brand campaign, Lagos fashion week results",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+
+  privacy: {
+    title: "Privacy Policy | Mediaboss Africa",
+    description: "How we protect your data and intellectual property.",
+    keywords: "privacy policy, data protection",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  terms: {
+    title: "Terms of Service | Mediaboss Africa",
+    description: "Our legal framework for partnership and service delivery.",
+    keywords: "terms of service, legal agreement",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  'talent-form': {
+    title: "Client Consultation | Mediaboss Africa – Build Bold Campaigns",
+    description: "Ready to scale your brand? Book a consultation with Africa's leading creative ecosystem. We build influence that converts through strategic storytelling.",
+    keywords: "client consultation Nigeria, brand strategy Lagos, influencer marketing consultation Africa",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  consultation: {
+    title: "Client Consultation | Mediaboss Africa – Build Bold Campaigns",
+    description: "Ready to scale your brand? Book a consultation with Africa's leading creative ecosystem. We build influence that converts through strategic storytelling.",
+    keywords: "client consultation Nigeria, brand strategy Lagos, influencer marketing consultation Africa",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  },
+  news: {
+    title: "News & Insights | Mediaboss Africa",
+    description: "Stay updated with the latest trends in African talent management, influencer marketing, creator economy, and cinematic content production.",
+    keywords: "mediaboss news, african entertainment news, creator economy insights, influencer marketing trends",
+    ogImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png",
+    twitterImage: "https://i.ibb.co/3mN9f8Lp/mediaboss-icon.png"
+  }
+};
+
+export const NAV_LINKS: NavItem[] = [
+  { label: 'Home', href: 'home' },
+  { 
+    label: 'Services', 
+    href: 'digital-marketing', // Placeholder parent href, but used for active state
+    children: [
+      { label: 'Digital Marketing', href: 'digital-marketing' },
+      { label: 'Public Relations', href: 'public-relations' },
+      { label: 'Talent Management', href: 'talent-management' },
+      { label: 'Content Production', href: 'content-production' }
+    ]
+  },
+  { label: 'Work', href: 'work' },
+  { label: 'Studio', href: 'studio' },
+  { label: 'Talent', href: 'talent' },
+  { label: 'News', href: 'news' },
+  { label: 'About Us', href: 'about-us' },
+  { label: 'Contact', href: 'contact' },
+];
+
+export const CASE_STUDIES: CaseStudy[] = [
+  {
+    title: "MTN Brand Ambassador",
+    client: "MTN Nigeria",
+    category: "Strategic Partnership",
+    image: "https://i.ibb.co/k2QYDRST/2025-was-a-year-of-bold-moves-powerful-storytelling-and-undeniable-growth-From-redefining-conv.jpg",
+    result: "Elite Influence"
+  },
+  {
+    title: "Lagos Fashion Week",
+    client: "LFW Global",
+    category: "Event Marketing",
+    image: "https://i.ibb.co/tp8V5rJh/Save-Clip-App-615090775-18556831825025304-3688801026426920160-n.jpg",
+    result: "12M+ Organic Views"
+  },
+  {
+    title: "No One Has To Know",
+    client: "TTM / Branded Film",
+    category: "Content Production",
+    image: "https://i.ibb.co/99C4hKQC/Whats-App-Image-2026-03-18-at-6-11-56-PM.jpg",
+    result: "1.2M+ YouTube Views"
+  },
+  {
+    title: "The Tobi Makinde Show",
+    client: "Digital Series",
+    category: "IP Development",
+    image: "https://i.ibb.co/HTxVcFsq/Whats-App-Image-2026-03-18-at-6-15-52-PM.jpg",
+    result: "Viral Digital Launch"
+  }
+];
+
+export const FEATURES: Feature[] = [
+  {
+    title: "Video Production",
+    description: "Short-form & Long-form video production for brands, creators, and campaigns.",
+    category: "Studio",
+    metric: "4K Quality",
+    image: "https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?q=80&w=800"
+  },
+  {
+    title: "Social Media Content Creation",
+    description: "Platform-optimized content across Instagram, TikTok, YouTube, X (Twitter), and emerging platforms.",
+    category: "Social",
+    metric: "Viral Ready",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800"
+  },
+  {
+    title: "Podcast Production",
+    description: "Full-service podcast production — audio and video recording, editing, and distribution.",
+    category: "Audio",
+    metric: "Pro Sound",
+    image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800"
+  },
+  {
+    title: "Photography & Creative Direction",
+    description: "Photography, creative direction, and visual storytelling that sets brands and talents apart.",
+    category: "Creative",
+    metric: "Visionary",
+    image: "https://images.unsplash.com/photo-1542038784456-1ea0e93ca370?q=80&w=800"
+  },
+  {
+    title: "Branded Content & Commercial Shoots",
+    description: "Branded content and commercial shoots that bring campaign visions to life.",
+    category: "Business",
+    metric: "High ROI",
+    image: "https://images.unsplash.com/photo-1493655161922-ef98929de9d8?q=80&w=800"
+  },
+  {
+    title: "Editing, Motion Graphics & Post-Production",
+    description: "Editing, motion graphics, and post-production ensuring every story is polished and platform-ready.",
+    category: "Editing",
+    metric: "Top Tier",
+    image: "https://images.unsplash.com/photo-1574717432707-c67be3152631?q=80&w=800"
+  }
+];
+
+export const PRICING_PLANS: PricingPlan[] = [
+  {
+    name: "Growth",
+    price: "Standard",
+    description: "For creators with 50k+ followers ready to professionalize and start earning consistently.",
+    features: ["Media Kit Design", "Brand Pitching", "Basic Legal Review", "Studio Sessions"],
+  },
+  {
+    name: "Dominance",
+    price: "Premium",
+    description: "Elite 360-management for top-tier African talent. We handle everything from taxes to global tours.",
+    features: ["Full 360 Management", "International Brand Deals", "Priority Studio Use", "Global PR Strategy", "Legal Protection"],
+    recommended: true
+  },
+  {
+    name: "Corporate",
+    price: "Custom",
+    description: "For brands looking to capture the Nigerian market through authentic campaigns.",
+    features: ["Campaign Strategy", "Talent Vetting", "Analytics & Reporting", "Full Production"],
+  }
+];
+
+export const RESOURCES: Resource[] = [
+  {
+    title: "Why Talent Needs Investment to Thrive in the Modern Economy",
+    type: "Article",
+    author: "Seyi Busari",
+    date: "April 14, 2026",
+    image: "https://cdn.pmnewsnigeria.com/wp-content/uploads/2026/04/Seyi-1.jpg",
+    readTime: "8 min read",
+    excerpt: "Seyi Busari, Founder of Mediaboss Africa, explains why talent must be treated as a long-term business asset in the 2026 global economy.",
+    source: "PM News Nigeria",
+    url: "https://pmnewsnigeria.com/2026/04/14/why-talents-needs-investment-to-thrive-in-the-modern-economy/",
+    imagePosition: "center 15%"
+  },
+  {
+    title: "Dancing doesn’t guarantee movie success — Abayomi Alvin",
+    type: "Article",
+    author: "Kehinde Ajose",
+    date: "April 12, 2026",
+    image: "https://cdn.punchng.com/wp-content/uploads/2026/04/12001738/ABAYOMI-ALVIN-REAL.jpg",
+    readTime: "6 min read",
+    excerpt: "Actor and content creator Abayomi Alvin emphasizes that attracting audiences is more about understanding what works within the local industry than simply copying Hollywood formulas.",
+    source: "Punch NG",
+    url: "https://punchng.com/dancing-doesnt-guarantee-movie-success-abayomi-alvin/"
+  },
+  {
+    title: "The Rise of Nigerian Fintech Influencers",
+    type: "Case Study",
+    image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=400",
+    readTime: "12 min read"
+  }
+];
+
+export const TRUSTED_BRANDS = [
+  { name: 'MTN', logo: 'https://cdn.worldvectorlogo.com/logos/mtn-new-logo.svg' },
+  { name: 'LXGlobal', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9149OvZ2iXZlHjBtngoJ-bfT0Xl0snuSWw&s' },
+  { name: 'PushBio', logo: 'https://www.pushbio.io/wp-content/uploads/2022/02/pusshbnewx2.png' },
+  { name: 'INTO REALTOR', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdLN35oSLW0KGfKGnLy-u1RL11Fw12l1_U4w&s', className: 'sm:scale-[1.5] scale-[1.1]' },
+  { name: 'POLYMATHS REALESTATE', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd3YbqpVlUi7J7Lrh7M3fYVd3gGx_qmQ_kQw&s' },
+  { name: 'TOLISA', logo: 'https://placehold.co/200x80/transparent/9ca3af?text=TOLISA' },
+  { name: 'UR3 Conference', logo: 'https://media.licdn.com/dms/image/v2/D4E0BAQF1CUMyDKYLdA/company-logo_200_200/company-logo_200_200/0/1729856381630?e=2147483647&v=beta&t=GBzN9v_3k0NJEFmxP8H2cr64OAnPGEN6nI5HIXefKqg' },
+  { name: 'JustArt', logo: 'https://i.ibb.co/RG7YfGqS/image.png', showText: true, className: 'sm:scale-110 scale-95' },
+  { name: 'Lagos Sales Party', logo: 'https://i.ibb.co/rK3zXjD8/image.png' },
+  { name: 'RCCG', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Rccg_logo.png/250px-Rccg_logo.png' }
+];
+
+export const SERVICES: Service[] = [
+  {
+    id: 'influencer-marketing',
+    title: 'Influencer Marketing & Campaigns',
+    description: 'Strategic influencer-led campaigns designed for reach, engagement, and conversion across Instagram, TikTok, YouTube, X (Twitter), and emerging platforms.',
+    items: ['Strategic Campaigns', 'Multi-platform Reach', 'Engagement & Conversion', 'Emerging Platforms']
+  },
+  {
+    id: 'talent-management',
+    title: 'Talent Management & Development',
+    description: 'Comprehensive talent representation including personal brand strategy, deal negotiation & brand endorsements, career growth and monetization, and media training & positioning.',
+    items: ['Personal Brand Strategy', 'Deal Negotiation & Brand Endorsements', 'Career Growth and Monetization', 'Media Training & Positioning']
+  },
+  {
+    id: 'brand-partnerships',
+    title: 'Brand Partnerships & Endorsements',
+    description: 'Matching brands with the right talents for product launches, brand ambassadorships, event partnerships, and long-term collaborations.',
+    items: ['Product Launches', 'Brand Ambassadorships', 'Event Partnerships', 'Long-term Collaborations']
+  },
+  {
+    id: 'campaign-strategy',
+    title: 'Campaign Strategy, Media Planning & Analytics',
+    description: 'Insight-led campaign development with performance tracking, reporting, and optimization.',
+    items: ['Insight-led Development', 'Performance Tracking', 'Reporting', 'Optimization']
+  }
+];
+
+export const INDUSTRIES: Industry[] = [
+  { name: 'Beauty & Skincare', image: 'https://i.ibb.co/N6ZXzjp5/Whats-App-Image-2026-03-22-at-5-30-53-PM-1.jpg' },
+  { name: 'Tech & Fintech', image: 'https://i.ibb.co/qMkryzNX/Whats-App-Image-2026-03-22-at-5-30-54-PM.jpg' },
+  { name: 'Food & Beverage', image: 'https://i.ibb.co/Psz3QdjB/Whats-App-Image-2026-03-22-at-5-41-15-PM.jpg' },
+  { name: 'Entertainment & Music', image: 'https://i.ibb.co/B530bMRd/Whats-App-Image-2026-03-22-at-5-41-15-PM-1.jpg' },
+  { name: 'Real Estate', image: 'https://i.ibb.co/LL7KGyz/Whats-App-Image-2026-03-22-at-5-41-15-PM-2.jpg' },
+  { name: 'Events & Experiences', image: 'https://i.ibb.co/3y09vCV8/Whats-App-Image-2026-03-22-at-5-30-53-PM.jpg' },
+  { name: 'Media & Production', image: 'https://i.ibb.co/rR1wkRGF/Whats-App-Image-2026-03-22-at-5-46-05-PM.jpg' },
+  { name: 'Creative Campaigns', image: 'https://i.ibb.co/35xVcRPW/Whats-App-Image-2026-03-22-at-5-46-05-PM-1.jpg' },
+  { name: 'Studio Moments', image: 'https://i.ibb.co/BKKvV1ng/Whats-App-Image-2026-03-22-at-5-46-05-PM-2.jpg' },
+  { name: 'Behind the Scenes Video', streamableId: 'wgvixo' }
+];
+
+export const FAQS: FAQItem[] = [
+  {
+    question: "Do I need a large following to join the Mediaboss roster?",
+    answer: "We look at engagement and content quality over just numbers. Most of our creators have at least 50k followers, but we scout 'emerging legends' with smaller, highly active Lagos audiences too."
+  },
+  {
+    question: "How do you get paid?",
+    answer: "We take a percentage of the deals we secure for you. No deals = we don't get paid. This keeps us laser-focused on your success."
+  },
+  {
+    question: "How long does it take to land my first deal?",
+    answer: "Most creators on our roster land their first paid partnership within 60-90 days. We work fast because we already have brand relationships."
+  },
+  {
+    question: "Do I need to be in Lagos?",
+    answer: "No. While our studio is in Lagos, we work with creators across Nigeria and Africa. As long as your audience is here, you can work with us."
+  },
+  {
+    question: "What makes you different from other agencies?",
+    answer: "We're built for African creators. We understand local culture, we negotiate in dollars, and we provide free studio access. Most agencies just take a cut and disappear — we're hands-on."
+  },
+  {
+    question: "Where are your Lagos offices located?",
+    answer: "Our main production studio is located in the heart of Lagos, with satellite meeting points in Lekki and Ikeja to serve our creators across the city."
+  }
+];

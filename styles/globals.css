@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* === LIGHT MODE === */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Brand magenta as primary */
+    --primary: 322 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    /* Muted: subtle off-white section bg */
+    --muted: 220 14% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 322 60% 96%;
+    --accent-foreground: 322 100% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 322 100% 50%;
+    
+    --radius: 0.5rem;
+
+    /* === SIDEBAR (LIGHT) === */
+    --sidebar-background: 220 14% 97%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 322 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 93%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 88%;
+    --sidebar-ring: 322 100% 50%;
+
+    /* Legacy variables preserved for seamless migration */
+    --brand-magenta: #ff00a0;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.05);
+    --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --border-gradient-start: rgba(0, 0, 0, 0.1);
+    --border-gradient-mid: transparent;
+    --border-gradient-end: rgba(255, 0, 160, 0.4);
+  }
+
+  .dark {
+    /* === DARK MODE === */
+    /* Deep brand-void background */
+    --background: 285 87% 3%;
+    --foreground: 210 40% 98%;
+
+    /* Card: slightly elevated from background */
+    --card: 285 70% 5%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 285 70% 6%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Brand magenta as primary */
+    --primary: 322 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 285 40% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted: subtly different from background for section alternation */
+    --muted: 285 50% 8%;
+    --muted-foreground: 215 20.2% 60%;
+
+    --accent: 322 50% 15%;
+    --accent-foreground: 322 100% 70%;
+
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 285 40% 14%;
+    --input: 285 40% 14%;
+    --ring: 322 100% 50%;
+
+    /* === SIDEBAR (DARK) — deeper than background === */
+    --sidebar-background: 285 90% 2%;
+    --sidebar-foreground: 240 4.8% 90%;
+    --sidebar-primary: 322 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 285 70% 7%;
+    --sidebar-accent-foreground: 240 4.8% 90%;
+    --sidebar-border: 285 60% 12%;
+    --sidebar-ring: 322 100% 50%;
+
+    /* Legacy variables preserved for seamless migration */
+    --bg-primary: #0a010d;
+    --bg-secondary: #050107;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.01);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    --border-gradient-start: rgba(255, 255, 255, 0.2);
+    --border-gradient-mid: transparent;
+    --border-gradient-end: rgba(255, 0, 160, 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  
+  .img-editorial {
+    @apply grayscale transition-all duration-300;
+  }
+  .img-editorial:hover {
+    @apply grayscale-0;
+  }
+}
+
+/* Base custom classes preserved */
+.noise-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 50;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+}
+
+.dark .noise-bg::before {
+  opacity: 0.05;
+}
+
+.glass-morphism {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(255, 0, 160, 0.4);
+}
+
+.gradient-border {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+:not(.dark) .gradient-border {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    to bottom right,
+    var(--border-gradient-start),
+    var(--border-gradient-mid),
+    var(--border-gradient-end)
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  pointer-events: none;
+}
+
+@keyframes mba-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.mba-marquee {
+  animation: mba-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.mba-marquee-pause:hover .mba-marquee {
+  animation-play-state: paused;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #222;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff00a0;
+}
